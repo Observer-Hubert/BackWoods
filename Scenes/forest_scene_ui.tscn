@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0bqo6wnxwu6h"]
+
+[ext_resource type="Script" path="res://Scripts/stamina_bar.gd" id="1_0au6h"]
+
+[node name="Forest_Scene_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StaminaBar" type="ProgressBar" parent="."]
+layout_mode = 1
+offset_right = 150.0
+offset_bottom = 27.0
+value = 100.0
+script = ExtResource("1_0au6h")

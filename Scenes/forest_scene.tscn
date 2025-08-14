@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvdp5h3m6sqd"]
+
+[ext_resource type="Texture2D" uid="uid://ctcscugeb8bvx" path="res://Assets/Sprites/icon.svg" id="1_nxtgi"]
+[ext_resource type="Texture2D" uid="uid://sffeeyccwv1a" path="res://Assets/Sprites/FoxStand.png" id="2_6k3c4"]
+[ext_resource type="PackedScene" uid="uid://b51t1d6nj1g15" path="res://Scenes/player.tscn" id="3_0183s"]
+[ext_resource type="Script" path="res://Scripts/default_camera.gd" id="4_g7o1g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hm7ag"]
+size = Vector2(50, 18)
+
+[node name="Forest_Scene" type="Node2D"]
+y_sort_enabled = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.099986, 0.099986, 0.099986, 1)
+
+[node name="BG" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-196, 260)
+scale = Vector2(100, 100)
+texture = ExtResource("1_nxtgi")
+
+[node name="Fox" type="StaticBody2D" parent="."]
+position = Vector2(200, 200)
+
+[node name="FoxSprite" type="Sprite2D" parent="Fox"]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, -18)
+texture = ExtResource("2_6k3c4")
+
+[node name="FoxCollider" type="CollisionShape2D" parent="Fox"]
+z_as_relative = false
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_hm7ag")
+
+[node name="Player" parent="." instance=ExtResource("3_0183s")]
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("4_g7o1g")

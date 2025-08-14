@@ -1,30 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://b51t1d6nj1g15"]
+[gd_scene load_steps=5 format=3 uid="uid://b51t1d6nj1g15"]
 
-[ext_resource type="Script" path="res://Scripts/node_2d.gd" id="1_nn5yy"]
+[ext_resource type="Script" path="res://Scripts/player_controller.gd" id="1_nn5yy"]
 [ext_resource type="Texture2D" uid="uid://bq2sbp2yttsls" path="res://Assets/Sprites/light.png" id="2_u7nt6"]
+[ext_resource type="Texture2D" uid="uid://6kewcgrkf4is" path="res://Assets/Sprites/32x64standin.png" id="3_hfy7n"]
 
-[node name="Player" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jssvv"]
+size = Vector2(32, 24)
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_nn5yy")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.927449, 0, 0.194407, 1)
-
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-color = Color(0.172833, 0.172833, 0.172833, 1)
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
+texture_filter = 1
 scale = Vector2(2, 2)
 color = Color(1, 1, 0.654902, 1)
 energy = 0.5
 texture = ExtResource("2_u7nt6")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("3_hfy7n")
+
+[node name="PlayerCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_jssvv")

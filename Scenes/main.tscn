@@ -1,18 +1,26 @@
 [gd_scene load_steps=3 format=3 uid="uid://ck6f1ixu2e14m"]
 
-[ext_resource type="Texture2D" uid="uid://ctcscugeb8bvx" path="res://Assets/Sprites/icon.svg" id="1_nj5qn"]
-[ext_resource type="PackedScene" uid="uid://b51t1d6nj1g15" path="res://Scenes/player.tscn" id="2_a5o02"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_6tb2e"]
+[ext_resource type="PackedScene" uid="uid://17tjoyebqqsn" path="res://Scenes/main_menu.tscn" id="2_wpvoy"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6tb2e")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0, 0, 0, 1)
+[node name="Main_2D" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(100, 100)
-texture = ExtResource("1_nj5qn")
+[node name="Main_UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Camera" type="Camera2D" parent="."]
-
-[node name="Player" parent="." instance=ExtResource("2_a5o02")]
-YSPEED = 150
+[node name="Main_Menu" parent="Main_UI" instance=ExtResource("2_wpvoy")]
+layout_mode = 1
