@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dvdp5h3m6sqd"]
+[gd_scene load_steps=13 format=4 uid="uid://dvdp5h3m6sqd"]
 
 [ext_resource type="Texture2D" uid="uid://dq2styifgs51i" path="res://Assets/Sprites/grass.png" id="1_oclbm"]
 [ext_resource type="Texture2D" uid="uid://sffeeyccwv1a" path="res://Assets/Sprites/FoxStand.png" id="2_6k3c4"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/default_camera.gd" id="4_g7o1g"]
 [ext_resource type="Texture2D" uid="uid://sdb7rrgrmx2m" path="res://Assets/Sprites/BushPlaceholder.png" id="5_6p0jg"]
 [ext_resource type="Script" path="res://Scripts/bush.gd" id="5_gqdvw"]
+[ext_resource type="Texture2D" uid="uid://c1i7p1utprsfy" path="res://Assets/Sprites/reticleplaceholder.png" id="7_wwolp"]
+[ext_resource type="Script" path="res://Scenes/sprite_2d.gd" id="8_qa7mj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kn03c"]
 resource_name = "Grass"
@@ -80,3 +82,9 @@ offset = Vector2(0, -32)
 [node name="BushCollider" type="CollisionShape2D" parent="Bush"]
 position = Vector2(0, -23)
 shape = SubResource("RectangleShape2D_gkyf7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+texture = ExtResource("7_wwolp")
+script = ExtResource("8_qa7mj")

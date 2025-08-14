@@ -1,6 +1,5 @@
 extends Camera2D
 
-
-# Called when the node enters the scene tree for the first time.
+#need to find a better way to do this
 func _ready():
 	position = Vector2(480,360)/2

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b51t1d6nj1g15"]
+[gd_scene load_steps=6 format=3 uid="uid://b51t1d6nj1g15"]
 
 [ext_resource type="Script" path="res://Scripts/player_controller.gd" id="1_nn5yy"]
 [ext_resource type="Texture2D" uid="uid://bq2sbp2yttsls" path="res://Assets/Sprites/light.png" id="2_u7nt6"]
 [ext_resource type="Texture2D" uid="uid://6kewcgrkf4is" path="res://Assets/Sprites/32x64standin.png" id="3_hfy7n"]
+[ext_resource type="Script" path="res://Scripts/player_light.gd" id="3_uwjrw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jssvv"]
 size = Vector2(32, 24)
@@ -11,12 +12,13 @@ size = Vector2(32, 24)
 motion_mode = 1
 script = ExtResource("1_nn5yy")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PlayerLight" type="PointLight2D" parent="."]
 texture_filter = 1
 scale = Vector2(2, 2)
 color = Color(1, 1, 0.654902, 1)
 energy = 0.5
 texture = ExtResource("2_u7nt6")
+script = ExtResource("3_uwjrw")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -32)
