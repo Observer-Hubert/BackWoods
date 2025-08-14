@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://17tjoyebqqsn"]
+[gd_scene load_steps=2 format=3 uid="uid://17tjoyebqqsn"]
+
+[ext_resource type="Theme" uid="uid://cukrveftb5565" path="res://Assets/Themes/Default_UI_Theme.tres" id="1_wj3mk"]
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -17,6 +19,7 @@ offset_left = -51.5
 offset_right = 51.5
 offset_bottom = 23.0
 grow_horizontal = 2
+theme = ExtResource("1_wj3mk")
 text = "BACKWOODS"
 
 [node name="Button" type="Button" parent="."]
