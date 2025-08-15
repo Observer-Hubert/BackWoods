@@ -1,10 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0bqo6wnxwu6h"]
+[gd_scene load_steps=9 format=3 uid="uid://c0bqo6wnxwu6h"]
 
 [ext_resource type="Script" path="res://Scripts/stamina_bar.gd" id="1_0au6h"]
 [ext_resource type="Theme" uid="uid://cukrveftb5565" path="res://Assets/Themes/Default_UI_Theme.tres" id="1_25j4l"]
 [ext_resource type="Script" path="res://Scripts/player_following_ui_anchor.gd" id="1_ayyws"]
 [ext_resource type="Script" path="res://Scripts/bush_tooltip.gd" id="4_gsoir"]
 [ext_resource type="Script" path="res://Scripts/player_state_label.gd" id="5_jbi15"]
+
+[sub_resource type="Animation" id="Animation_loelk"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_Following_UI/StaminaBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yicpb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_Following_UI/StaminaBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jvix8"]
+_data = {
+"RESET": SubResource("Animation_yicpb"),
+"fade_out": SubResource("Animation_loelk")
+}
 
 [node name="Forest_Scene_UI" type="Control"]
 layout_mode = 3
@@ -43,8 +79,14 @@ theme = ExtResource("1_25j4l")
 value = 100.0
 script = ExtResource("1_0au6h")
 
+[node name="StaminaBarAnimPlayer" type="AnimationPlayer" parent="Player_Following_UI/StaminaBar"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_jvix8")
+}
+
 [node name="BushTooltip" type="Label" parent="Player_Following_UI"]
-visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5

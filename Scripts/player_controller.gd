@@ -16,17 +16,20 @@ enum playerStates{FREE_MOVEMENT, HIDING, AIMING}
 
 var stamina: float = STAMMAX
 var exhausted: bool = false
-var state: playerStates = playerStates.FREE_MOVEMENT
+var currentState: playerStates = playerStates.FREE_MOVEMENT
+
+func _ready() -> void:
+	Bus.player_pos_update(position)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Aim") and state != playerStates.AIMING:
-		state = playerStates.AIMING
-		Bus.player_state_update(state)
-	elif event.is_action_pressed("Aim") and state == playerStates.AIMING:
+	if event.is_action_pressed("Aim") and currentState != playerStates.AIMING:
+		currentState = playerStates.AIMING
+		Bus.player_state_update(currentState)
+	elif event.is_action_pressed("Aim") and currentState == playerStates.AIMING:
 		$PlayerLight.flash()
-	elif event.is_action_pressed("Cancel") and state == playerStates.AIMING:
-		state = playerStates.FREE_MOVEMENT
-		Bus.player_state_update(state)
+	elif event.is_action_pressed("Cancel") and currentState == playerStates.AIMING:
+		currentState = playerStates.FREE_MOVEMENT
+		Bus.player_state_update(currentState)
 
 func _physics_process(delta: float) -> void:
 	var sprintInput: bool = Input.is_action_pressed("Sprint")
@@ -42,10 +45,12 @@ func _physics_process(delta: float) -> void:
 		elif exhausted == true:
 			exhausted = false
 	# The player only needs movement code if they are allowed to move and are attempting to do so.
-	if state == playerStates.FREE_MOVEMENT and movementInput:
+	if currentState == playerStates.FREE_MOVEMENT and movementInput:
 		velocity = _calculate_move_vect(delta, inputVect, sprintInput)
 		move_and_slide()
 		Bus.player_pos_update(position)
+	if stamina <= 0.0:
+		exhausted = true
 	Bus.stamina_update(stamina, exhausted)
 
 func _calculate_move_vect(delta: float, inputVect: Vector2, sprinting: bool) -> Vector2:
@@ -53,6 +58,4 @@ func _calculate_move_vect(delta: float, inputVect: Vector2, sprinting: bool) -> 
 	if sprinting and exhausted == false:
 		desiredVel *= SPRINTSPEEDMOD
 		stamina -= SPRINTSTAMCOST * delta
-		if stamina <= 0.0:
-			exhausted = true
 	return desiredVel
