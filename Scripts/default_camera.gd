@@ -1,5 +1,5 @@
 extends Camera2D
 
-#need to find a better way to do this
-func _ready():
-	position = Vector2(480,360)/2
+#Placeholder, puts it halfway to the end of the viewports width and height
+func _ready() -> void:
+	position = Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"),ProjectSettings.get_setting("display/window/size/viewport_height"))/2

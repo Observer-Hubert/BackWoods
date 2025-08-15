@@ -1,13 +1,13 @@
 extends Sprite2D
 
-func _ready():
+func _ready() -> void:
 	Bus.player_state_updated.connect(_update_Visibility)
 
-func _update_Visibility(state):
+func _update_Visibility(state: int) -> void:
 	if state == 2:
 		visible = true
 	else:
 		visible = false
 
-func _process(delta):
+func _process(_delta: float) -> void:
 	position = get_viewport().get_mouse_position()

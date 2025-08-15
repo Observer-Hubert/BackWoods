@@ -10,38 +10,49 @@ const SPRINTSTAMCOST: float = 100.0
 #STAMREGEN is how much stamina the player regenerates per second while not running
 const STAMREGEN: float = 25.0
 #EXHAUSTEDREGENMOD * 100 percent of the stamina regen is subtracted from stamina regen when the player is exhausted
-const EXHAUSTEDREGENMOD: float = 0.9
+const EXHAUSTEDREGENMOD: float = 0.5
 
-enum states{FREE_MOVEMENT, HIDING, AIMING}
+enum playerStates{FREE_MOVEMENT, HIDING, AIMING}
 
 var stamina: float = STAMMAX
 var exhausted: bool = false
-var state = states.FREE_MOVEMENT
+var state: playerStates = playerStates.FREE_MOVEMENT
 
-func _input(event):
-	if event.is_action_pressed("Aim") and state != states.AIMING:
-		state = states.AIMING
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Aim") and state != playerStates.AIMING:
+		state = playerStates.AIMING
 		Bus.player_state_update(state)
-	elif event.is_action_pressed("Aim") and state == states.AIMING:
+	elif event.is_action_pressed("Aim") and state == playerStates.AIMING:
 		$PlayerLight.flash()
-	elif event.is_action_pressed("Cancel") and state == states.AIMING:
-		state = states.FREE_MOVEMENT
+	elif event.is_action_pressed("Cancel") and state == playerStates.AIMING:
+		state = playerStates.FREE_MOVEMENT
 		Bus.player_state_update(state)
 
-func _physics_process(delta):
-	var baseVect = Input.get_vector("Left","Right","Up","Down")
-	var desiredVel = baseVect * Vector2(SPEED, SPEED * YSPEEDMOD)
-	if Input.is_action_pressed("Sprint") and exhausted == false and desiredVel.x + desiredVel.y != 0:
-		desiredVel *= SPRINTSPEEDMOD
-		stamina -= SPRINTSTAMCOST * delta
-		if stamina <= 0:
-			exhausted = true
-	elif stamina < STAMMAX:
-		stamina += STAMREGEN * (1.0 - (EXHAUSTEDREGENMOD * int(exhausted))) * delta
-	else:
-		exhausted = false
-	Bus.stamina_update(stamina, exhausted)
-	velocity = velocity.move_toward(desiredVel, ACCEL)
-	if state == states.FREE_MOVEMENT:
+func _physics_process(delta: float) -> void:
+	var sprintInput: bool = Input.is_action_pressed("Sprint")
+	var inputVect: Vector2 = Input.get_vector("Left","Right","Up","Down")
+	# movementInput checks if any movement input key is pressed and stores that as a bool for checks later.
+	var movementInput: bool = inputVect.x != 0.0 or inputVect.y != 0.0
+	# We want the stamina to regen if the player is not sprinting. This includes when the player has the sprint key held, but is not moving as well as when the player cannot sprint due to exhaustion.
+	if (not sprintInput or exhausted) or not movementInput:
+		if stamina < STAMMAX:
+			# increments stamina by the player's STAMINAREGEN modified by the EXHAUSTREGENMOD if the player is exhausted. This is clamped so the player cannot regen more than their stamina maximum.
+			stamina = clampf(stamina + (STAMREGEN * (1.0 - (EXHAUSTEDREGENMOD * int(exhausted))) * delta), -STAMMAX, STAMMAX)
+		# If the player is at full stamina, they are no longer exhausted.
+		elif exhausted == true:
+			exhausted = false
+	# The player only needs movement code if they are allowed to move and are attempting to do so.
+	if state == playerStates.FREE_MOVEMENT and movementInput:
+		velocity = _calculate_move_vect(delta, inputVect, sprintInput)
 		move_and_slide()
 		Bus.player_pos_update(position)
+	Bus.stamina_update(stamina, exhausted)
+
+func _calculate_move_vect(delta: float, inputVect: Vector2, sprinting: bool) -> Vector2:
+	var desiredVel: Vector2 = inputVect * Vector2(SPEED, SPEED * YSPEEDMOD)
+	if sprinting and exhausted == false:
+		desiredVel *= SPRINTSPEEDMOD
+		stamina -= SPRINTSTAMCOST * delta
+		if stamina <= 0.0:
+			exhausted = true
+	return desiredVel

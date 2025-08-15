@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://sdb7rrgrmx2m" path="res://Assets/Sprites/BushPlaceholder.png" id="5_6p0jg"]
 [ext_resource type="Script" path="res://Scripts/bush.gd" id="5_gqdvw"]
 [ext_resource type="Texture2D" uid="uid://c1i7p1utprsfy" path="res://Assets/Sprites/reticleplaceholder.png" id="7_wwolp"]
-[ext_resource type="Script" path="res://Scripts/placeholder_reticle.gd" id="8_qa7mj"]
+[ext_resource type="Script" path="res://Scenes/sprite_2d.gd" id="8_qa7mj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kn03c"]
 resource_name = "Grass"

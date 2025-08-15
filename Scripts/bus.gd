@@ -9,14 +9,14 @@ signal player_bush_collision_updated
 #emitted when the player changes their state
 signal player_state_updated
 
-func stamina_update(newValue, exhausted):
+func stamina_update(newValue: float, exhausted: bool) -> void:
 	stamina_updated.emit(newValue, exhausted)
 
-func player_pos_update(newPos):
+func player_pos_update(newPos: Vector2) -> void:
 	player_pos_updated.emit(newPos)
 
-func player_bush_collision_update(bush: Node2D):
+func player_bush_collision_update(bush: Node2D) -> void:
 	player_bush_collision_updated.emit(bush)
 
-func player_state_update(state):
+func player_state_update(state: int) -> void:
 	player_state_updated.emit(state)

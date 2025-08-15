@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/stamina_bar.gd" id="1_0au6h"]
 [ext_resource type="Theme" uid="uid://cukrveftb5565" path="res://Assets/Themes/Default_UI_Theme.tres" id="1_25j4l"]
-[ext_resource type="Script" path="res://Scripts/player_following_ui.gd" id="1_ayyws"]
+[ext_resource type="Script" path="res://Scripts/player_following_ui_anchor.gd" id="1_ayyws"]
 [ext_resource type="Script" path="res://Scripts/bush_tooltip.gd" id="4_gsoir"]
 [ext_resource type="Script" path="res://Scripts/player_state_label.gd" id="5_jbi15"]
 
