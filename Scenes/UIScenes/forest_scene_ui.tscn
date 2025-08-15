@@ -1,25 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://c0bqo6wnxwu6h"]
 
-[ext_resource type="Script" path="res://Scripts/stamina_bar.gd" id="1_0au6h"]
-[ext_resource type="Theme" uid="uid://cukrveftb5565" path="res://Assets/Themes/Default_UI_Theme.tres" id="1_25j4l"]
-[ext_resource type="Script" path="res://Scripts/player_following_ui_anchor.gd" id="1_ayyws"]
-[ext_resource type="Script" path="res://Scripts/bush_tooltip.gd" id="4_gsoir"]
-[ext_resource type="Script" path="res://Scripts/player_state_label.gd" id="5_jbi15"]
-
-[sub_resource type="Animation" id="Animation_loelk"]
-resource_name = "fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player_Following_UI/StaminaBar:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(-0.0333333, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
+[ext_resource type="Script" path="res://Scripts/UIElements/player_following_ui_anchor.gd" id="1_fx710"]
+[ext_resource type="Theme" uid="uid://cukrveftb5565" path="res://Assets/Themes/Default_UI_Theme.tres" id="2_l5s8k"]
+[ext_resource type="Script" path="res://Scripts/UIElements/stamina_bar.gd" id="3_otvop"]
+[ext_resource type="Script" path="res://Scripts/UIElements/bush_tooltip.gd" id="4_j64a8"]
+[ext_resource type="Script" path="res://Scripts/UIElements/player_state_label.gd" id="5_7g16y"]
 
 [sub_resource type="Animation" id="Animation_yicpb"]
 length = 0.001
@@ -34,6 +19,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_loelk"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_Following_UI/StaminaBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jvix8"]
@@ -59,7 +59,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ayyws")
+script = ExtResource("1_fx710")
 
 [node name="StaminaBar" type="ProgressBar" parent="Player_Following_UI"]
 z_index = 5
@@ -75,9 +75,9 @@ offset_right = 37.5
 offset_bottom = -41.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_25j4l")
+theme = ExtResource("2_l5s8k")
 value = 100.0
-script = ExtResource("1_0au6h")
+script = ExtResource("3_otvop")
 
 [node name="StaminaBarAnimPlayer" type="AnimationPlayer" parent="Player_Following_UI/StaminaBar"]
 root_node = NodePath("../../..")
@@ -96,9 +96,9 @@ offset_top = -11.5
 offset_right = 138.0
 offset_bottom = 11.5
 grow_vertical = 2
-theme = ExtResource("1_25j4l")
+theme = ExtResource("2_l5s8k")
 text = "Press E to Hide"
-script = ExtResource("4_gsoir")
+script = ExtResource("4_j64a8")
 
 [node name="PlayerState" type="Label" parent="Player_Following_UI"]
 layout_mode = 1
@@ -115,4 +115,4 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Free Movement"
 horizontal_alignment = 1
-script = ExtResource("5_jbi15")
+script = ExtResource("5_7g16y")

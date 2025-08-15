@@ -3,6 +3,8 @@ extends PointLight2D
 var flashing: bool = false
 var flashtimer: float
 
+#all of the following is placeholder behavior
+
 func flash() -> void:
 	flashtimer = 5.0
 	flashing = true

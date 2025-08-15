@@ -1,17 +1,17 @@
 [gd_scene load_steps=13 format=4 uid="uid://dvdp5h3m6sqd"]
 
-[ext_resource type="Texture2D" uid="uid://dq2styifgs51i" path="res://Assets/Sprites/grass.png" id="1_oclbm"]
-[ext_resource type="Texture2D" uid="uid://sffeeyccwv1a" path="res://Assets/Sprites/FoxStand.png" id="2_6k3c4"]
-[ext_resource type="PackedScene" uid="uid://b51t1d6nj1g15" path="res://Scenes/player.tscn" id="3_0183s"]
-[ext_resource type="Script" path="res://Scripts/default_camera.gd" id="4_g7o1g"]
-[ext_resource type="Texture2D" uid="uid://sdb7rrgrmx2m" path="res://Assets/Sprites/BushPlaceholder.png" id="5_6p0jg"]
-[ext_resource type="Script" path="res://Scripts/bush.gd" id="5_gqdvw"]
-[ext_resource type="Texture2D" uid="uid://c1i7p1utprsfy" path="res://Assets/Sprites/reticleplaceholder.png" id="7_wwolp"]
-[ext_resource type="Script" path="res://Scripts/placeholder_reticle.gd" id="8_qa7mj"]
+[ext_resource type="Texture2D" uid="uid://dq2styifgs51i" path="res://Assets/Sprites/grass.png" id="1_7qh14"]
+[ext_resource type="Texture2D" uid="uid://sffeeyccwv1a" path="res://Assets/Sprites/FoxStand.png" id="2_iwsya"]
+[ext_resource type="PackedScene" uid="uid://b51t1d6nj1g15" path="res://Scenes/GameObjectScenes/player.tscn" id="3_hxdjk"]
+[ext_resource type="Script" path="res://Scripts/GameObjects/default_camera.gd" id="4_rncjx"]
+[ext_resource type="Script" path="res://Scripts/GameObjects/bush.gd" id="5_iv3me"]
+[ext_resource type="Texture2D" uid="uid://sdb7rrgrmx2m" path="res://Assets/Sprites/BushPlaceholder.png" id="6_rhg8m"]
+[ext_resource type="Texture2D" uid="uid://c1i7p1utprsfy" path="res://Assets/Sprites/reticleplaceholder.png" id="7_h3itj"]
+[ext_resource type="Script" path="res://Scripts/GameObjects/placeholder_reticle.gd" id="8_7btwx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kn03c"]
 resource_name = "Grass"
-texture = ExtResource("1_oclbm")
+texture = ExtResource("1_7qh14")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -58,25 +58,23 @@ position = Vector2(200, 200)
 texture_filter = 1
 texture_repeat = 1
 position = Vector2(0, -18)
-texture = ExtResource("2_6k3c4")
+texture = ExtResource("2_iwsya")
 
 [node name="FoxCollider" type="CollisionShape2D" parent="Fox"]
 z_as_relative = false
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_hm7ag")
 
-[node name="Player" parent="." instance=ExtResource("3_0183s")]
-
 [node name="Camera" type="Camera2D" parent="."]
-script = ExtResource("4_g7o1g")
+script = ExtResource("4_rncjx")
 
 [node name="Bush" type="Area2D" parent="."]
 y_sort_enabled = true
 position = Vector2(349, 154)
-script = ExtResource("5_gqdvw")
+script = ExtResource("5_iv3me")
 
 [node name="BushSprite" type="Sprite2D" parent="Bush"]
-texture = ExtResource("5_6p0jg")
+texture = ExtResource("6_rhg8m")
 offset = Vector2(0, -32)
 
 [node name="BushCollider" type="CollisionShape2D" parent="Bush"]
@@ -87,5 +85,7 @@ shape = SubResource("RectangleShape2D_gkyf7")
 visible = false
 z_index = 2
 texture_filter = 1
-texture = ExtResource("7_wwolp")
-script = ExtResource("8_qa7mj")
+texture = ExtResource("7_h3itj")
+script = ExtResource("8_7btwx")
+
+[node name="Player" parent="." instance=ExtResource("3_hxdjk")]
