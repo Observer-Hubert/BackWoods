@@ -27,6 +27,7 @@ func _input(event: InputEvent) -> void:
 		Bus.player_state_update(currentState)
 	elif event.is_action_pressed("Aim") and currentState == playerStates.AIMING:
 		$PlayerLight.flash()
+		Bus.signal_photo_taken()
 	elif event.is_action_pressed("Cancel") and currentState == playerStates.AIMING:
 		currentState = playerStates.FREE_MOVEMENT
 		Bus.player_state_update(currentState)

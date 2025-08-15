@@ -23,6 +23,7 @@ Bus="*res://Scripts/bus.gd"
 
 window/size/viewport_width=480
 window/size/viewport_height=360
+window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="viewport"
 

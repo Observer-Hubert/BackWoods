@@ -8,6 +8,10 @@ signal player_pos_updated
 signal player_bush_collision_updated
 #emitted when the player changes their state
 signal player_state_updated
+#emitted when a photo is attempted
+signal photo_taken
+#emitted when a valid photo is taken, passing the correct photo data
+signal valid_photo_taken
 
 func stamina_update(newValue: float, exhausted: bool) -> void:
 	stamina_updated.emit(newValue, exhausted)
@@ -20,3 +24,9 @@ func player_bush_collision_update(bush: Node2D) -> void:
 
 func player_state_update(state: int) -> void:
 	player_state_updated.emit(state)
+
+func signal_photo_taken() -> void:
+	photo_taken.emit()
+
+func signal_valid_photo_taken(photo: PhotoData) -> void:
+	valid_photo_taken.emit(photo)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0bqo6wnxwu6h"]
+[gd_scene load_steps=10 format=3 uid="uid://c0bqo6wnxwu6h"]
 
 [ext_resource type="Script" path="res://Scripts/UIElements/player_following_ui_anchor.gd" id="1_fx710"]
 [ext_resource type="Theme" uid="uid://cukrveftb5565" path="res://Assets/Themes/Default_UI_Theme.tres" id="2_l5s8k"]
 [ext_resource type="Script" path="res://Scripts/UIElements/stamina_bar.gd" id="3_otvop"]
 [ext_resource type="Script" path="res://Scripts/UIElements/bush_tooltip.gd" id="4_j64a8"]
 [ext_resource type="Script" path="res://Scripts/UIElements/player_state_label.gd" id="5_7g16y"]
+[ext_resource type="Script" path="res://Scripts/UIElements/photo_readout.gd" id="6_cpgb7"]
 
 [sub_resource type="Animation" id="Animation_yicpb"]
 length = 0.001
@@ -116,3 +117,26 @@ grow_vertical = 2
 text = "Free Movement"
 horizontal_alignment = 1
 script = ExtResource("5_7g16y")
+
+[node name="PhotoReadout" type="Panel" parent="."]
+layout_mode = 1
+offset_right = 102.0
+offset_bottom = 87.0
+script = ExtResource("6_cpgb7")
+
+[node name="TextureRect" type="TextureRect" parent="PhotoReadout"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 33.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="PhotoReadout"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+grow_horizontal = 2
+grow_vertical = 0
