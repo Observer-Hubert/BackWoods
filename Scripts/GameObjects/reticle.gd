@@ -4,9 +4,9 @@ extends Area2D
 const CELLSIZE: float = 8.0
 const POSOFFSET: Vector2 = Vector2(CELLSIZE,-64.0)
 # TIMEPERCELLMOVE is the amount of time in seconds between each possible cell movement of the reticle.
-const TIMEPERCELLMOVE: float = 0.1
+const TIMEPERCELLMOVE: float = 0.15
 # CELLMOVEFASTMOD is multiplies TIMEPERCELLMOVE if the reticle is in fast mode.
-const CELLMOVEFASTMOD: float = 0.5
+const CELLMOVEFASTMOD: float = 0.25
 # CELLMOVESTOFASTMOVE is the number of cell moves in a row the reticle must take to enter fast movement mode.
 const CELLMOVESTOFASTMOVE: int = 3
 
