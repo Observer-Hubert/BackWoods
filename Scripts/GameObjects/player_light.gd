@@ -1,18 +1,20 @@
 extends PointLight2D
 
+const MAXFLASHSIZE: float = 5.0
+const MINFLASHSIZE: float = 2.0
+const FLASHTICK: float = 5.0
+
 var flashing: bool = false
 var flashtimer: float
 
-#all of the following is placeholder behavior
-
 func flash() -> void:
-	flashtimer = 5.0
+	flashtimer = MAXFLASHSIZE
 	flashing = true
 
 func _process(delta: float) -> void:
 	if flashing == true:
 		scale = Vector2(flashtimer,flashtimer)
-		flashtimer -= delta * 5.0
-		if flashtimer <= 2.0:
+		flashtimer -= delta * FLASHTICK
+		if flashtimer <= MINFLASHSIZE:
 			flashing = false
-			scale = Vector2(2.0, 2.0)
+			scale = Vector2(MINFLASHSIZE, MINFLASHSIZE)

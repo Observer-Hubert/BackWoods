@@ -1,5 +1,7 @@
 extends Label
 
+# Will not remain in the final game. Dev tool only.
+
 func _ready() -> void:
 	Bus.player_state_updated.connect(_update_Text)
 

@@ -1,9 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://b51t1d6nj1g15"]
+[gd_scene load_steps=8 format=3 uid="uid://b51t1d6nj1g15"]
 
 [ext_resource type="Script" path="res://Scripts/GameObjects/player_controller.gd" id="1_k2fbt"]
+[ext_resource type="Script" path="res://Scripts/photo_data_resource.gd" id="2_44jg2"]
 [ext_resource type="Texture2D" uid="uid://bq2sbp2yttsls" path="res://Assets/Sprites/light.png" id="2_u7nt6"]
 [ext_resource type="Script" path="res://Scripts/GameObjects/player_light.gd" id="3_5l2pt"]
 [ext_resource type="Texture2D" uid="uid://6kewcgrkf4is" path="res://Assets/Sprites/32x64standin.png" id="3_hfy7n"]
+
+[sub_resource type="Resource" id="Resource_8id4v"]
+script = ExtResource("2_44jg2")
+texture = ExtResource("3_hfy7n")
+caption = "That's you!"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jssvv"]
 size = Vector2(32, 24)
@@ -11,6 +17,7 @@ size = Vector2(32, 24)
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_k2fbt")
+photo_Data = SubResource("Resource_8id4v")
 
 [node name="PlayerLight" type="PointLight2D" parent="."]
 texture_filter = 1

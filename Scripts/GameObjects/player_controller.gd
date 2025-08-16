@@ -1,6 +1,12 @@
 extends CharacterBody2D
 
-const SPEED: float = 150.0
+class_name Player
+
+@export var photo_Data: PhotoData
+
+@onready var player_Light: PointLight2D = $PlayerLight
+
+const SPEED: float = 150.0 
 const YSPEEDMOD: float = 0.75
 const SPRINTSPEEDMOD: float = 2.5
 const ACCEL: float = 25.0
@@ -20,19 +26,25 @@ var currentState: playerStates = playerStates.FREE_MOVEMENT
 
 func _ready() -> void:
 	Bus.player_pos_update(position)
+	Bus.request_cam_focus(self)
 
 func _input(event: InputEvent) -> void:
+	# If the player presses the aim key while not aiming, they move to the aiming state.
 	if event.is_action_pressed("Aim") and currentState != playerStates.AIMING:
 		currentState = playerStates.AIMING
 		Bus.player_state_update(currentState)
+	# If the player presses the aim key while aiming, they snap a picture.
 	elif event.is_action_pressed("Aim") and currentState == playerStates.AIMING:
-		$PlayerLight.flash()
+		player_Light.flash()
 		Bus.signal_photo_taken()
+	# If the player presses the cancel input while aiming, they return to free movement.
 	elif event.is_action_pressed("Cancel") and currentState == playerStates.AIMING:
 		currentState = playerStates.FREE_MOVEMENT
+		Bus.request_cam_focus(self)
 		Bus.player_state_update(currentState)
 
 func _physics_process(delta: float) -> void:
+	# We take input commands at the beginning to avoid redundant checks.
 	var sprintInput: bool = Input.is_action_pressed("Sprint")
 	var inputVect: Vector2 = Input.get_vector("Left","Right","Up","Down")
 	# movementInput checks if any movement input key is pressed and stores that as a bool for checks later.
@@ -49,11 +61,16 @@ func _physics_process(delta: float) -> void:
 	if currentState == playerStates.FREE_MOVEMENT and movementInput:
 		velocity = _calculate_move_vect(delta, inputVect, sprintInput)
 		move_and_slide()
+		# We need to update the ui and reticle on our current position so they can follow.
 		Bus.player_pos_update(position)
 	if stamina <= 0.0:
 		exhausted = true
+	# We need to update the UI on our stamina status.
 	Bus.stamina_update(stamina, exhausted)
 
+# Takes the player's input to calculate what their velocity should be.
+# Also reduces the player's stamina if they are sprinting currently.
+# was originally in the _physics_process(), but was moved out to clean it up.
 func _calculate_move_vect(delta: float, inputVect: Vector2, sprinting: bool) -> Vector2:
 	var desiredVel: Vector2 = inputVect * Vector2(SPEED, SPEED * YSPEEDMOD)
 	if sprinting and exhausted == false:

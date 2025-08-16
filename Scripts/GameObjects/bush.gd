@@ -1,5 +1,9 @@
 extends Area2D
 
+class_name PhotoZone
+
+@export var photo_Data: PhotoData
+
 func _ready() -> void:
 	body_entered.connect(_check_Player_Entered)
 	body_exited.connect(_check_Player_Exited)
