@@ -133,7 +133,7 @@ script = ExtResource("6_cpgb7")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 33.0
+offset_bottom = 68.0
 grow_horizontal = 2
 
 [node name="ReadoutCaption" type="Label" parent="PhotoReadout"]

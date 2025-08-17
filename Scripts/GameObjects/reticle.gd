@@ -20,6 +20,8 @@ func _ready() -> void:
 	Bus.player_pos_updated.connect(_update_Position)
 	Bus.player_state_updated.connect(_update_Visibility)
 	Bus.photo_taken.connect(_scan_Valid_Photos)
+	body_entered.connect(_update_Highlight)
+	body_exited.connect(_update_Highlight)
 
 func _update_Visibility(state: int) -> void:
 	# State 2 is the player's Aiming state. The reticle should be active when the player is aiming.
@@ -28,6 +30,7 @@ func _update_Visibility(state: int) -> void:
 		position = startPos
 		Bus.request_cam_focus(self)
 	else:
+		position = Vector2(1000.0, 1000.0)
 		visible = false
 
 #_snap_To_Grid() ensures the coordinates of the passed vector 2 are divisible by the CELLSIZE, rounding them down to the nearest multiple.
@@ -52,6 +55,17 @@ func _scan_Valid_Photos() -> void:
 		if area is PhotoZone:
 			Bus.signal_valid_photo_taken(area.photo_Data)
 			return
+
+# Called whenever a body enters or leaves the reticles area. Changes the active state of its highlight shader if one is present.
+func _update_Highlight(body: PhysicsBody2D):
+	if body is Animal:
+		for child in body.get_children():
+			if child is AnimatedSprite2D:
+				if child.material:
+					if child.material.get_shader_parameter("active") == false:
+						child.material.set_shader_parameter("active", true)
+					else:
+						child.material.set_shader_parameter("active", false)
 
 func _physics_process(delta: float) -> void:
 	# We only need to be dealing with the reticle if it is currently active.

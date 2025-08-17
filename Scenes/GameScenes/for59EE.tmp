@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://dvdp5h3m6sqd"]
+[gd_scene load_steps=22 format=4 uid="uid://dvdp5h3m6sqd"]
 
 [ext_resource type="Texture2D" uid="uid://dq2styifgs51i" path="res://Assets/Sprites/grass.png" id="1_7qh14"]
 [ext_resource type="Texture2D" uid="uid://b82mbyri5gh7u" path="res://Assets/Sprites/DirtPath.png" id="2_d858c"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/GameObjects/fox.gd" id="3_o52ek"]
 [ext_resource type="Script" path="res://Scripts/GameObjects/default_camera.gd" id="4_rncjx"]
 [ext_resource type="Script" path="res://Scripts/GameObjects/bush.gd" id="5_iv3me"]
-[ext_resource type="Texture2D" uid="uid://bv01k1wevlbou" path="res://Assets/Sprites/FoxSit.png" id="5_x0mbs"]
+[ext_resource type="Texture2D" uid="uid://ctcscugeb8bvx" path="res://Assets/Sprites/icon.svg" id="5_xh5c5"]
 [ext_resource type="Material" uid="uid://bemxeuwh5jgyo" path="res://Assets/Materials/HighlightableObject.tres" id="6_020ry"]
 [ext_resource type="Texture2D" uid="uid://sdb7rrgrmx2m" path="res://Assets/Sprites/BushPlaceholder.png" id="6_rhg8m"]
 [ext_resource type="SpriteFrames" uid="uid://dsyrg653tilam" path="res://Assets/Sprites/SpriteFramesResources/FoxSpriteFrames.tres" id="7_sj7fc"]
@@ -169,13 +169,9 @@ terrain_set_0/terrain_0/name = "Path"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/2 = SubResource("TileSetAtlasSource_vchtb")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lmbr4"]
-atlas = ExtResource("5_x0mbs")
-region = Rect2(0, 0, 24, 36)
-
 [sub_resource type="Resource" id="Resource_dl5oq"]
 script = ExtResource("3_jxepr")
-texture = SubResource("AtlasTexture_lmbr4")
+texture = ExtResource("5_xh5c5")
 caption = "That's a fox!"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hm7ag"]
@@ -213,12 +209,10 @@ tile_map_data = PackedByteArray("AAD//wAAAgABAAAAAGAAAAAAAgABAAAAAGABAAAAAgABAAA
 tile_set = SubResource("TileSet_bhsdv")
 
 [node name="Fox" type="AnimatableBody2D" parent="."]
-y_sort_enabled = true
-position = Vector2(-20, 117)
+position = Vector2(-100, 75)
 sync_to_physics = false
 script = ExtResource("3_o52ek")
 photo_Data = SubResource("Resource_dl5oq")
-behavior_Interval = 4.0
 
 [node name="FoxCollider" type="CollisionShape2D" parent="Fox"]
 z_as_relative = false
@@ -226,17 +220,10 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_hm7ag")
 
 [node name="FoxSprite" type="AnimatedSprite2D" parent="Fox"]
-y_sort_enabled = true
 texture_filter = 1
-texture_repeat = 1
 material = ExtResource("6_020ry")
-position = Vector2(0, 17)
 sprite_frames = ExtResource("7_sj7fc")
-animation = &"Moving"
-frame = 2
-offset = Vector2(0, -17)
-
-[node name="BehaviorTimer" type="Timer" parent="Fox"]
+animation = &"Running"
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("4_rncjx")
@@ -249,7 +236,6 @@ photo_Data = SubResource("Resource_1we06")
 
 [node name="BushSprite" type="Sprite2D" parent="Bush"]
 visibility_layer = 2
-texture_filter = 1
 texture = ExtResource("6_rhg8m")
 offset = Vector2(0, -32)
 
@@ -261,6 +247,5 @@ shape = SubResource("RectangleShape2D_gkyf7")
 occluder = SubResource("OccluderPolygon2D_texrg")
 
 [node name="Reticle" parent="." instance=ExtResource("8_tk5w5")]
-position = Vector2(1000, 1000)
 
 [node name="Player" parent="." instance=ExtResource("3_hxdjk")]

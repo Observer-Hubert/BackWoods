@@ -17,7 +17,9 @@ func _clear_Readout():
 	readout_caption.text = ""
 
 func _update_Readout(photo: PhotoData) -> void:
-	visible = true
-	readout_texture.texture = photo.texture
-	readout_caption.text = photo.caption
-	readout_timer.start(READOUTTIME)
+	# We want to ensure there is valid photo data.
+	if photo:
+		visible = true
+		readout_texture.texture = photo.texture
+		readout_caption.text = photo.caption
+		readout_timer.start(READOUTTIME)

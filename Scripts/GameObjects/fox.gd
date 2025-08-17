@@ -1,28 +1,50 @@
 extends Animal
 
-@onready var timer = $Timer
-@onready var fox_sprite = $FoxSprite
+@onready var sprite = $FoxSprite
+@onready var behavior_timer = $BehaviorTimer
 
-var desiredPos: Vector2
+# If the fox stands still for for TIMEIDLINGTOSIT seconds, it moves to the sitting state.
+const TIMEIDLINGTOSIT: float = 7.5
+
+# move_Vect stores a direction the fox would like to walk in.
+var move_Vect: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	timer.start(2.0)
-	_change_Behavior()
-	timer.timeout.connect(_change_Behavior)
+	change_State(animalStates.STANDING)
+	behavior_timer.timeout.connect(_random_State)
+	behavior_timer.start(behavior_Interval)
 
-func _change_Behavior() -> void:
-	var behavior = randi_range(0,1)
-	if behavior == 0:
-		fox_sprite.play("Running")
-		desiredPos = Vector2(randf_range(-1,1),randf_range(-0.5,0.5))
-		if desiredPos.x < 0.0:
-			fox_sprite.scale.x = -1
-		else:
-			fox_sprite.scale.x = 1
+# Placeholder for now, states ought to have some more rhyme and reason than the fox just randomly standing and running.
+func _random_State() -> void:
+	var state_Index = randi_range(animalStates.values().min(),animalStates.values().max()-1)
+	change_State(state_Index as animalStates)
+	behavior_timer.start(behavior_Interval)
+
+func _check_Sit() -> void:
+	if currentState == animalStates.STANDING:
+		change_State(animalStates.SITTING)
+		behavior_timer.start(behavior_Interval)
+
+func _standing_State_Setup() -> void:
+	sprite.play("Standing")
+	# A timer is set to check if we are still standing, after out time to sit interval, and should begin to sit.
+	var sit_Timer = get_tree().create_timer(TIMEIDLINGTOSIT)
+	sit_Timer.timeout.connect(_check_Sit)
+
+func _moving_State_Setup() -> void:
+	# Placeholder, The fox ought to have locations it wants to go rather than just aimlessly wandering.
+	move_Vect = Vector2(randf_range(-1.0,1.0),randf_range(-1.0,1.0))
+	# We flip the sprite if the fox is moving left, and reset it if it is moving right.
+	if move_Vect.x < 0.0:
+		sprite.flip_h = true
 	else:
-		fox_sprite.play("Standing")
-		desiredPos = Vector2.ZERO
-	timer.start(2.0)
+		sprite.flip_h = false
+	sprite.play("Moving")
+
+func _sitting_State_Setup() -> void:
+	sprite.play("Sitting")
 
 func _physics_process(_delta: float) -> void:
-	move_and_collide(desiredPos)
+	# The fox should only move if it is in the correct state.
+	if currentState == animalStates.MOVING:
+		move_and_collide(move_Vect * move_Speed)
