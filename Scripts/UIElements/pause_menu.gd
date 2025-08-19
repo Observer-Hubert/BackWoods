@@ -17,8 +17,10 @@ func _input(event: InputEvent) -> void:
 
 func _enter() -> void:
 	anim_player.play("Enter")
+	get_tree().paused = true
 	active = true
 
 func _exit() -> void:
 	anim_player.play("Exit")
+	get_tree().paused = false
 	active = false

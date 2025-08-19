@@ -227,7 +227,7 @@ size = Vector2(50, 18)
 [sub_resource type="Resource" id="Resource_1we06"]
 script = ExtResource("3_jxepr")
 texture = ExtResource("13_108e6")
-caption = "That's a bush!"
+caption = "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEALY LONG TEXT@!!!!!!!!!!!!!1"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkyf7"]
 size = Vector2(110, 46)
@@ -269,6 +269,7 @@ animations = [{
 size = Vector2(62, 19)
 
 [node name="Forest_Scene" type="Node2D"]
+process_mode = 1
 y_sort_enabled = true
 
 [node name="Camera" type="Camera2D" parent="."]

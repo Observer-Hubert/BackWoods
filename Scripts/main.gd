@@ -13,6 +13,7 @@ func _ready() -> void:
 	Bus.quit.connect(_quit_Game)
 
 func _go_Home() -> void:
+		get_tree().paused = false
 		_unload_Scene()
 
 func _quit_Game() -> void:

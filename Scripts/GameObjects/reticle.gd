@@ -15,13 +15,15 @@ var cellMoveTimer: float = TIMEPERCELLMOVE
 var cellsMoved: int = 0
 # startPos is the starting position of the reticle and tracks the player. This is needed so when the reticle is active it is not constantly calculating movements in the background.
 var startPos: Vector2
+#highlightSubject is the first highlightable subject among the overlapping bodies.
+var highlightSubject: Node2D
 
 func _ready() -> void:
 	Bus.player_pos_updated.connect(_update_Position)
 	Bus.player_state_updated.connect(_update_Visibility)
 	Bus.photo_taken.connect(_scan_Valid_Photos)
-	body_entered.connect(_update_Highlight)
-	body_exited.connect(_update_Highlight)
+	body_entered.connect(_check_Subject)
+	body_exited.connect(_check_Subject)
 
 func _update_Visibility(state: int) -> void:
 	# State 2 is the player's Aiming state. The reticle should be active when the player is aiming.
@@ -56,16 +58,24 @@ func _scan_Valid_Photos() -> void:
 			Bus.signal_valid_photo_taken(area.photo_Data)
 			return
 
-# Called whenever a body enters or leaves the reticles area. Changes the active state of its highlight shader if one is present.
-func _update_Highlight(body: Node2D):
-	if body is Animal or Creature:
-		for child in body.get_children():
-			if child is AnimatedSprite2D:
-				if child.material:
-					if child.material.get_shader_parameter("active") == false:
-						child.material.set_shader_parameter("active", true)
-					else:
-						child.material.set_shader_parameter("active", false)
+# Called whenever a body enters or leaves the reticles area. Searches for a valid highlightable object among all overlapping bodies, and highlights the first one found, then exits the function.
+func _check_Subject(_triggerer: Node2D) -> void:
+	# We check all overlapping bodies if they are a 
+	for body in get_overlapping_bodies():
+		if body is Animal or body is Creature:
+			for child in body.get_children():
+				if child is AnimatedSprite2D:
+					if child.material:
+						if highlightSubject != body:
+							if highlightSubject != null:
+								highlightSubject.material.set_shader_parameter("active", false)
+							highlightSubject = child
+							highlightSubject.material.set_shader_parameter("active", true)
+						return
+	# If a valid subject is not found, we clear the highlightSubject's status, and remove the reference.
+	if highlightSubject:
+		highlightSubject.material.set_shader_parameter("active", false)
+		highlightSubject = null
 
 func _physics_process(delta: float) -> void:
 	# We only need to be dealing with the reticle if it is currently active.

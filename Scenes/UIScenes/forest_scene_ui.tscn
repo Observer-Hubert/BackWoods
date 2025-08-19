@@ -1,15 +1,14 @@
-[gd_scene load_steps=26 format=3 uid="uid://c0bqo6wnxwu6h"]
+[gd_scene load_steps=19 format=3 uid="uid://c0bqo6wnxwu6h"]
 
 [ext_resource type="Script" path="res://Scripts/UIElements/pause_menu.gd" id="1_1ktxu"]
 [ext_resource type="Script" path="res://Scripts/UIElements/player_following_ui_anchor.gd" id="1_fx710"]
+[ext_resource type="Script" path="res://Scripts/UIElements/forest_scene_ui.gd" id="1_l5g2u"]
 [ext_resource type="Script" path="res://Scripts/UIElements/main_menu_button.gd" id="2_31j1v"]
 [ext_resource type="Theme" uid="uid://cukrveftb5565" path="res://Assets/Themes/Default_UI_Theme.tres" id="2_l5s8k"]
 [ext_resource type="Script" path="res://Scripts/UIElements/stamina_bar.gd" id="3_otvop"]
 [ext_resource type="Texture2D" uid="uid://petsbq472kqs" path="res://Assets/Sprites/E1.png" id="4_4ph5n"]
 [ext_resource type="Script" path="res://Scripts/UIElements/bush_tooltip.gd" id="4_j64a8"]
 [ext_resource type="Texture2D" uid="uid://d2ykbqhg7t1tg" path="res://Assets/Sprites/E2.png" id="5_dqtgo"]
-[ext_resource type="Script" path="res://Scripts/UIElements/photo_readout.gd" id="6_cpgb7"]
-[ext_resource type="Texture2D" uid="uid://6kewcgrkf4is" path="res://Assets/Sprites/32x64standin.png" id="10_kcrss"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdn60"]
 bg_color = Color(0.154876, 0.154876, 0.154876, 1)
@@ -115,76 +114,6 @@ frame_0/texture = ExtResource("4_4ph5n")
 frame_1/texture = ExtResource("5_dqtgo")
 frame_1/duration = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rw0bx"]
-bg_color = Color(0.775063, 0.775063, 0.775063, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6rav"]
-bg_color = Color(0.365751, 0.617356, 0.880559, 1)
-
-[sub_resource type="SystemFont" id="SystemFont_yb8pp"]
-font_names = PackedStringArray("Rage")
-
-[sub_resource type="Animation" id="Animation_xfdru"]
-resource_name = "Print"
-length = 9.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.966667, 1.2, 1.93333, 2.13333, 3, 3.26667, 3.46667, 7, 9),
-"transitions": PackedFloat32Array(0.757858, 1, 0.784584, 1, 0.784584, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(10, -155), Vector2(10, -100), Vector2(10, -110), Vector2(10, -50), Vector2(10, -55), Vector2(10, 0), Vector2(10, -5), Vector2(10, 0), Vector2(10, 0), Vector2(10, 380)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(7, 9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.13446]
-}
-
-[sub_resource type="Animation" id="Animation_lgla5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(10, -155)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6p2ql"]
-_data = {
-"Print": SubResource("Animation_xfdru"),
-"RESET": SubResource("Animation_lgla5")
-}
-
 [node name="Forest_Scene_UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -192,9 +121,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_l5g2u")
 
 [node name="PauseMenu" type="MarginContainer" parent="."]
-z_index = 4096
+process_mode = 3
+z_index = 10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -234,14 +166,17 @@ horizontal_alignment = 1
 
 [node name="QuitResumeHbox" type="HBoxContainer" parent="PauseMenu/MenuPanel/MenuPanelMargin/MenuVBox"]
 layout_mode = 2
+size_flags_vertical = 8
 alignment = 1
 
 [node name="ResumeButton" type="Button" parent="PauseMenu/MenuPanel/MenuPanelMargin/MenuVBox/QuitResumeHbox"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "RESUME"
 
 [node name="MainMenuButton" type="Button" parent="PauseMenu/MenuPanel/MenuPanelMargin/MenuVBox/QuitResumeHbox"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "MAIN MENU"
 script = ExtResource("2_31j1v")
 
@@ -252,6 +187,7 @@ libraries = {
 movie_quit_on_finish = true
 
 [node name="Player_Following_UI" type="Control" parent="."]
+process_mode = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -262,6 +198,7 @@ offset_top = -32.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_fx710")
 
 [node name="StaminaBar" type="ProgressBar" parent="Player_Following_UI"]
@@ -278,6 +215,7 @@ offset_right = 37.5
 offset_bottom = -41.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("2_l5s8k")
 value = 100.0
 script = ExtResource("3_otvop")
@@ -299,48 +237,7 @@ offset_top = -12.0
 offset_right = 42.0
 offset_bottom = 12.0
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("2_l5s8k")
 texture = SubResource("AnimatedTexture_qxnei")
 script = ExtResource("4_j64a8")
-
-[node name="PhotoReadout" type="PanelContainer" parent="."]
-layout_mode = 1
-offset_left = 10.0
-offset_top = -155.0
-offset_right = 135.0
-offset_bottom = -1.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_rw0bx")
-script = ExtResource("6_cpgb7")
-
-[node name="ReadoutMargin" type="MarginContainer" parent="PhotoReadout"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ReadoutVbox" type="VBoxContainer" parent="PhotoReadout/ReadoutMargin"]
-layout_mode = 2
-
-[node name="PhotoPanel" type="PanelContainer" parent="PhotoReadout/ReadoutMargin/ReadoutVbox"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_t6rav")
-
-[node name="ReadoutTexture" type="TextureRect" parent="PhotoReadout/ReadoutMargin/ReadoutVbox/PhotoPanel"]
-layout_mode = 2
-texture = ExtResource("10_kcrss")
-expand_mode = 4
-stretch_mode = 5
-
-[node name="CaptionCenter" type="CenterContainer" parent="PhotoReadout/ReadoutMargin/ReadoutVbox"]
-layout_mode = 2
-
-[node name="ReadoutCaption" type="Label" parent="PhotoReadout/ReadoutMargin/ReadoutVbox/CaptionCenter"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.129558, 0.129558, 0.129558, 1)
-theme_override_fonts/font = SubResource("SystemFont_yb8pp")
-
-[node name="ReadoutAnimPlayer" type="AnimationPlayer" parent="PhotoReadout"]
-libraries = {
-"": SubResource("AnimationLibrary_6p2ql")
-}
