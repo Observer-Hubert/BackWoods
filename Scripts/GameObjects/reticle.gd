@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var collider = $ReticleCollider
+
 # The reticle moves on a sort of "grid" as if it is on a digital readout of a camera.
 const CELLSIZE: float = 8.0
 const POSOFFSET: Vector2 = Vector2(CELLSIZE,-64.0)
@@ -29,10 +31,11 @@ func _update_Visibility(state: int) -> void:
 	# State 2 is the player's Aiming state. The reticle should be active when the player is aiming.
 	if state == 2:
 		visible = true
+		collider.disabled = false
 		position = startPos
 		Bus.request_cam_focus(self)
 	else:
-		position = Vector2(1000.0, 1000.0)
+		collider.disabled = true
 		visible = false
 
 #_snap_To_Grid() ensures the coordinates of the passed vector 2 are divisible by the CELLSIZE, rounding them down to the nearest multiple.
@@ -48,13 +51,13 @@ func _update_Position(newPos: Vector2) -> void:
 # _scan_Valid_Photos() checks if the reticle's area is overlapping any bodies or areas that have photodata to pass to the readout.
 func _scan_Valid_Photos() -> void:
 	# We should only have one readout, so any valid body or area found ends the function.
-	# Bodies (Animals or the player) Are preferred over photo zone areas, so they are checked first.
+	# Bodies (Creatures or the player) Are preferred over photo zone areas, so they are checked first.
 	for body in get_overlapping_bodies():
-		if body is Animal or body is Player or body is Creature:
+		if body is Player or body is Creature:
 			Bus.signal_valid_photo_taken(body.photo_Data)
 			return
 	for area in get_overlapping_areas():
-		if area is PhotoZone:
+		if area is Interactable:
 			Bus.signal_valid_photo_taken(area.photo_Data)
 			return
 
@@ -62,7 +65,7 @@ func _scan_Valid_Photos() -> void:
 func _check_Subject(_triggerer: Node2D) -> void:
 	# We check all overlapping bodies if they are a 
 	for body in get_overlapping_bodies():
-		if body is Animal or body is Creature:
+		if body is Creature:
 			for child in body.get_children():
 				if child is AnimatedSprite2D:
 					if child.material:

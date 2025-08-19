@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b51t1d6nj1g15"]
+[gd_scene load_steps=34 format=3 uid="uid://b51t1d6nj1g15"]
 
 [ext_resource type="Script" path="res://Scripts/GameObjects/player_controller.gd" id="1_k2fbt"]
 [ext_resource type="Script" path="res://Scripts/photo_data_resource.gd" id="2_44jg2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/GameObjects/camera_flash.gd" id="6_petpc"]
 [ext_resource type="Texture2D" uid="uid://ddhieyimg2vou" path="res://Assets/Sprites/StartAim.png" id="7_nrby6"]
 [ext_resource type="Texture2D" uid="uid://dogldv70obnkn" path="res://Assets/Sprites/PlayerWalk.png" id="8_wkso4"]
+[ext_resource type="Script" path="res://Scripts/GameObjects/player_visibility_area.gd" id="10_p8q5l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_74bxx"]
 atlas = ExtResource("7_nrby6")
@@ -180,6 +181,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jssvv"]
 size = Vector2(32, 24)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hx6nt"]
+radius = 50.0
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 motion_mode = 1
@@ -215,3 +219,11 @@ offset = Vector2(0, -250)
 script = ExtResource("6_petpc")
 
 [node name="CameraFlashTimer" type="Timer" parent="CameraFlashLight"]
+
+[node name="PlayerVisibilityArea" type="Area2D" parent="."]
+script = ExtResource("10_p8q5l")
+base_Visibility_Range = 50.0
+base_Visibility_Scale = 50.0
+
+[node name="PlayerVisibilityCollider" type="CollisionShape2D" parent="PlayerVisibilityArea"]
+shape = SubResource("CircleShape2D_hx6nt")

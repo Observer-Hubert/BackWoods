@@ -1,24 +1,24 @@
 extends Node
 
-#emitted when the players stamina changes
+##emitted when the players stamina changes.
 signal stamina_updated
-#emitted when the player moves
+##emitted when the player moves.
 signal player_pos_updated
-#emitted when the camera position changes
+##emitted when the camera position changes.
 signal camera_pos_updated
-#emitted when a player collides or leaves the area of a bush, and passses the bush obejct
-signal player_bush_collision_updated
-#emitted when the player changes their state
+##emitted when a player collides or leaves the area of a bush, and passses the bush obejct.
+signal player_interactable_collision
+##emitted when the player changes their state.
 signal player_state_updated
-#emitted when a photo is attempted
+##emitted when a photo is attempted.
 signal photo_taken
-#emitted when a valid photo is taken, passing the correct photo data
+##emitted when a valid photo is taken, passing the correct photo data.
 signal valid_photo_taken
-#emitted when a node would like to become the camera's focus
+##emitted when a node would like to become the camera's focus.
 signal cam_focus_request
-#emitted when the player requests to exit the game
+##emitted when the player requests to exit the game.
 signal go_home
-#emitted when the player requests to quit the game.
+##emitted when the player requests to quit the game.
 signal quit
 
 func stamina_update(newValue: float, exhausted: bool) -> void:
@@ -30,8 +30,8 @@ func player_pos_update(newPos: Vector2) -> void:
 func camera_pos_update(newPos: Vector2) -> void:
 	camera_pos_updated.emit(newPos)
 
-func player_bush_collision_update(bush: Node2D) -> void:
-	player_bush_collision_updated.emit(bush)
+func signal_player_interactable_collision(bush: Node2D) -> void:
+	player_interactable_collision.emit(bush)
 
 func player_state_update(state: int) -> void:
 	player_state_updated.emit(state)

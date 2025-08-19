@@ -13,6 +13,7 @@ script = ExtResource("1_ni6vt")
 
 [node name="ReticleCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_iupsw")
+disabled = true
 
 [node name="ReticleSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_cr6le")

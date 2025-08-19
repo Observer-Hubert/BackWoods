@@ -8,7 +8,7 @@ const MAXOPACITY: float = 0.7
 func _ready() -> void:
 	# The Tooltip should be invisible to start so that it only displays when it is accurate.
 	modulate.a = MINOPACITY
-	Bus.player_bush_collision_updated.connect(_update_Visibility)
+	Bus.player_interactable_collision.connect(_update_Visibility)
 
 #This UI element ought to be invisible if the player is not colliding with a bush
 func _update_Visibility(bush: Node2D) -> void:

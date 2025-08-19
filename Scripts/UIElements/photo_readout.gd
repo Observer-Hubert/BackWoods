@@ -11,8 +11,9 @@ var default_texture: Texture2D = load("res://Assets/Sprites/32x64standin.png")
 func _ready() -> void:
 	anim_player.play("RESET")
 	anim_player.play("Print")
-	readout_texture.texture = photo_Data.texture
-	readout_caption.text = photo_Data.caption
+	if photo_Data != null:
+		readout_texture.texture = photo_Data.texture
+		readout_caption.text = photo_Data.caption
 	# When an animation finishes, the readout looks for what to do next.
 	anim_player.animation_finished.connect(_finish_Anim)
 

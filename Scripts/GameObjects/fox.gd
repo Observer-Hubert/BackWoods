@@ -1,7 +1,7 @@
 extends Animal
 
-@onready var sprite = $FoxSprite
-@onready var behavior_timer = $BehaviorTimer
+@onready var sprite: AnimatedSprite2D = $FoxSprite
+@onready var behavior_timer: Timer = $BehaviorTimer
 
 # If the fox stands still for for TIMEIDLINGTOSIT seconds, it moves to the sitting state.
 const TIMEIDLINGTOSIT: float = 7.5
@@ -11,9 +11,16 @@ var desired_Move_Vect: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	awareness_display = $AwarenessDisplay
 	change_State(animalStates.STANDING)
 	behavior_timer.timeout.connect(_random_State)
 	behavior_timer.start(behavior_Interval)
+
+func _process(delta: float) -> void:
+	if observingPlayer == true:
+		_change_Awareness(awarenessDelta * delta)
+	if observingPlayer == false:
+		_change_Awareness(-awareness_Decay_Rate)
 
 # Placeholder for now, states ought to have some more rhyme and reason than the fox just randomly standing and running.
 func _random_State() -> void:

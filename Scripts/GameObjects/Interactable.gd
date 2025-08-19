@@ -1,6 +1,6 @@
 extends Area2D
 
-class_name PhotoZone
+class_name Interactable
 
 @export var photo_Data: PhotoData
 
@@ -9,9 +9,9 @@ func _ready() -> void:
 	body_exited.connect(_check_Player_Exited)
 
 func _check_Player_Entered(body: Node2D) -> void:
-	if body.name == "Player":
-		Bus.player_bush_collision_update(self)
+	if body is Player:
+		body.set_Interact_Target(self)
 
 func _check_Player_Exited(body: Node2D) -> void:
-	if body.name == "Player":
-		Bus.player_bush_collision_update(null)
+	if body is Player:
+		body.clear_Interact_Target(self)

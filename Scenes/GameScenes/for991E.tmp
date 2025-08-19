@@ -14,10 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://sdb7rrgrmx2m" path="res://Assets/Sprites/BushPlaceholder.png" id="6_rhg8m"]
 [ext_resource type="SpriteFrames" uid="uid://dsyrg653tilam" path="res://Assets/Sprites/SpriteFramesResources/FoxSpriteFrames.tres" id="7_sj7fc"]
 [ext_resource type="PackedScene" uid="uid://bvnjtysm1trou" path="res://Scenes/GameObjectScenes/reticle.tscn" id="8_tk5w5"]
+[ext_resource type="Script" path="res://Scripts/GameObjects/Creature.gd" id="13_2nlpm"]
 [ext_resource type="Texture2D" uid="uid://b0qwco6n31pw6" path="res://Assets/Sprites/Bush.png" id="13_108e6"]
 [ext_resource type="Texture2D" uid="uid://cxx1s0eqjln3w" path="res://Assets/Sprites/CreatureTransform.png" id="14_pxtqy"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Highlightable.gdshader" id="15_kuhsn"]
-[ext_resource type="Script" path="res://Scripts/GameObjects/Monster.gd" id="17_6nohs"]
 [ext_resource type="Texture2D" uid="uid://ough7dpuoek4" path="res://Assets/Sprites/BlankFullscreen.png" id="17_ksvxy"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_w7b3h"]
@@ -235,14 +235,14 @@ size = Vector2(110, 46)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_texrg"]
 polygon = PackedVector2Array(-48, 0, 54, 0, 54, 0, -48, 0)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n8eh6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw8t2"]
 atlas = ExtResource("14_pxtqy")
-region = Rect2(45, 25, 40, 40)
+region = Rect2(40, 25, 50, 50)
 
-[sub_resource type="Resource" id="Resource_3ky5o"]
+[sub_resource type="Resource" id="Resource_mapni"]
 script = ExtResource("3_jxepr")
-texture = SubResource("AtlasTexture_n8eh6")
-caption = "Looks odd..."
+texture = SubResource("AtlasTexture_yw8t2")
+caption = "Don't Tussle!"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wmubm"]
 shader = ExtResource("15_kuhsn")
@@ -308,8 +308,8 @@ y_sort_enabled = true
 position = Vector2(-20, 117)
 sync_to_physics = false
 script = ExtResource("3_o52ek")
-behavior_Interval = 4.0
 photo_Data = SubResource("Resource_dl5oq")
+behavior_Interval = 4.0
 accel = 0.04
 
 [node name="FoxCollider" type="CollisionShape2D" parent="Fox"]
@@ -332,7 +332,6 @@ offset = Vector2(0, -13)
 
 [node name="AwarenessDisplay" type="Label" parent="Fox"]
 modulate = Color(1, 1, 1, 0)
-z_index = 5
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -372,36 +371,18 @@ position = Vector2(1000, 1000)
 
 [node name="Player" parent="." instance=ExtResource("3_hxdjk")]
 
-[node name="Monster" type="AnimatableBody2D" parent="."]
+[node name="Creature" type="AnimatableBody2D" parent="."]
 y_sort_enabled = true
 position = Vector2(84, -44)
-script = ExtResource("17_6nohs")
-photo_Data = SubResource("Resource_3ky5o")
+script = ExtResource("13_2nlpm")
+photo_Data = SubResource("Resource_mapni")
 
-[node name="CreatureSprite" type="AnimatedSprite2D" parent="Monster"]
+[node name="CreatureSprite" type="AnimatedSprite2D" parent="Creature"]
 material = SubResource("ShaderMaterial_wmubm")
 position = Vector2(0, 50)
 sprite_frames = SubResource("SpriteFrames_0jp4w")
 offset = Vector2(0, -50)
 
-[node name="CreatureCollider" type="CollisionShape2D" parent="Monster"]
+[node name="CreatureCollider" type="CollisionShape2D" parent="Creature"]
 position = Vector2(1, 40.5)
 shape = SubResource("RectangleShape2D_abp1f")
-
-[node name="AwarenessDisplay" type="Label" parent="Monster"]
-modulate = Color(1, 1, 1, 0)
-z_index = 5
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 25
-text = "!"
-horizontal_alignment = 1

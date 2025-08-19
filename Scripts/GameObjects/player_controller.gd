@@ -19,13 +19,17 @@ const STAMREGEN: float = 25.0
 #EXHAUSTEDREGENMOD * 100 percent of the stamina regen is subtracted from stamina regen when the player is exhausted
 const EXHAUSTEDREGENMOD: float = 0.5
 
-enum playerStates{FREE_MOVEMENT, HIDING, AIMING}
+enum playerStates{FREE_MOVEMENT, HIDING, AIMING, BUSY}
 
 var stamina: float = STAMMAX
 var exhausted: bool = false
 var currentState: playerStates = playerStates.FREE_MOVEMENT
+var previousStates: Array[playerStates]
+var interactTarget: Node2D
 
 func change_State(newState: playerStates) -> void:
+	if currentState != null:
+		previousStates.append(currentState)
 	match newState:
 		playerStates.FREE_MOVEMENT:
 			currentState = playerStates.FREE_MOVEMENT
@@ -36,7 +40,32 @@ func change_State(newState: playerStates) -> void:
 			player_Sprite.play("Calm_Raise_Cam")
 			player_Sprite.animation_finished.connect(func idleCam() -> void:
 				player_Sprite.play("Calm_Cam_Idle"))
+		playerStates.HIDING:
+			pass
+		playerStates.BUSY:
+			currentState = playerStates.BUSY
+			player_Sprite.play("Calm_Idle")
 	Bus.player_state_update(currentState)
+
+func set_Interact_Target(newTarget: Node2D) -> void:
+	interactTarget = newTarget
+	Bus.signal_player_interactable_collision(interactTarget)
+
+func clear_Interact_Target(oldTarget: Node2D) -> void:
+	if oldTarget == interactTarget:
+		interactTarget = null
+		Bus.signal_player_interactable_collision(interactTarget)
+
+# Iterates through the previousStates array backwards, and returns the first non-busy state that is different from the current state.
+func _get_Previous_State() -> playerStates:
+	var length: int = previousStates.size()
+	for i in range(0,length,1):
+		var value = previousStates[length-(i+1)]
+		if previousStates[value] != currentState:
+			if previousStates[value] != playerStates.BUSY:
+				return previousStates[value]
+	# If for some reason we cant find a previous state, we will return free movement as a default.
+	return playerStates.FREE_MOVEMENT
 
 func _ready() -> void:
 	Bus.player_pos_update(position)
@@ -44,16 +73,24 @@ func _ready() -> void:
 	player_Sprite.play("Calm_Idle")
 
 func _input(event: InputEvent) -> void:
-	# If the player presses the aim key while not aiming, they move to the aiming state.
-	if event.is_action_pressed("Aim") and currentState != playerStates.AIMING:
-		change_State(playerStates.AIMING)
-	# If the player presses the aim key while aiming, they snap a picture.
-	elif event.is_action_pressed("Aim") and currentState == playerStates.AIMING:
-		player_Light.flash()
-		Bus.signal_photo_taken()
-	# If the player presses the cancel input while aiming, they return to free movement.
-	elif event.is_action_pressed("Cancel") and currentState == playerStates.AIMING:
-		change_State(playerStates.FREE_MOVEMENT)
+	# The player should be powerless to exit the busy state
+	if currentState != playerStates.BUSY:
+		# If the player presses the aim key while not aiming, they move to the aiming state.
+		if event.is_action_pressed("Aim") and currentState != playerStates.AIMING:
+			change_State(playerStates.AIMING)
+		# If the player presses the aim key while aiming, they snap a picture.
+		elif event.is_action_pressed("Aim") and currentState == playerStates.AIMING:
+			player_Light.flash()
+			Bus.signal_photo_taken()
+		# If the player presses the cancel input while aiming, they return to free movement.
+		elif event.is_action_pressed("Cancel") and currentState == playerStates.AIMING:
+			if _get_Previous_State() != currentState:
+				change_State(_get_Previous_State())
+			else:
+				change_State(playerStates.FREE_MOVEMENT)
+		elif event.is_action_pressed("Interact") and currentState == playerStates.FREE_MOVEMENT:
+			if interactTarget:
+				change_State(playerStates.BUSY)
 
 func _physics_process(delta: float) -> void:
 	# We take input commands at the beginning to avoid redundant checks.
