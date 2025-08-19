@@ -48,7 +48,7 @@ func _scan_Valid_Photos() -> void:
 	# We should only have one readout, so any valid body or area found ends the function.
 	# Bodies (Animals or the player) Are preferred over photo zone areas, so they are checked first.
 	for body in get_overlapping_bodies():
-		if body is Animal or Player or Creature:
+		if body is Animal or body is Player or body is Creature:
 			Bus.signal_valid_photo_taken(body.photo_Data)
 			return
 	for area in get_overlapping_areas():
@@ -57,7 +57,7 @@ func _scan_Valid_Photos() -> void:
 			return
 
 # Called whenever a body enters or leaves the reticles area. Changes the active state of its highlight shader if one is present.
-func _update_Highlight(body: PhysicsBody2D):
+func _update_Highlight(body: Node2D):
 	if body is Animal or Creature:
 		for child in body.get_children():
 			if child is AnimatedSprite2D:

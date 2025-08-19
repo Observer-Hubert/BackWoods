@@ -9,12 +9,14 @@ var currentUI: Control = null
 
 func _ready() -> void:
 	main_menu.find_child("Button").pressed.connect(_load_Scene)
+	Bus.go_home.connect(_go_Home)
+	Bus.quit.connect(_quit_Game)
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Pause"):
-		#attempt to unload scene and ui, if none is present, quit the game
-		if not _unload_Scene():
-			get_tree().quit()
+func _go_Home() -> void:
+		_unload_Scene()
+
+func _quit_Game() -> void:
+		get_tree().quit()
 
 func _load_Scene(sceneName: String = "forest_scene", uiName: String = "forest_scene_ui") -> void:
 	# Loads a scene from the specified file in the Scenes folder, and places it in the main_2d node.

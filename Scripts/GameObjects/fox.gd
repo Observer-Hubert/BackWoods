@@ -6,8 +6,9 @@ extends Animal
 # If the fox stands still for for TIMEIDLINGTOSIT seconds, it moves to the sitting state.
 const TIMEIDLINGTOSIT: float = 7.5
 
-# move_Vect stores a direction the fox would like to walk in.
-var move_Vect: Vector2 = Vector2.ZERO
+# desred_move_Vect stores a direction the fox would like to walk in.
+var desired_Move_Vect: Vector2 = Vector2.ZERO
+var velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	change_State(animalStates.STANDING)
@@ -33,9 +34,9 @@ func _standing_State_Setup() -> void:
 
 func _moving_State_Setup() -> void:
 	# Placeholder, The fox ought to have locations it wants to go rather than just aimlessly wandering.
-	move_Vect = Vector2(randf_range(-1.0,1.0),randf_range(-1.0,1.0))
+	desired_Move_Vect = Vector2(randf_range(-1.0,1.0),randf_range(-1.0,1.0)).normalized()
 	# We flip the sprite if the fox is moving left, and reset it if it is moving right.
-	if move_Vect.x < 0.0:
+	if desired_Move_Vect.x < 0.0:
 		sprite.flip_h = true
 	else:
 		sprite.flip_h = false
@@ -47,4 +48,7 @@ func _sitting_State_Setup() -> void:
 func _physics_process(_delta: float) -> void:
 	# The fox should only move if it is in the correct state.
 	if currentState == animalStates.MOVING:
-		move_and_collide(move_Vect * move_Speed)
+		velocity = velocity.move_toward(desired_Move_Vect * move_Speed, accel)
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, accel)
+	move_and_collide(velocity)

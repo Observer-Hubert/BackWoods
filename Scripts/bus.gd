@@ -16,6 +16,10 @@ signal photo_taken
 signal valid_photo_taken
 #emitted when a node would like to become the camera's focus
 signal cam_focus_request
+#emitted when the player requests to exit the game
+signal go_home
+#emitted when the player requests to quit the game.
+signal quit
 
 func stamina_update(newValue: float, exhausted: bool) -> void:
 	stamina_updated.emit(newValue, exhausted)
@@ -40,3 +44,9 @@ func signal_valid_photo_taken(photo: PhotoData) -> void:
 
 func request_cam_focus(focus: Node2D) -> void:
 	cam_focus_request.emit(focus)
+
+func request_go_home() -> void:
+	go_home.emit()
+
+func request_quit() -> void:
+	quit.emit()

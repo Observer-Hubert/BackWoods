@@ -7,6 +7,7 @@ class_name Animal
 # Determines how often the animal considers new behavior.
 @export_range(0.01,10.0) var behavior_Interval: float = 0.5
 @export_range(0.01,5.0) var move_Speed: float = 1.0
+@export_range(0.01,1.0) var accel: float = 0.1
 
 enum animalStates{STANDING, MOVING, SITTING}
 
