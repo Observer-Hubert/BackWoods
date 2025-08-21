@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://dvdp5h3m6sqd"]
+[gd_scene load_steps=62 format=4 uid="uid://dvdp5h3m6sqd"]
 
 [ext_resource type="Texture2D" uid="uid://dq2styifgs51i" path="res://Assets/Sprites/grass.png" id="1_7qh14"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Fog.gdshader" id="1_cplha"]
@@ -11,14 +11,18 @@
 [ext_resource type="Texture2D" uid="uid://b3d24tmohr2ha" path="res://Assets/Sprites/Fence.png" id="5_t373m"]
 [ext_resource type="Texture2D" uid="uid://bv01k1wevlbou" path="res://Assets/Sprites/FoxSit.png" id="5_x0mbs"]
 [ext_resource type="Material" uid="uid://bemxeuwh5jgyo" path="res://Assets/Materials/HighlightableObject.tres" id="6_020ry"]
-[ext_resource type="Texture2D" uid="uid://sdb7rrgrmx2m" path="res://Assets/Sprites/BushPlaceholder.png" id="6_rhg8m"]
 [ext_resource type="SpriteFrames" uid="uid://dsyrg653tilam" path="res://Assets/Sprites/SpriteFramesResources/FoxSpriteFrames.tres" id="7_sj7fc"]
 [ext_resource type="PackedScene" uid="uid://bvnjtysm1trou" path="res://Scenes/GameObjectScenes/reticle.tscn" id="8_tk5w5"]
-[ext_resource type="Texture2D" uid="uid://b0qwco6n31pw6" path="res://Assets/Sprites/Bush.png" id="13_108e6"]
+[ext_resource type="Texture2D" uid="uid://quysgfvu8lqy" path="res://Assets/Sprites/BigBush.png" id="13_qxhwg"]
 [ext_resource type="Texture2D" uid="uid://cxx1s0eqjln3w" path="res://Assets/Sprites/CreatureTransform.png" id="14_pxtqy"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Highlightable.gdshader" id="15_kuhsn"]
 [ext_resource type="Script" path="res://Scripts/GameObjects/Monster.gd" id="17_6nohs"]
 [ext_resource type="Texture2D" uid="uid://ough7dpuoek4" path="res://Assets/Sprites/BlankFullscreen.png" id="17_ksvxy"]
+[ext_resource type="Script" path="res://Scripts/GameObjects/Human.gd" id="20_5vmpk"]
+[ext_resource type="Texture2D" uid="uid://dve0obujd0kww" path="res://Assets/Sprites/Earl.png" id="20_le2x5"]
+[ext_resource type="Script" path="res://Scripts/GameObjects/Dialogue_Zone.gd" id="21_mqhkv"]
+[ext_resource type="Script" path="res://Scripts/dialogue_data_resource.gd" id="22_dp3tu"]
+[ext_resource type="Texture2D" uid="uid://bsnmrjn6n267q" path="res://Assets/Sprites/PlayerIdle.png" id="23_hib5p"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_w7b3h"]
 noise_type = 3
@@ -226,11 +230,11 @@ size = Vector2(50, 18)
 
 [sub_resource type="Resource" id="Resource_1we06"]
 script = ExtResource("3_jxepr")
-texture = ExtResource("13_108e6")
+texture = ExtResource("13_qxhwg")
 caption = "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEALY LONG TEXT@!!!!!!!!!!!!!1"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkyf7"]
-size = Vector2(110, 46)
+size = Vector2(90, 52)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_texrg"]
 polygon = PackedVector2Array(-48, 0, 54, 0, 54, 0, -48, 0)
@@ -268,6 +272,103 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abp1f"]
 size = Vector2(62, 19)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_blyvn"]
+atlas = ExtResource("20_le2x5")
+region = Rect2(0, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="Resource" id="Resource_ahegq"]
+script = ExtResource("3_jxepr")
+texture = SubResource("AtlasTexture_blyvn")
+caption = "Oh fuck that's Earl!"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s0u0b"]
+shader = ExtResource("15_kuhsn")
+shader_parameter/highlight_color = Color(1, 1, 0, 1)
+shader_parameter/active = false
+shader_parameter/highlight_opacity = 0.7
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55h1b"]
+atlas = ExtResource("20_le2x5")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw57r"]
+atlas = ExtResource("20_le2x5")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnhb8"]
+atlas = ExtResource("20_le2x5")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uauc"]
+atlas = ExtResource("20_le2x5")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2gi8"]
+atlas = ExtResource("20_le2x5")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rkftp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55h1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw57r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnhb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uauc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2gi8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7pus"]
+size = Vector2(30, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2gti"]
+atlas = ExtResource("20_le2x5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_dj1vy"]
+script = ExtResource("22_dp3tu")
+texture = SubResource("AtlasTexture_c2gti")
+speaker = "Earl"
+text = "Hey! It's me, Earl"
+text_Speed = 0.05
+text_End_Time = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm3ts"]
+atlas = ExtResource("23_hib5p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_1t28l"]
+script = ExtResource("22_dp3tu")
+texture = SubResource("AtlasTexture_rm3ts")
+speaker = "Sam"
+text = "Please do not speak to me"
+text_Speed = 0.05
+text_End_Time = 1.0
+
+[sub_resource type="Resource" id="Resource_xoue6"]
+script = ExtResource("22_dp3tu")
+texture = SubResource("AtlasTexture_c2gti")
+speaker = "Earl"
+text = "Four score and seven years ago our fathers brought forth on this continent a new nation concieved in liberty and built on the notion that all men are created equal. We are now engaged in a great civil war. A war that will test whether that nation or any nation such concieved can"
+text_Speed = 0.01
+text_End_Time = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mybmx"]
+size = Vector2(100, 100)
+
 [node name="Forest_Scene" type="Node2D"]
 process_mode = 1
 y_sort_enabled = true
@@ -276,7 +377,7 @@ y_sort_enabled = true
 script = ExtResource("4_rncjx")
 
 [node name="PostProcessing" type="Sprite2D" parent="Camera"]
-z_index = 100
+z_index = 5
 material = SubResource("ShaderMaterial_6c38j")
 texture = ExtResource("17_ksvxy")
 
@@ -310,7 +411,8 @@ sync_to_physics = false
 script = ExtResource("3_o52ek")
 behavior_Interval = 4.0
 photo_Data = SubResource("Resource_dl5oq")
-accel = 0.04
+move_Speed = 100.0
+accel = 130.0
 
 [node name="FoxCollider" type="CollisionShape2D" parent="Fox"]
 z_as_relative = false
@@ -332,7 +434,7 @@ offset = Vector2(0, -13)
 
 [node name="AwarenessDisplay" type="Label" parent="Fox"]
 modulate = Color(1, 1, 1, 0)
-z_index = 5
+z_index = 6
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -357,11 +459,12 @@ photo_Data = SubResource("Resource_1we06")
 [node name="BushSprite" type="Sprite2D" parent="Bush"]
 visibility_layer = 2
 texture_filter = 1
-texture = ExtResource("6_rhg8m")
-offset = Vector2(0, -32)
+position = Vector2(0, 11)
+texture = ExtResource("13_qxhwg")
+offset = Vector2(0, -43)
 
 [node name="BushCollider" type="CollisionShape2D" parent="Bush"]
-position = Vector2(0, -23)
+position = Vector2(1, -16)
 shape = SubResource("RectangleShape2D_gkyf7")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Bush"]
@@ -375,6 +478,7 @@ position = Vector2(1000, 1000)
 [node name="Monster" type="AnimatableBody2D" parent="."]
 y_sort_enabled = true
 position = Vector2(84, -44)
+sync_to_physics = false
 script = ExtResource("17_6nohs")
 photo_Data = SubResource("Resource_3ky5o")
 
@@ -390,7 +494,7 @@ shape = SubResource("RectangleShape2D_abp1f")
 
 [node name="AwarenessDisplay" type="Label" parent="Monster"]
 modulate = Color(1, 1, 1, 0)
-z_index = 5
+z_index = 6
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -405,3 +509,30 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 25
 text = "!"
 horizontal_alignment = 1
+
+[node name="Earl" type="AnimatableBody2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(297, 44)
+script = ExtResource("20_5vmpk")
+photo_Data = SubResource("Resource_ahegq")
+
+[node name="EarlSprite" type="AnimatedSprite2D" parent="Earl"]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_s0u0b")
+position = Vector2(0, 31)
+sprite_frames = SubResource("SpriteFrames_rkftp")
+frame = 1
+frame_progress = 0.64583
+offset = Vector2(0, -31)
+
+[node name="EarlCollider" type="CollisionShape2D" parent="Earl"]
+position = Vector2(0, 26.5)
+shape = SubResource("RectangleShape2D_r7pus")
+
+[node name="EarlDialogueZone" type="Area2D" parent="Earl"]
+script = ExtResource("21_mqhkv")
+dialoge_Data = Array[ExtResource("22_dp3tu")]([SubResource("Resource_dj1vy"), SubResource("Resource_1t28l"), SubResource("Resource_xoue6")])
+
+[node name="DialogueCollider" type="CollisionShape2D" parent="Earl/EarlDialogueZone"]
+shape = SubResource("RectangleShape2D_mybmx")

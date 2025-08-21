@@ -20,6 +20,12 @@ signal cam_focus_request
 signal go_home
 ##emitted when the player requests to quit the game.
 signal quit
+##emitted when dialogue data is being passed to the UI
+signal dialogue_event
+##emitted when the player attempts to skip dialogue
+signal dialogue_skip
+##emitted when the current dialogue event ends.
+signal dialogue_end
 
 func stamina_update(newValue: float, exhausted: bool) -> void:
 	stamina_updated.emit(newValue, exhausted)
@@ -50,3 +56,12 @@ func request_go_home() -> void:
 
 func request_quit() -> void:
 	quit.emit()
+
+func pass_dialogue_event(dialogue: Array[DialogueData]) -> void:
+	dialogue_event.emit(dialogue)
+
+func skip_dialogue() -> void:
+	dialogue_skip.emit()
+
+func end_dialogue() -> void:
+	dialogue_end.emit()

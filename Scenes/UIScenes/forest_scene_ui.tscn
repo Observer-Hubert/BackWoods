@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c0bqo6wnxwu6h"]
+[gd_scene load_steps=21 format=3 uid="uid://c0bqo6wnxwu6h"]
 
 [ext_resource type="Script" path="res://Scripts/UIElements/pause_menu.gd" id="1_1ktxu"]
 [ext_resource type="Script" path="res://Scripts/UIElements/player_following_ui_anchor.gd" id="1_fx710"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://petsbq472kqs" path="res://Assets/Sprites/E1.png" id="4_4ph5n"]
 [ext_resource type="Script" path="res://Scripts/UIElements/bush_tooltip.gd" id="4_j64a8"]
 [ext_resource type="Texture2D" uid="uid://d2ykbqhg7t1tg" path="res://Assets/Sprites/E2.png" id="5_dqtgo"]
+[ext_resource type="Script" path="res://Scripts/UIElements/dialogue_box.gd" id="10_m4nqq"]
+[ext_resource type="Texture2D" uid="uid://b0qwco6n31pw6" path="res://Assets/Sprites/Bush.png" id="11_srcf5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdn60"]
 bg_color = Color(0.154876, 0.154876, 0.154876, 1)
@@ -77,7 +79,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Player_Following_UI/StaminaBar:modulate")
+tracks/0/path = NodePath("PlayerFollowingUI/StaminaBar:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -92,7 +94,7 @@ resource_name = "fade_out"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Player_Following_UI/StaminaBar:modulate")
+tracks/0/path = NodePath("PlayerFollowingUI/StaminaBar:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -131,8 +133,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -480.0
-offset_right = -480.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 50
@@ -188,7 +188,7 @@ libraries = {
 }
 movie_quit_on_finish = true
 
-[node name="Player_Following_UI" type="Control" parent="."]
+[node name="PlayerFollowingUI" type="Control" parent="."]
 process_mode = 1
 layout_mode = 1
 anchors_preset = 8
@@ -203,7 +203,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_fx710")
 
-[node name="StaminaBar" type="ProgressBar" parent="Player_Following_UI"]
+[node name="StaminaBar" type="ProgressBar" parent="PlayerFollowingUI"]
 z_index = 5
 layout_mode = 1
 anchors_preset = 8
@@ -222,13 +222,13 @@ theme = ExtResource("2_l5s8k")
 value = 100.0
 script = ExtResource("3_otvop")
 
-[node name="StaminaBarAnimPlayer" type="AnimationPlayer" parent="Player_Following_UI/StaminaBar"]
+[node name="StaminaBarAnimPlayer" type="AnimationPlayer" parent="PlayerFollowingUI/StaminaBar"]
 root_node = NodePath("../../..")
 libraries = {
 "": SubResource("AnimationLibrary_jvix8")
 }
 
-[node name="BushTooltip" type="TextureRect" parent="Player_Following_UI"]
+[node name="BushTooltip" type="TextureRect" parent="PlayerFollowingUI"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 4
@@ -243,3 +243,64 @@ mouse_filter = 2
 theme = ExtResource("2_l5s8k")
 texture = SubResource("AnimatedTexture_qxnei")
 script = ExtResource("4_j64a8")
+
+[node name="DialogueBox" type="Control" parent="."]
+visible = false
+z_index = 5
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(495, 1)
+script = ExtResource("10_m4nqq")
+
+[node name="DialogueBoxMargin" type="MarginContainer" parent="DialogueBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(193, -44)
+theme_override_constants/margin_top = 15
+
+[node name="DialogueBoxPanel" type="PanelContainer" parent="DialogueBox/DialogueBoxMargin"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogueBox/DialogueBoxMargin/DialogueBoxPanel"]
+layout_mode = 2
+
+[node name="SpeakerTexture" type="TextureRect" parent="DialogueBox/DialogueBoxMargin/DialogueBoxPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("11_srcf5")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogueBox/DialogueBoxMargin/DialogueBoxPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="SpeakerLabel" type="Label" parent="DialogueBox/DialogueBoxMargin/DialogueBoxPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="TextMargin" type="MarginContainer" parent="DialogueBox/DialogueBoxMargin/DialogueBoxPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextLabel" type="Label" parent="DialogueBox/DialogueBoxMargin/DialogueBoxPanel/HBoxContainer/VBoxContainer/TextMargin"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_vertical = 1
+autowrap_mode = 2
+
+[node name="CharTimer" type="Timer" parent="DialogueBox"]
+
+[node name="NextTimer" type="Timer" parent="DialogueBox"]

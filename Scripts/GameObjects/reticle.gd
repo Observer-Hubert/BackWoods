@@ -11,6 +11,8 @@ const TIMEPERCELLMOVE: float = 0.15
 const CELLMOVEFASTMOD: float = 0.25
 # CELLMOVESTOFASTMOVE is the number of cell moves in a row the reticle must take to enter fast movement mode.
 const CELLMOVESTOFASTMOVE: int = 3
+#MAXDISTFROMPLAYER is the maximum distance the reticle can move from the player
+const MAXDISTFROMPLAYER: float = 200.0
 
 var cellMoveTimer: float = TIMEPERCELLMOVE
 # cellsMoved tracks how many cells in a row the reticle has moved without stopping.
@@ -53,19 +55,21 @@ func _scan_Valid_Photos() -> void:
 	# We should only have one readout, so any valid body or area found ends the function.
 	# Bodies (Creatures or the player) Are preferred over photo zone areas, so they are checked first.
 	for body in get_overlapping_bodies():
-		if body is Player or body is Creature:
-			Bus.signal_valid_photo_taken(body.photo_Data)
-			return
+		if body is Player or body is Creature or body is Human:
+			if body.photo_Data != null:
+				Bus.signal_valid_photo_taken(body.photo_Data)
+				return
 	for area in get_overlapping_areas():
 		if area is Interactable:
-			Bus.signal_valid_photo_taken(area.photo_Data)
-			return
+			if area.photo_Data != null:
+				Bus.signal_valid_photo_taken(area.photo_Data)
+				return
 
 # Called whenever a body enters or leaves the reticles area. Searches for a valid highlightable object among all overlapping bodies, and highlights the first one found, then exits the function.
 func _check_Subject(_triggerer: Node2D) -> void:
 	# We check all overlapping bodies if they are a 
 	for body in get_overlapping_bodies():
-		if body is Creature:
+		if body is Creature or body is Human:
 			for child in body.get_children():
 				if child is AnimatedSprite2D:
 					if child.material:
@@ -90,6 +94,10 @@ func _physics_process(delta: float) -> void:
 			# We only need to perform movement code if the player is providing input.
 			if moveInputVector.x != 0.0 or moveInputVector.y != 0.0:
 				moveInputVector *= CELLSIZE
+				if (position + moveInputVector).x - startPos.x > MAXDISTFROMPLAYER or startPos.x - (position + moveInputVector).x > MAXDISTFROMPLAYER:
+					moveInputVector.x = 0.0
+				if (position + moveInputVector).y - startPos.y > MAXDISTFROMPLAYER or startPos.y - (position + moveInputVector).y > MAXDISTFROMPLAYER:
+					moveInputVector.y = 0.0
 				position += moveInputVector
 				# The reticle is in slow moving mode.
 				if cellsMoved < CELLMOVESTOFASTMOVE:

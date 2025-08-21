@@ -4,13 +4,15 @@ class_name Player
 
 @export var photo_Data: PhotoData
 
-@onready var player_Light: PointLight2D = $PlayerLight
-@onready var player_Sprite = $PlayerSprite
+@onready var visibility_light: PointLight2D = $PlayerLight
+@onready var sprite = $PlayerSprite
+@onready var visibility_area = $PlayerVisibilityArea
 
 const SPEED: float = 150.0 
 const YSPEEDMOD: float = 0.75
 const SPRINTSPEEDMOD: float = 2.5
-const ACCEL: float = 25.0
+#ACCEL is velocity acceleration per second.
+const ACCEL: float = 1500.0
 const STAMMAX: float = 100.0
 #SPRINTSTAMCOST is how much stamina it costs to sprint per second
 const SPRINTSTAMCOST: float = 100.0
@@ -19,7 +21,7 @@ const STAMREGEN: float = 25.0
 #EXHAUSTEDREGENMOD * 100 percent of the stamina regen is subtracted from stamina regen when the player is exhausted
 const EXHAUSTEDREGENMOD: float = 0.5
 
-enum playerStates{FREE_MOVEMENT, HIDING, AIMING, BUSY}
+enum playerStates{FREE_MOVEMENT, HIDING, AIMING, IN_DIALOGUE, BUSY}
 
 var stamina: float = STAMMAX
 var exhausted: bool = false
@@ -33,18 +35,21 @@ func change_State(newState: playerStates) -> void:
 	match newState:
 		playerStates.FREE_MOVEMENT:
 			currentState = playerStates.FREE_MOVEMENT
-			player_Sprite.play("Calm_Idle")
+			sprite.play("Calm_Idle")
 			Bus.request_cam_focus(self)
 		playerStates.AIMING:
 			currentState = playerStates.AIMING
-			player_Sprite.play("Calm_Raise_Cam")
-			player_Sprite.animation_finished.connect(func idleCam() -> void:
-				player_Sprite.play("Calm_Cam_Idle"))
+			sprite.play("Calm_Raise_Cam")
+			sprite.animation_finished.connect(func idleCam() -> void:
+				sprite.play("Calm_Cam_Idle"))
 		playerStates.HIDING:
 			pass
+		playerStates.IN_DIALOGUE:
+			currentState = playerStates.IN_DIALOGUE
+			sprite.play("Calm_Idle")
 		playerStates.BUSY:
 			currentState = playerStates.BUSY
-			player_Sprite.play("Calm_Idle")
+			sprite.play("Calm_Idle")
 	Bus.player_state_update(currentState)
 
 func set_Interact_Target(newTarget: Node2D) -> void:
@@ -70,17 +75,22 @@ func _get_Previous_State() -> playerStates:
 func _ready() -> void:
 	Bus.player_pos_update(position)
 	Bus.request_cam_focus(self)
-	player_Sprite.play("Calm_Idle")
+	Bus.dialogue_end.connect(_exit_Dialogue)
+	sprite.play("Calm_Idle")
+
+func _exit_Dialogue() -> void:
+	if currentState == playerStates.IN_DIALOGUE:
+		change_State(_get_Previous_State())
 
 func _input(event: InputEvent) -> void:
 	# The player should be powerless to exit the busy state
 	if currentState != playerStates.BUSY:
 		# If the player presses the aim key while not aiming, they move to the aiming state.
-		if event.is_action_pressed("Aim") and currentState != playerStates.AIMING:
+		if event.is_action_pressed("Aim") and currentState == playerStates.FREE_MOVEMENT:
 			change_State(playerStates.AIMING)
 		# If the player presses the aim key while aiming, they snap a picture.
 		elif event.is_action_pressed("Aim") and currentState == playerStates.AIMING:
-			player_Light.flash()
+			visibility_light.flash()
 			Bus.signal_photo_taken()
 		# If the player presses the cancel input while aiming, they return to free movement.
 		elif event.is_action_pressed("Cancel") and currentState == playerStates.AIMING:
@@ -88,9 +98,14 @@ func _input(event: InputEvent) -> void:
 				change_State(_get_Previous_State())
 			else:
 				change_State(playerStates.FREE_MOVEMENT)
-		elif event.is_action_pressed("Interact") and currentState == playerStates.FREE_MOVEMENT:
-			if interactTarget:
-				change_State(playerStates.BUSY)
+		elif event.is_action_pressed("Interact"):
+			if currentState == playerStates.FREE_MOVEMENT:
+				if interactTarget:
+					if interactTarget is DialogueZone:
+						Bus.pass_dialogue_event(interactTarget.dialoge_Data)
+					change_State(playerStates.IN_DIALOGUE)
+			elif currentState == playerStates.IN_DIALOGUE:
+				Bus.skip_dialogue()
 
 func _physics_process(delta: float) -> void:
 	# We take input commands at the beginning to avoid redundant checks.
@@ -109,32 +124,34 @@ func _physics_process(delta: float) -> void:
 	# The player only needs movement code if they are allowed to move and are attempting to do so.
 	if currentState == playerStates.FREE_MOVEMENT:
 		if movementInput:
-			player_Sprite.play("Calm_Walk")
-			if sprintInput:
-				player_Sprite.speed_scale = 1.0 * SPRINTSPEEDMOD
+			var desiredVel: Vector2 = inputVect * Vector2(SPEED, SPEED * YSPEEDMOD)
+			sprite.play("Calm_Walk")
+			if sprintInput and not exhausted:
+				desiredVel *= SPRINTSPEEDMOD
+				stamina -= SPRINTSTAMCOST * delta
+				sprite.speed_scale = 1.0 * SPRINTSPEEDMOD
+				visibility_area.change_Visibility(2.5,2.5)
 			else:
-				player_Sprite.speed_scale = 1.0
-			velocity = _calculate_move_vect(delta, inputVect, sprintInput)
+				visibility_area.change_Visibility(1.5,1.5)
+				sprite.speed_scale = 1.0
+			velocity = velocity.move_toward(desiredVel, ACCEL * delta)
 			if velocity.x < 0.0:
-				player_Sprite.flip_h = false
+				sprite.flip_h = false
 			elif velocity.x > 0:
-				player_Sprite.flip_h = true
-			move_and_slide()
+				sprite.flip_h = true
 		else:
-			player_Sprite.play("Calm_Idle")
-		# We need to update the ui and reticle on our current position so they can follow.
-		Bus.player_pos_update(position)
+			sprite.play("Calm_Idle")
+	#If the player is not moving or cannot move, we should decelerate their velocity.
+	if currentState != playerStates.FREE_MOVEMENT or not movementInput:
+		velocity = velocity.move_toward(Vector2.ZERO, ACCEL * delta)
+		visibility_area.change_Visibility()
+		sprite.speed_scale = 1.0
+	#If the player's stamina is ever 0 or below, regardless of their current state, they should become exhausted.
 	if stamina <= 0.0:
 		exhausted = true
 	# We need to update the UI on our stamina status.
 	Bus.stamina_update(stamina, exhausted)
-
-# Takes the player's input to calculate what their velocity should be.
-# Also reduces the player's stamina if they are sprinting currently.
-# was originally in the _physics_process(), but was moved out to clean it up.
-func _calculate_move_vect(delta: float, inputVect: Vector2, sprinting: bool) -> Vector2:
-	var desiredVel: Vector2 = inputVect * Vector2(SPEED, SPEED * YSPEEDMOD)
-	if sprinting and exhausted == false:
-		desiredVel *= SPRINTSPEEDMOD
-		stamina -= SPRINTSTAMCOST * delta
-	return desiredVel
+	#After everything has been calculated, we move the player by their velocity.
+	move_and_slide()
+	# We need to update the ui and reticle on our current position so they can follow.
+	Bus.player_pos_update(position)

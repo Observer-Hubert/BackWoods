@@ -1,16 +1,21 @@
 extends Area2D
 
-@export_range(50.0,250.0) var base_Visibility_Range
-@export_range(1.0,100.0) var base_Visibility_Scale
+@export_range(25.0, 250.0, 0.5) var base_Visibility_Range: float
+@export_range(1.0, 100.0, 0.1) var base_Visibility_Scale: float
 
 @onready var collider = $PlayerVisibilityCollider
 
 var visibility_Scale: float
 
-# Called when the node enters the scene tree for the first time.
+func change_Visibility(radiusMult: float = 1.0, scaleMult: float = 1.0) -> void:
+	collider.shape.radius = base_Visibility_Range * radiusMult
+	visibility_Scale = base_Visibility_Scale * scaleMult
+	for body in get_overlapping_bodies():
+		if body is Creature:
+			body.awarenessDelta = visibility_Scale
+
 func _ready() -> void:
-	visibility_Scale = base_Visibility_Scale
-	collider.shape.radius = base_Visibility_Range
+	change_Visibility()
 	body_entered.connect(_check_Observer_Entered)
 	body_exited.connect(_check_Observer_Exited)
 
