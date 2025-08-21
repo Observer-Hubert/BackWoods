@@ -33,11 +33,11 @@ func _update_Visibility(state: int) -> void:
 	# State 2 is the player's Aiming state. The reticle should be active when the player is aiming.
 	if state == 2:
 		visible = true
-		collider.disabled = false
+		monitoring = true
 		position = startPos
 		Bus.request_cam_focus(self)
 	else:
-		collider.disabled = true
+		monitoring = false
 		visible = false
 
 #_snap_To_Grid() ensures the coordinates of the passed vector 2 are divisible by the CELLSIZE, rounding them down to the nearest multiple.
@@ -68,17 +68,18 @@ func _scan_Valid_Photos() -> void:
 # Called whenever a body enters or leaves the reticles area. Searches for a valid highlightable object among all overlapping bodies, and highlights the first one found, then exits the function.
 func _check_Subject(_triggerer: Node2D) -> void:
 	# We check all overlapping bodies if they are a 
-	for body in get_overlapping_bodies():
-		if body is Creature or body is Human:
-			for child in body.get_children():
-				if child is AnimatedSprite2D:
-					if child.material:
-						if highlightSubject != body:
-							if highlightSubject != null:
-								highlightSubject.material.set_shader_parameter("active", false)
-							highlightSubject = child
-							highlightSubject.material.set_shader_parameter("active", true)
-						return
+	if monitoring:
+		for body in get_overlapping_bodies():
+			if body is Creature or body is Human:
+				for child in body.get_children():
+					if child is AnimatedSprite2D:
+						if child.material:
+							if highlightSubject != body:
+								if highlightSubject != null:
+									highlightSubject.material.set_shader_parameter("active", false)
+								highlightSubject = child
+								highlightSubject.material.set_shader_parameter("active", true)
+							return
 	# If a valid subject is not found, we clear the highlightSubject's status, and remove the reference.
 	if highlightSubject:
 		highlightSubject.material.set_shader_parameter("active", false)

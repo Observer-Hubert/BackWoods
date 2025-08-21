@@ -1,15 +1,15 @@
 [gd_scene load_steps=34 format=3 uid="uid://b51t1d6nj1g15"]
 
-[ext_resource type="Script" path="res://Scripts/GameObjects/player_controller.gd" id="1_k2fbt"]
-[ext_resource type="Script" path="res://Scripts/photo_data_resource.gd" id="2_44jg2"]
+[ext_resource type="Script" uid="uid://dge07r76em3lb" path="res://Scripts/GameObjects/Classes/Player.gd" id="1_k2fbt"]
+[ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_44jg2"]
 [ext_resource type="Texture2D" uid="uid://bq2sbp2yttsls" path="res://Assets/Sprites/light.png" id="2_u7nt6"]
-[ext_resource type="Script" path="res://Scripts/GameObjects/player_light.gd" id="3_5l2pt"]
+[ext_resource type="Script" uid="uid://y28o2favyd2g" path="res://Scripts/GameObjects/PlayerComponents/player_light.gd" id="3_5l2pt"]
 [ext_resource type="Texture2D" uid="uid://bsnmrjn6n267q" path="res://Assets/Sprites/PlayerIdle.png" id="6_aojk1"]
 [ext_resource type="Texture2D" uid="uid://c103hx210gdcp" path="res://Assets/Sprites/FlashLight.png" id="6_k023w"]
-[ext_resource type="Script" path="res://Scripts/GameObjects/camera_flash.gd" id="6_petpc"]
+[ext_resource type="Script" uid="uid://ckpg0woxjxlct" path="res://Scripts/GameObjects/PlayerComponents/camera_flash.gd" id="6_petpc"]
 [ext_resource type="Texture2D" uid="uid://ddhieyimg2vou" path="res://Assets/Sprites/StartAim.png" id="7_nrby6"]
 [ext_resource type="Texture2D" uid="uid://dogldv70obnkn" path="res://Assets/Sprites/PlayerWalk.png" id="8_wkso4"]
-[ext_resource type="Script" path="res://Scripts/GameObjects/player_visibility_area.gd" id="10_p8q5l"]
+[ext_resource type="Script" uid="uid://dmv5asg1v2l6q" path="res://Scripts/GameObjects/PlayerComponents/player_visibility_area.gd" id="10_p8q5l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_74bxx"]
 atlas = ExtResource("7_nrby6")

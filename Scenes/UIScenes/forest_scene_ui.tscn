@@ -1,15 +1,15 @@
 [gd_scene load_steps=21 format=3 uid="uid://c0bqo6wnxwu6h"]
 
-[ext_resource type="Script" path="res://Scripts/UIElements/pause_menu.gd" id="1_1ktxu"]
-[ext_resource type="Script" path="res://Scripts/UIElements/player_following_ui_anchor.gd" id="1_fx710"]
-[ext_resource type="Script" path="res://Scripts/UIElements/forest_scene_ui.gd" id="1_l5g2u"]
-[ext_resource type="Script" path="res://Scripts/UIElements/main_menu_button.gd" id="2_31j1v"]
+[ext_resource type="Script" uid="uid://d0ymbcmvw3txj" path="res://Scripts/UIElements/pause_menu.gd" id="1_1ktxu"]
+[ext_resource type="Script" uid="uid://da37prj2dr1tv" path="res://Scripts/UIElements/player_following_ui_anchor.gd" id="1_fx710"]
+[ext_resource type="Script" uid="uid://c3xotdy1ey6bu" path="res://Scripts/UIElements/forest_scene_ui.gd" id="1_l5g2u"]
+[ext_resource type="Script" uid="uid://1yb8upxjam40" path="res://Scripts/UIElements/main_menu_button.gd" id="2_31j1v"]
 [ext_resource type="Theme" uid="uid://cukrveftb5565" path="res://Assets/Themes/Default_UI_Theme.tres" id="2_l5s8k"]
-[ext_resource type="Script" path="res://Scripts/UIElements/stamina_bar.gd" id="3_otvop"]
+[ext_resource type="Script" uid="uid://djnjdo3unxyww" path="res://Scripts/UIElements/stamina_bar.gd" id="3_otvop"]
 [ext_resource type="Texture2D" uid="uid://petsbq472kqs" path="res://Assets/Sprites/E1.png" id="4_4ph5n"]
-[ext_resource type="Script" path="res://Scripts/UIElements/bush_tooltip.gd" id="4_j64a8"]
+[ext_resource type="Script" uid="uid://btqakl04378gi" path="res://Scripts/UIElements/bush_tooltip.gd" id="4_j64a8"]
 [ext_resource type="Texture2D" uid="uid://d2ykbqhg7t1tg" path="res://Assets/Sprites/E2.png" id="5_dqtgo"]
-[ext_resource type="Script" path="res://Scripts/UIElements/dialogue_box.gd" id="10_m4nqq"]
+[ext_resource type="Script" uid="uid://7yvbmjatgt7" path="res://Scripts/UIElements/dialogue_box.gd" id="10_m4nqq"]
 [ext_resource type="Texture2D" uid="uid://b0qwco6n31pw6" path="res://Assets/Sprites/Bush.png" id="11_srcf5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdn60"]
@@ -69,9 +69,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fuegl"]
 _data = {
-"Enter": SubResource("Animation_xwwgg"),
-"Exit": SubResource("Animation_7mldm"),
-"RESET": SubResource("Animation_6qthl")
+&"Enter": SubResource("Animation_xwwgg"),
+&"Exit": SubResource("Animation_7mldm"),
+&"RESET": SubResource("Animation_6qthl")
 }
 
 [sub_resource type="Animation" id="Animation_yicpb"]
@@ -106,8 +106,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jvix8"]
 _data = {
-"RESET": SubResource("Animation_yicpb"),
-"fade_out": SubResource("Animation_loelk")
+&"RESET": SubResource("Animation_yicpb"),
+&"fade_out": SubResource("Animation_loelk")
 }
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_qxnei"]
@@ -184,7 +184,7 @@ script = ExtResource("2_31j1v")
 
 [node name="PauseMenuAnimPlayer" type="AnimationPlayer" parent="PauseMenu"]
 libraries = {
-"": SubResource("AnimationLibrary_fuegl")
+&"": SubResource("AnimationLibrary_fuegl")
 }
 movie_quit_on_finish = true
 
@@ -211,21 +211,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -37.5
-offset_top = -59.0
-offset_right = 37.5
-offset_bottom = -41.0
+offset_left = -37.0
+offset_top = 36.0
+offset_right = 38.0
+offset_bottom = 53.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2_l5s8k")
+theme_override_font_sizes/font_size = 9
 value = 100.0
 script = ExtResource("3_otvop")
 
 [node name="StaminaBarAnimPlayer" type="AnimationPlayer" parent="PlayerFollowingUI/StaminaBar"]
 root_node = NodePath("../../..")
 libraries = {
-"": SubResource("AnimationLibrary_jvix8")
+&"": SubResource("AnimationLibrary_jvix8")
 }
 
 [node name="BushTooltip" type="TextureRect" parent="PlayerFollowingUI"]

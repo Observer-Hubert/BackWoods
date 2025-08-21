@@ -61,10 +61,19 @@ func clear_Interact_Target(oldTarget: Node2D) -> void:
 		interactTarget = null
 		Bus.signal_player_interactable_collision(interactTarget)
 
+func _ready() -> void:
+	Bus.player_pos_update(position)
+	Bus.request_cam_focus(self)
+	Bus.dialogue_end.connect(_exit_Dialogue)
+	Bus.cutscene_start.connect(_start_Cutscene)
+	Bus.cutscene_end.connect(_end_Cutscene)
+	sprite.play("Calm_Idle")
+
 # Iterates through the previousStates array backwards, and returns the first non-busy state that is different from the current state.
 func _get_Previous_State() -> playerStates:
 	var length: int = previousStates.size()
 	for i in range(0,length,1):
+		print(length-(i+1))
 		var value = previousStates[length-(i+1)]
 		if previousStates[value] != currentState:
 			if previousStates[value] != playerStates.BUSY:
@@ -72,15 +81,15 @@ func _get_Previous_State() -> playerStates:
 	# If for some reason we cant find a previous state, we will return free movement as a default.
 	return playerStates.FREE_MOVEMENT
 
-func _ready() -> void:
-	Bus.player_pos_update(position)
-	Bus.request_cam_focus(self)
-	Bus.dialogue_end.connect(_exit_Dialogue)
-	sprite.play("Calm_Idle")
-
 func _exit_Dialogue() -> void:
 	if currentState == playerStates.IN_DIALOGUE:
 		change_State(_get_Previous_State())
+
+func _start_Cutscene() -> void:
+	change_State(playerStates.BUSY)
+
+func _end_Cutscene() -> void:
+	change_State(_get_Previous_State())
 
 func _input(event: InputEvent) -> void:
 	# The player should be powerless to exit the busy state
