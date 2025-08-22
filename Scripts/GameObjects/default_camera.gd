@@ -14,13 +14,21 @@ func _reset() -> void:
 
 func _ready() -> void:
 	Bus.cam_focus_request.connect(_update_Subject)
+	Bus.cutscene_start.connect(_entered_Cutscene)
+	Bus.cutscene_end.connect(_exited_Cutscene)
 	_reset()
+
+func _entered_Cutscene() -> void:
+	in_Cutscene = true
+
+func _exited_Cutscene() -> void:
+	in_Cutscene = false
 
 func _process(_delta) -> void:
 	if not in_Cutscene:
 		if subject != null:
 			position.x = subject.position.x
 			# The player should not affect the camera's y value, because of the structure of the forest being a hallway.
-			if subject is not Player:
+			if subject: # is not Player:
 				position.y = subject.position.y
 			Bus.camera_pos_update(position)

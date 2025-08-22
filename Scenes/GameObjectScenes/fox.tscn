@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://d12le13000kon"]
+
+[ext_resource type="Script" uid="uid://ctrpr5yxe0i0i" path="res://Scripts/GameObjects/fox.gd" id="1_7u81j"]
+[ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_wi0pi"]
+[ext_resource type="Texture2D" uid="uid://bv01k1wevlbou" path="res://Assets/Sprites/FoxSit.png" id="3_0fn8s"]
+[ext_resource type="Material" uid="uid://bemxeuwh5jgyo" path="res://Assets/Materials/HighlightableObject.tres" id="4_sbluu"]
+[ext_resource type="SpriteFrames" uid="uid://dsyrg653tilam" path="res://Assets/Sprites/SpriteFramesResources/FoxSpriteFrames.tres" id="5_egivf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmbr4"]
+atlas = ExtResource("3_0fn8s")
+region = Rect2(0, 0, 24, 36)
+
+[sub_resource type="Resource" id="Resource_dl5oq"]
+script = ExtResource("2_wi0pi")
+texture = SubResource("AtlasTexture_lmbr4")
+caption = "That's a fox!"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hm7ag"]
+size = Vector2(50, 13)
+
+[node name="Fox" type="AnimatableBody2D"]
+y_sort_enabled = true
+sync_to_physics = false
+script = ExtResource("1_7u81j")
+behavior_Interval = 4.0
+photo_Data = SubResource("Resource_dl5oq")
+move_Speed = 100.0
+accel = 130.0
+
+[node name="FoxCollider" type="CollisionShape2D" parent="."]
+z_as_relative = false
+position = Vector2(0, 10.5)
+shape = SubResource("RectangleShape2D_hm7ag")
+
+[node name="FoxSprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+texture_repeat = 1
+material = ExtResource("4_sbluu")
+position = Vector2(0, 13)
+sprite_frames = ExtResource("5_egivf")
+animation = &"Moving"
+frame = 2
+offset = Vector2(0, -13)
+
+[node name="BehaviorTimer" type="Timer" parent="."]
+
+[node name="AwarenessDisplay" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 6
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "!"
+horizontal_alignment = 1

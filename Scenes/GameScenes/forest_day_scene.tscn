@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://lgcjthia6acr"]
+
+[ext_resource type="PackedScene" uid="uid://b51t1d6nj1g15" path="res://Scenes/GameObjectScenes/player.tscn" id="1_3gtd0"]
+[ext_resource type="Shader" uid="uid://b6a0sf6hj86k6" path="res://Scripts/Shaders/SunGlow.gdshader" id="2_a2msg"]
+[ext_resource type="Script" uid="uid://wkwbbkujf6en" path="res://Scripts/GameObjects/default_camera.gd" id="2_q85si"]
+[ext_resource type="Texture2D" uid="uid://ough7dpuoek4" path="res://Assets/Sprites/BlankFullscreen.png" id="3_pxxaf"]
+[ext_resource type="PackedScene" uid="uid://dqdwegwkotrfu" path="res://Scenes/GameObjectScenes/tilemaps.tscn" id="3_q85si"]
+[ext_resource type="Shader" uid="uid://d366bv01pmjd8" path="res://Scripts/Shaders/Screen.gdshader" id="4_ceyxi"]
+[ext_resource type="Script" uid="uid://c5v6hc2ujyfx2" path="res://Scripts/post_processing_2.gd" id="5_gee5c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ceyxi"]
+shader = ExtResource("2_a2msg")
+shader_parameter/tint_color = Color(1, 1, 0.65098, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ors8c"]
+shader = ExtResource("4_ceyxi")
+shader_parameter/min_opacity = 0.0
+shader_parameter/max_opacity = 0.5
+shader_parameter/inactive = false
+shader_parameter/frequency = 2.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_a2msg"]
+polygon = PackedVector2Array(-8, -8, 0, -4, 10, -15)
+
+[node name="forest_day_scene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("2_q85si")
+
+[node name="Post_Processing" type="Sprite2D" parent="Camera2D"]
+visible = false
+z_index = 6
+material = SubResource("ShaderMaterial_ceyxi")
+texture = ExtResource("3_pxxaf")
+
+[node name="PostProcessing2" type="Sprite2D" parent="Camera2D"]
+light_mask = 0
+z_index = 5
+material = SubResource("ShaderMaterial_ors8c")
+texture = ExtResource("3_pxxaf")
+script = ExtResource("5_gee5c")
+
+[node name="Player" parent="." instance=ExtResource("1_3gtd0")]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Player"]
+z_index = -1
+position = Vector2(0, 2)
+occluder = SubResource("OccluderPolygon2D_a2msg")
+
+[node name="Tilemaps" parent="." instance=ExtResource("3_q85si")]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+rotation = -0.705113
+color = Color(0.984909, 0.958609, 7.70092e-07, 1)
+shadow_enabled = true
+shadow_color = Color(0.152941, 0.152941, 0.152941, 1)

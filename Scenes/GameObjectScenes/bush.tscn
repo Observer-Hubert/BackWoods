@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtrdai0y5hrhw"]
+
+[ext_resource type="Script" uid="uid://des8prwtc7j82" path="res://Scripts/GameObjects/Classes/Bush.gd" id="1_87ggj"]
+[ext_resource type="Texture2D" uid="uid://quysgfvu8lqy" path="res://Assets/Sprites/BigBush.png" id="2_hfamv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkyf7"]
+size = Vector2(90, 52)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_texrg"]
+polygon = PackedVector2Array(-48, 0, 54, 0, 54, 0, -48, 0)
+
+[node name="Bush" type="Area2D"]
+y_sort_enabled = true
+script = ExtResource("1_87ggj")
+
+[node name="BushSprite" type="Sprite2D" parent="."]
+visibility_layer = 2
+texture_filter = 1
+position = Vector2(0, 11)
+texture = ExtResource("2_hfamv")
+offset = Vector2(0, -43)
+
+[node name="BushCollider" type="CollisionShape2D" parent="."]
+position = Vector2(1, -16)
+shape = SubResource("RectangleShape2D_gkyf7")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_texrg")

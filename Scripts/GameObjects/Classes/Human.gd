@@ -1,9 +1,8 @@
-extends AnimatableBody2D
+class_name Human extends AnimatableBody2D
 
-class_name Human
+@onready var sprite: AnimatedSprite2D = $EarlSprite
 
 @export var photo_Data: PhotoData
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	$EarlSprite.play("default")
+	sprite.play("default")

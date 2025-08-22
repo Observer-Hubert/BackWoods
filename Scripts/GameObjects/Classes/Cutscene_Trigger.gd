@@ -9,3 +9,4 @@ func _ready() -> void:
 func _check_Trigger(body: Node2D) -> void:
 	if body is Player:
 		cutscene_triggered.emit()
+		set_deferred("monitoring", false)

@@ -1,0 +1,128 @@
+[gd_scene load_steps=23 format=3 uid="uid://c64jqfkk821sh"]
+
+[ext_resource type="Script" uid="uid://dgwi0rjjbpna4" path="res://Scripts/GameObjects/Classes/Human.gd" id="1_f4xm4"]
+[ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_xiiis"]
+[ext_resource type="Texture2D" uid="uid://dve0obujd0kww" path="res://Assets/Sprites/Earl.png" id="3_88t30"]
+[ext_resource type="Shader" uid="uid://dnbhhaa514qwf" path="res://Scripts/Shaders/Highlightable.gdshader" id="4_di57q"]
+[ext_resource type="Script" uid="uid://b2otj1oosia5n" path="res://Scripts/GameObjects/Classes/Dialogue_Zone.gd" id="5_oscy7"]
+[ext_resource type="Script" uid="uid://b04o5nhw2f6up" path="res://Scripts/Resources/dialogue_data_resource.gd" id="6_p5fnc"]
+[ext_resource type="Texture2D" uid="uid://dgl7jfhk6s85d" path="res://Assets/Sprites/PlayerTalking/PlayerTalkHead.tres" id="7_365et"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blyvn"]
+atlas = ExtResource("3_88t30")
+region = Rect2(0, 0, 32, 32)
+filter_clip = true
+
+[sub_resource type="Resource" id="Resource_ahegq"]
+script = ExtResource("2_xiiis")
+texture = SubResource("AtlasTexture_blyvn")
+caption = "Oh fuck that's Earl!"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s0u0b"]
+shader = ExtResource("4_di57q")
+shader_parameter/highlight_color = Color(1, 1, 0, 1)
+shader_parameter/active = false
+shader_parameter/highlight_opacity = 0.7
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55h1b"]
+atlas = ExtResource("3_88t30")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw57r"]
+atlas = ExtResource("3_88t30")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnhb8"]
+atlas = ExtResource("3_88t30")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uauc"]
+atlas = ExtResource("3_88t30")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2gi8"]
+atlas = ExtResource("3_88t30")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rkftp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55h1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw57r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnhb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uauc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2gi8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7pus"]
+size = Vector2(30, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2gti"]
+atlas = ExtResource("3_88t30")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_dj1vy"]
+script = ExtResource("6_p5fnc")
+texture = SubResource("AtlasTexture_c2gti")
+speaker = "Earl"
+text = "Hey! It's me, Earl"
+text_Speed = 0.05
+text_End_Time = 1.0
+
+[sub_resource type="Resource" id="Resource_1t28l"]
+script = ExtResource("6_p5fnc")
+texture = ExtResource("7_365et")
+speaker = "Sam"
+text = "Please do not speak to me"
+text_Speed = 0.05
+text_End_Time = 1.0
+
+[sub_resource type="Resource" id="Resource_xoue6"]
+script = ExtResource("6_p5fnc")
+texture = SubResource("AtlasTexture_c2gti")
+speaker = "Earl"
+text = "Four score and seven years ago our fathers brought forth on this continent a new nation concieved in liberty and built on the notion that all men are created equal. We are now engaged in a great civil war. A war that will test whether that nation or any nation such concieved can"
+text_Speed = 0.01
+text_End_Time = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mybmx"]
+size = Vector2(100, 100)
+
+[node name="Earl" type="AnimatableBody2D"]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("1_f4xm4")
+photo_Data = SubResource("Resource_ahegq")
+
+[node name="EarlSprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_s0u0b")
+position = Vector2(0, 31)
+sprite_frames = SubResource("SpriteFrames_rkftp")
+frame = 1
+frame_progress = 0.64583
+offset = Vector2(0, -31)
+
+[node name="EarlCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 26.5)
+shape = SubResource("RectangleShape2D_r7pus")
+
+[node name="EarlDialogueZone" type="Area2D" parent="."]
+script = ExtResource("5_oscy7")
+dialoge_Data = Array[ExtResource("6_p5fnc")]([SubResource("Resource_dj1vy"), SubResource("Resource_1t28l"), SubResource("Resource_xoue6")])
+
+[node name="DialogueCollider" type="CollisionShape2D" parent="EarlDialogueZone"]
+shape = SubResource("RectangleShape2D_mybmx")

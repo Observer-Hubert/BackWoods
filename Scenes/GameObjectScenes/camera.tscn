@@ -1,0 +1,54 @@
+[gd_scene load_steps=12 format=3 uid="uid://b4djqfg5c81dk"]
+
+[ext_resource type="Script" uid="uid://wkwbbkujf6en" path="res://Scripts/GameObjects/default_camera.gd" id="1_b8s4i"]
+[ext_resource type="Shader" uid="uid://d366bv01pmjd8" path="res://Scripts/Shaders/Screen.gdshader" id="2_shw7c"]
+[ext_resource type="Texture2D" uid="uid://ough7dpuoek4" path="res://Assets/Sprites/BlankFullscreen.png" id="3_jnf8w"]
+[ext_resource type="Script" uid="uid://c5v6hc2ujyfx2" path="res://Scripts/post_processing_2.gd" id="4_5qvx3"]
+[ext_resource type="Shader" uid="uid://cniu4c328lkl5" path="res://Scripts/Shaders/Fog.gdshader" id="5_8yca7"]
+[ext_resource type="Texture2D" uid="uid://bq2sbp2yttsls" path="res://Assets/Sprites/light.png" id="6_bgwtr"]
+[ext_resource type="Script" uid="uid://y28o2favyd2g" path="res://Scripts/GameObjects/PlayerComponents/player_light.gd" id="7_p7vvm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uo4bi"]
+shader = ExtResource("2_shw7c")
+shader_parameter/min_opacity = 0.8
+shader_parameter/max_opacity = 1.0
+shader_parameter/inactive = false
+shader_parameter/frequency = 4.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w7b3h"]
+noise_type = 3
+frequency = 0.0063
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_htmaa"]
+seamless = true
+noise = SubResource("FastNoiseLite_w7b3h")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6c38j"]
+shader = ExtResource("5_8yca7")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_htmaa")
+shader_parameter/fog_slowness = 25.0
+shader_parameter/min_fog_mod = 0.22
+shader_parameter/max_fog_mod = 0.49
+shader_parameter/fog_color = Color(0.335432, 0.171659, 1, 1)
+
+[node name="Camera" type="Camera2D"]
+script = ExtResource("1_b8s4i")
+
+[node name="PostProcessing2" type="Sprite2D" parent="."]
+z_index = 5
+material = SubResource("ShaderMaterial_uo4bi")
+texture = ExtResource("3_jnf8w")
+script = ExtResource("4_5qvx3")
+
+[node name="PostProcessing" type="Sprite2D" parent="."]
+z_index = 5
+material = SubResource("ShaderMaterial_6c38j")
+texture = ExtResource("3_jnf8w")
+
+[node name="PlayerLight" type="PointLight2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.75, 1.75)
+color = Color(1, 1, 0.654902, 1)
+energy = 0.5
+texture = ExtResource("6_bgwtr")
+script = ExtResource("7_p7vvm")

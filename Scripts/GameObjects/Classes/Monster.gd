@@ -1,5 +1,7 @@
 extends Creature
 
+@onready var sprite: AnimatedSprite2D = $CreatureSprite
+
 func _ready() -> void:
 	awareness_display = $AwarenessDisplay
 

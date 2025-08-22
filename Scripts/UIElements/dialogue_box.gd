@@ -48,6 +48,8 @@ func _next_Dialogue():
 		dialogue_Index += 1
 		_display_Dialogue(dialogue_Index)
 	else:
+		char_timer.stop()
+		next_timer.stop()
 		speaker_label.text = ""
 		speaker_texture.texture = null
 		text_label.text = ""

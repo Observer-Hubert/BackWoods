@@ -4,7 +4,7 @@ class_name Player
 
 @export var photo_Data: PhotoData
 
-@onready var visibility_light: PointLight2D = $PlayerLight
+#@onready var visibility_light: PointLight2D = $PlayerLight
 @onready var sprite = $PlayerSprite
 @onready var visibility_area = $PlayerVisibilityArea
 
@@ -31,7 +31,8 @@ var interactTarget: Node2D
 
 func change_State(newState: playerStates) -> void:
 	if currentState != null:
-		previousStates.append(currentState)
+		previousStates.insert(0, currentState)
+	set_collision_mask_value(1, true)
 	match newState:
 		playerStates.FREE_MOVEMENT:
 			currentState = playerStates.FREE_MOVEMENT
@@ -39,17 +40,20 @@ func change_State(newState: playerStates) -> void:
 			Bus.request_cam_focus(self)
 		playerStates.AIMING:
 			currentState = playerStates.AIMING
-			sprite.play("Calm_Raise_Cam")
-			sprite.animation_finished.connect(func idleCam() -> void:
-				sprite.play("Calm_Cam_Idle"))
+			set_collision_mask_value(1, false)
 		playerStates.HIDING:
-			pass
+			set_collision_mask_value(1, false)
+			currentState = playerStates.HIDING
+			sprite.play("Hiding")
+			sprite.z_index = 2
+			sprite.flip_h = true
 		playerStates.IN_DIALOGUE:
 			currentState = playerStates.IN_DIALOGUE
 			sprite.play("Calm_Idle")
 		playerStates.BUSY:
+			set_collision_mask_value(1, false)
 			currentState = playerStates.BUSY
-			sprite.play("Calm_Idle")
+			
 	Bus.player_state_update(currentState)
 
 func set_Interact_Target(newTarget: Node2D) -> void:
@@ -71,13 +75,12 @@ func _ready() -> void:
 
 # Iterates through the previousStates array backwards, and returns the first non-busy state that is different from the current state.
 func _get_Previous_State() -> playerStates:
-	var length: int = previousStates.size()
+	var length: int = previousStates.size()-1
 	for i in range(0,length,1):
-		print(length-(i+1))
-		var value = previousStates[length-(i+1)]
-		if previousStates[value] != currentState:
-			if previousStates[value] != playerStates.BUSY:
-				return previousStates[value]
+		var value = previousStates[i]
+		if value != currentState:
+			if value != playerStates.BUSY:
+				return value
 	# If for some reason we cant find a previous state, we will return free movement as a default.
 	return playerStates.FREE_MOVEMENT
 
@@ -89,6 +92,7 @@ func _start_Cutscene() -> void:
 	change_State(playerStates.BUSY)
 
 func _end_Cutscene() -> void:
+	print("Cutscene Ended")
 	change_State(_get_Previous_State())
 
 func _input(event: InputEvent) -> void:
@@ -96,14 +100,19 @@ func _input(event: InputEvent) -> void:
 	if currentState != playerStates.BUSY:
 		# If the player presses the aim key while not aiming, they move to the aiming state.
 		if event.is_action_pressed("Aim") and currentState == playerStates.FREE_MOVEMENT:
-			change_State(playerStates.AIMING)
+			change_State(playerStates.BUSY)
+			sprite.play("Calm_Raise_Cam")
+			sprite.animation_finished.connect(func idleCam() -> void:
+				sprite.play("Calm_Cam_Idle")
+				change_State(playerStates.AIMING))
 		# If the player presses the aim key while aiming, they snap a picture.
 		elif event.is_action_pressed("Aim") and currentState == playerStates.AIMING:
-			visibility_light.flash()
+			#visibility_light.flash()
 			Bus.signal_photo_taken()
 		# If the player presses the cancel input while aiming, they return to free movement.
-		elif event.is_action_pressed("Cancel") and currentState == playerStates.AIMING:
+		elif event.is_action_pressed("Cancel") and (currentState == playerStates.AIMING or currentState == playerStates.HIDING):
 			if _get_Previous_State() != currentState:
+				sprite.z_index = 0
 				change_State(_get_Previous_State())
 			else:
 				change_State(playerStates.FREE_MOVEMENT)
@@ -112,8 +121,21 @@ func _input(event: InputEvent) -> void:
 				if interactTarget:
 					if interactTarget is DialogueZone:
 						Bus.pass_dialogue_event(interactTarget.dialoge_Data)
-					change_State(playerStates.IN_DIALOGUE)
+						change_State(playerStates.IN_DIALOGUE)
+					if interactTarget is Bush:
+						velocity = Vector2.ZERO
+						change_State(playerStates.BUSY)
+						sprite.play("Calm_Walk")
+						if position < interactTarget.position:
+							sprite.flip_h = true
+						else:
+							sprite.flip_h = false
+						var endPos = interactTarget.position + Vector2(0,16)
+						var tween = get_tree().create_tween()
+						tween.tween_property(self, "position", endPos, position.distance_to(endPos)/(SPEED*YSPEEDMOD))
+						tween.finished.connect(change_State.bind(playerStates.HIDING))
 			elif currentState == playerStates.IN_DIALOGUE:
+				print("Skipping Dialogue")
 				Bus.skip_dialogue()
 
 func _physics_process(delta: float) -> void:
