@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dvdp5h3m6sqd"]
+[gd_scene load_steps=14 format=3 uid="uid://dvdp5h3m6sqd"]
 
 [ext_resource type="Shader" uid="uid://cniu4c328lkl5" path="res://Scripts/Shaders/Fog.gdshader" id="1_cplha"]
 [ext_resource type="PackedScene" uid="uid://dqdwegwkotrfu" path="res://Scenes/GameObjectScenes/tilemaps.tscn" id="1_n0bxa"]
@@ -10,13 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c64jqfkk821sh" path="res://Scenes/GameObjectScenes/earl.tscn" id="9_hudk7"]
 [ext_resource type="PackedScene" uid="uid://cqm3476fji55w" path="res://Scenes/GameObjectScenes/cutscene_manager.tscn" id="10_tn66b"]
 [ext_resource type="PackedScene" uid="uid://dtrdai0y5hrhw" path="res://Scenes/GameObjectScenes/bush.tscn" id="18_d64m6"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_n0bxa"]
-vertices = PackedVector2Array(882.352, -137.031, 894.633, 206.008, -932.891, 208.977, -929.102, -142.961)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 0, 2)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(892, -147, 905, 216, -943, 219, -939, -153)])
-sample_partition_type = 1
-baking_rect = Rect2(-1000, -250, 2000, 500)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_w7b3h"]
 noise_type = 3
@@ -40,14 +33,9 @@ y_sort_enabled = true
 
 [node name="Tilemaps" parent="." instance=ExtResource("1_n0bxa")]
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-y_sort_enabled = true
-navigation_polygon = SubResource("NavigationPolygon_n0bxa")
-
 [node name="Camera" parent="." instance=ExtResource("2_g8v8w")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_6c38j")
 color = Color(0.099986, 0.099986, 0.099986, 1)
 

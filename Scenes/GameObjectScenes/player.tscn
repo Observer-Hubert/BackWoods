@@ -246,3 +246,6 @@ base_Visibility_Scale = 50.0
 
 [node name="PlayerVisibilityCollider" type="CollisionShape2D" parent="PlayerVisibilityArea"]
 shape = SubResource("CircleShape2D_hx6nt")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 75.0

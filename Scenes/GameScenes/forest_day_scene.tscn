@@ -14,10 +14,10 @@ shader_parameter/tint_color = Color(1, 1, 0.65098, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ors8c"]
 shader = ExtResource("4_ceyxi")
-shader_parameter/min_opacity = 0.0
-shader_parameter/max_opacity = 0.5
+shader_parameter/min_opacity = 0.5
+shader_parameter/max_opacity = 0.6
 shader_parameter/inactive = false
-shader_parameter/frequency = 2.0
+shader_parameter/frequency = 4.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_a2msg"]
 polygon = PackedVector2Array(-8, -8, 0, -4, 10, -15)

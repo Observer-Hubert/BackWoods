@@ -10,9 +10,6 @@ var visibility_Scale: float
 func change_Visibility(radiusMult: float = 1.0, scaleMult: float = 1.0) -> void:
 	collider.shape.radius = base_Visibility_Range * radiusMult
 	visibility_Scale = base_Visibility_Scale * scaleMult
-	for body in get_overlapping_bodies():
-		if body is Creature:
-			body.awarenessDelta = visibility_Scale
 
 func _ready() -> void:
 	change_Visibility()
@@ -22,8 +19,12 @@ func _ready() -> void:
 func _check_Observer_Entered(body: Node2D) -> void:
 	if body is Creature:
 		body.observingPlayer = true
-		body.awarenessDelta = visibility_Scale
 
 func _check_Observer_Exited(body: Node2D) -> void:
 	if body is Creature:
 		body.observingPlayer = false
+
+func _process(delta: float) -> void:
+	for body in get_overlapping_bodies():
+		if body is Creature:
+			body.change_Awareness(visibility_Scale * delta)

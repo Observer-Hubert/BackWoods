@@ -4,7 +4,6 @@ class_name Player
 
 @export var photo_Data: PhotoData
 
-#@onready var visibility_light: PointLight2D = $PlayerLight
 @onready var sprite = $PlayerSprite
 @onready var visibility_area = $PlayerVisibilityArea
 
@@ -92,7 +91,6 @@ func _start_Cutscene() -> void:
 	change_State(playerStates.BUSY)
 
 func _end_Cutscene() -> void:
-	print("Cutscene Ended")
 	change_State(_get_Previous_State())
 
 func _input(event: InputEvent) -> void:

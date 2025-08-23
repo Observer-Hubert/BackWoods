@@ -18,7 +18,7 @@ caption = "That's a fox!"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hm7ag"]
 size = Vector2(50, 13)
 
-[node name="Fox" type="AnimatableBody2D"]
+[node name="Fox" type="AnimatableBody2D" node_paths=PackedStringArray("sprite", "awareness_display", "navigation_agent")]
 y_sort_enabled = true
 sync_to_physics = false
 script = ExtResource("1_7u81j")
@@ -26,6 +26,9 @@ behavior_Interval = 4.0
 photo_Data = SubResource("Resource_dl5oq")
 move_Speed = 100.0
 accel = 130.0
+sprite = NodePath("FoxSprite")
+awareness_display = NodePath("AwarenessDisplay")
+navigation_agent = NodePath("NavigationAgent")
 
 [node name="FoxCollider" type="CollisionShape2D" parent="."]
 z_as_relative = false
@@ -62,3 +65,9 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 25
 text = "!"
 horizontal_alignment = 1
+
+[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 25.0
+debug_enabled = true
+debug_use_custom = true

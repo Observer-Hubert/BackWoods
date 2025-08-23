@@ -12,7 +12,7 @@ const CELLMOVEFASTMOD: float = 0.25
 # CELLMOVESTOFASTMOVE is the number of cell moves in a row the reticle must take to enter fast movement mode.
 const CELLMOVESTOFASTMOVE: int = 3
 #MAXDISTFROMPLAYER is the maximum distance the reticle can move from the player
-const MAXDISTFROMPLAYER: float = 200.0
+const MAXDISTFROMPLAYER: float = 75.0
 
 var cellMoveTimer: float = TIMEPERCELLMOVE
 # cellsMoved tracks how many cells in a row the reticle has moved without stopping.

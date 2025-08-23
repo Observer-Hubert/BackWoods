@@ -279,11 +279,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abp1f"]
 size = Vector2(62, 19)
 
-[node name="Monster" type="AnimatableBody2D"]
+[node name="Monster" type="AnimatableBody2D" node_paths=PackedStringArray("sprite", "awareness_display", "navigation_agent")]
 y_sort_enabled = true
 sync_to_physics = false
 script = ExtResource("1_5kvrd")
 photo_Data = SubResource("Resource_3ky5o")
+sprite = NodePath("CreatureSprite")
+awareness_display = NodePath("AwarenessDisplay")
+navigation_agent = NodePath("NavigationAgent")
 
 [node name="CreatureSprite" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_wmubm")
@@ -313,3 +316,8 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 25
 text = "!"
 horizontal_alignment = 1
+
+[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 25.0
+debug_use_custom = true
