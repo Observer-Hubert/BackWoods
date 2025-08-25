@@ -1,10 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://d12le13000kon"]
+[gd_scene load_steps=20 format=3 uid="uid://d12le13000kon"]
 
 [ext_resource type="Script" uid="uid://ctrpr5yxe0i0i" path="res://Scripts/GameObjects/fox.gd" id="1_7u81j"]
 [ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_wi0pi"]
 [ext_resource type="Texture2D" uid="uid://bv01k1wevlbou" path="res://Assets/Sprites/FoxSit.png" id="3_0fn8s"]
 [ext_resource type="Material" uid="uid://bemxeuwh5jgyo" path="res://Assets/Materials/HighlightableObject.tres" id="4_sbluu"]
 [ext_resource type="SpriteFrames" uid="uid://dsyrg653tilam" path="res://Assets/Sprites/SpriteFramesResources/FoxSpriteFrames.tres" id="5_egivf"]
+[ext_resource type="Texture2D" uid="uid://cvchr8xcepg1g" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator1.png" id="6_cfhs2"]
+[ext_resource type="Texture2D" uid="uid://dsbrgkhubwq7r" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator2.png" id="7_bdt0w"]
+[ext_resource type="Texture2D" uid="uid://ybed8lj8ygkg" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator3.png" id="8_g06i8"]
+[ext_resource type="Texture2D" uid="uid://dys0ru22mqijk" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator4.png" id="9_hvhog"]
+[ext_resource type="Texture2D" uid="uid://1yu3r11fs8ll" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator5.png" id="10_h4npw"]
+[ext_resource type="Texture2D" uid="uid://kujy6olg7fx7" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator6.png" id="11_0igop"]
+[ext_resource type="Texture2D" uid="uid://bqho4sxi3duki" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator7.png" id="12_waadd"]
+[ext_resource type="Texture2D" uid="uid://cv7axb83evchg" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator8.png" id="13_8gfm3"]
+[ext_resource type="Texture2D" uid="uid://cymah4ekcarg0" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator9.png" id="14_uuycf"]
+[ext_resource type="Script" uid="uid://cjvcto8x5m7el" path="res://Scripts/GameObjects/Classes/Awareness_Display.gd" id="15_d5j82"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lmbr4"]
 atlas = ExtResource("3_0fn8s")
@@ -17,6 +27,41 @@ caption = "That's a fox!"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hm7ag"]
 size = Vector2(50, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u1unb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_cfhs2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bdt0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_g06i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hvhog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_h4npw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_0igop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_waadd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8gfm3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_uuycf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
 
 [node name="Fox" type="AnimatableBody2D" node_paths=PackedStringArray("sprite", "awareness_display", "navigation_agent")]
 y_sort_enabled = true
@@ -48,26 +93,13 @@ offset = Vector2(0, -13)
 
 [node name="BehaviorTimer" type="Timer" parent="."]
 
-[node name="AwarenessDisplay" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0)
+[node name="AwarenessDisplay" type="AnimatedSprite2D" parent="."]
 z_index = 6
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 25
-text = "!"
-horizontal_alignment = 1
+position = Vector2(0, -23)
+sprite_frames = SubResource("SpriteFrames_u1unb")
+script = ExtResource("15_d5j82")
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 radius = 25.0
-debug_enabled = true
 debug_use_custom = true

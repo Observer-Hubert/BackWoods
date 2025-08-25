@@ -36,13 +36,13 @@ shader_parameter/fog_color = Color(0.335432, 0.171659, 1, 1)
 script = ExtResource("1_b8s4i")
 
 [node name="PostProcessing2" type="Sprite2D" parent="."]
+visible = false
 z_index = 5
 material = SubResource("ShaderMaterial_uo4bi")
 texture = ExtResource("3_jnf8w")
 script = ExtResource("4_5qvx3")
 
 [node name="PostProcessing" type="Sprite2D" parent="."]
-visible = false
 z_index = 5
 material = SubResource("ShaderMaterial_6c38j")
 texture = ExtResource("3_jnf8w")

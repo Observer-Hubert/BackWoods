@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bi1lilyfrxssq"]
+[gd_scene load_steps=55 format=3 uid="uid://bi1lilyfrxssq"]
 
 [ext_resource type="Script" uid="uid://235ao5av20kn" path="res://Scripts/GameObjects/Classes/Monster.gd" id="1_5kvrd"]
 [ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_j4gd6"]
@@ -6,6 +6,15 @@
 [ext_resource type="Shader" uid="uid://dnbhhaa514qwf" path="res://Scripts/Shaders/Highlightable.gdshader" id="4_vsloc"]
 [ext_resource type="Texture2D" uid="uid://b531ehnmikdrb" path="res://Assets/Sprites/Explosion.png" id="5_juj33"]
 [ext_resource type="Texture2D" uid="uid://l4d6ilovluhm" path="res://Assets/Sprites/CreatureIdle.png" id="6_pcxkc"]
+[ext_resource type="Texture2D" uid="uid://c8nux08scb8ct" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt1.png" id="7_jqvtn"]
+[ext_resource type="Texture2D" uid="uid://xqvwmuvlclxb" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt2.png" id="8_adkw6"]
+[ext_resource type="Texture2D" uid="uid://c1mliyhwgn3la" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt3.png" id="9_ydwep"]
+[ext_resource type="Texture2D" uid="uid://b7kbjv2ypvv0k" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt4.png" id="10_sqbqj"]
+[ext_resource type="Texture2D" uid="uid://bvi68sqpbdwsq" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt5.png" id="11_w3cn7"]
+[ext_resource type="Texture2D" uid="uid://dytgon3vdmm42" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt6.png" id="12_5tn72"]
+[ext_resource type="Texture2D" uid="uid://clfvktyawuvgi" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt7.png" id="13_havqq"]
+[ext_resource type="Texture2D" uid="uid://djn6kvhk63gse" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt18.png" id="24_muyb7"]
+[ext_resource type="Script" uid="uid://cjvcto8x5m7el" path="res://Scripts/GameObjects/Classes/Awareness_Display.gd" id="25_45bqt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n8eh6"]
 atlas = ExtResource("3_6tarr")
@@ -279,6 +288,38 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abp1f"]
 size = Vector2(62, 19)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_exw7x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_jqvtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_adkw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ydwep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_sqbqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_w3cn7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5tn72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_havqq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_muyb7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Monster" type="AnimatableBody2D" node_paths=PackedStringArray("sprite", "awareness_display", "navigation_agent")]
 y_sort_enabled = true
 sync_to_physics = false
@@ -299,25 +340,13 @@ offset = Vector2(0, -50)
 position = Vector2(1, 40.5)
 shape = SubResource("RectangleShape2D_abp1f")
 
-[node name="AwarenessDisplay" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0)
-z_index = 6
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 25
-text = "!"
-horizontal_alignment = 1
-
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 radius = 25.0
 debug_use_custom = true
+
+[node name="AwarenessDisplay" type="AnimatedSprite2D" parent="."]
+z_index = 6
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_exw7x")
+script = ExtResource("25_45bqt")

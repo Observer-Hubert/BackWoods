@@ -5,7 +5,7 @@ extends Area2D
 
 @onready var collider = $PlayerVisibilityCollider
 
-var visibility_Scale: float
+var visibility_Scale: float = 1.0
 
 func change_Visibility(radiusMult: float = 1.0, scaleMult: float = 1.0) -> void:
 	collider.shape.radius = base_Visibility_Range * radiusMult
@@ -28,3 +28,5 @@ func _process(delta: float) -> void:
 	for body in get_overlapping_bodies():
 		if body is Creature:
 			body.change_Awareness(visibility_Scale * delta)
+			if body.currentAwareness == body.MAXAWARENESS:
+				body.hear_Noise(position)

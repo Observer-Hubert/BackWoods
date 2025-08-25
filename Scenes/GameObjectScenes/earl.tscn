@@ -128,4 +128,5 @@ dialoge_Data = Array[ExtResource("6_p5fnc")]([SubResource("Resource_dj1vy"), Sub
 shape = SubResource("RectangleShape2D_mybmx")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-radius = 50.0
+position = Vector2(0, 27)
+radius = 25.0

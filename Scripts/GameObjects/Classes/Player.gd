@@ -4,8 +4,9 @@ class_name Player
 
 @export var photo_Data: PhotoData
 
-@onready var sprite = $PlayerSprite
-@onready var visibility_area = $PlayerVisibilityArea
+@onready var sprite: AnimatedSprite2D = $PlayerSprite
+@onready var visibility_area: Area2D = $PlayerVisibilityArea
+@onready var loud_sound_area: Area2D = $PlayerLoudSoundArea
 
 const SPEED: float = 150.0 
 const YSPEEDMOD: float = 0.75
@@ -177,6 +178,7 @@ func _physics_process(delta: float) -> void:
 		sprite.speed_scale = 1.0
 	#If the player's stamina is ever 0 or below, regardless of their current state, they should become exhausted.
 	if stamina <= 0.0:
+		loud_sound_area.make_Noise(200.0)
 		exhausted = true
 	# We need to update the UI on our stamina status.
 	Bus.stamina_update(stamina, exhausted)
