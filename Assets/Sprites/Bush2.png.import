@@ -2,13 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD:Assets/Sprites/Eye Indicators/Normal/eye_indicator3.png.import
-uid="uid://dv0t6n71vaa4l"
-path="res://.godot/imported/eye_indicator3.png-69f149d749b09520b3a48becdb3cfa99.ctex"
-=======
-uid="uid://d1uyjfwxvum44"
+uid="uid://cd83n8ye0eoat"
 path="res://.godot/imported/Bush2.png-7c70f70595502917099bf11d14359773.ctex"
->>>>>>> parent of a7e235a (Added um animal moves around):Assets/Sprites/Bush2.png.import
 metadata={
 "vram_texture": false
 }
