@@ -1,10 +1,17 @@
-[gd_scene load_steps=16 format=4 uid="uid://dqdwegwkotrfu"]
+[gd_scene load_steps=18 format=4 uid="uid://dqdwegwkotrfu"]
 
 [ext_resource type="Texture2D" uid="uid://dq2styifgs51i" path="res://Assets/Sprites/grass.png" id="1_7aekr"]
 [ext_resource type="Texture2D" uid="uid://b3d24tmohr2ha" path="res://Assets/Sprites/Fence.png" id="2_e1uku"]
+<<<<<<< HEAD
+[ext_resource type="Texture2D" uid="uid://2dovqmwx4h63" path="res://Assets/Sprites/NatureSprites/MooseTracksThick.png" id="3_22idi"]
+[ext_resource type="Texture2D" uid="uid://b82mbyri5gh7u" path="res://Assets/Sprites/NatureSprites/DirtPath.png" id="4_o6g1v"]
+[ext_resource type="Texture2D" uid="uid://5fjyhunptoma" path="res://Assets/Sprites/NatureSprites/MooseTracksThin.png" id="5_tkhp4"]
+[ext_resource type="Texture2D" uid="uid://b8xrrvptu1asn" path="res://Assets/Sprites/FenceSheet.png" id="6_e1uku"]
+=======
 [ext_resource type="Texture2D" uid="uid://2dovqmwx4h63" path="res://Assets/Sprites/MooseTracksThick.png" id="3_22idi"]
 [ext_resource type="Texture2D" uid="uid://b82mbyri5gh7u" path="res://Assets/Sprites/DirtPath.png" id="4_o6g1v"]
 [ext_resource type="Texture2D" uid="uid://5fjyhunptoma" path="res://Assets/Sprites/MooseTracksThin.png" id="5_tkhp4"]
+>>>>>>> parent of a7e235a (Added um animal moves around)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jd47k"]
 resource_name = "Grass"
@@ -196,11 +203,43 @@ texture_region_size = Vector2i(64, 64)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 32, 32, 32, 32, 32, -32, 32)
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_tn66b")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_22idi"]
+texture = ExtResource("6_e1uku")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/y_sort_origin = 14
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 9.292, 32, 9.33629, 32, 12.4074, -32, 12.4184)
+1:0/0 = 0
+1:0/0/y_sort_origin = 14
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 9.292, 32, 9.33629, 32, 12.4074, -32, 12.4184)
+2:0/0 = 0
+2:0/0/y_sort_origin = 14
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 9.292, 32, 9.33629, 32, 12.4074, -32, 12.4184)
+3:0/0 = 0
+3:0/0/y_sort_origin = 14
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 9.292, 32, 9.33629, 32, 12.4074, -32, 12.4184)
+4:0/0 = 0
+4:0/0/y_sort_origin = 14
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 9.292, 32, 9.33629, 32, 12.4074, -32, 12.4184)
+5:0/0 = 0
+5:0/0/y_sort_origin = 14
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 9.292, 32, 9.33629, 32, 12.4074, -32, 12.4184)
+6:0/0 = 0
+6:0/0/y_sort_origin = 14
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 9.292, 32, 9.33629, 32, 12.4074, -32, 12.4184)
+7:0/0 = 0
+7:0/0/y_sort_origin = 14
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 9.292, 32, 9.33629, 32, 12.4074, -32, 12.4184)
+8:0/0 = 0
+8:0/0/y_sort_origin = 14
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 9.292, 32, 9.33629, 32, 12.4074, -32, 12.4184)
+
 [sub_resource type="TileSet" id="TileSet_ed451"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_p51ld")
+sources/1 = SubResource("TileSetAtlasSource_22idi")
 
 [node name="Tilemaps" type="Node2D"]
 y_sort_enabled = true
@@ -221,6 +260,6 @@ tile_set = SubResource("TileSet_jgf4f")
 [node name="SceneryTilemap" type="TileMapLayer" parent="."]
 y_sort_enabled = true
 texture_filter = 1
-tile_map_data = PackedByteArray("AAAEAP7/AAAAAAAAAAAFAP7/AAAAAAAAAAAGAP7/AAAAAAAAAAAHAP7/AAAAAAAAAAAIAP7/AAAAAAAAAAARAP7/AAAAAAAAAAAQAP7/AAAAAAAAAAAPAP7/AAAAAAAAAAAOAP7/AAAAAAAAAAANAP7/AAAAAAAAAAAMAP7/AAAAAAAAAAALAP7/AAAAAAAAAAAKAP7/AAAAAAAAAAAJAP7/AAAAAAAAAAAAAP7/AAAAAAAAAAD///7/AAAAAAAAAAD+//7/AAAAAAAAAAD9//7/AAAAAAAAAAD8//7/AAAAAAAAAAD7//7/AAAAAAAAAAD6//7/AAAAAAAAAAD5//7/AAAAAAAAAAD4//7/AAAAAAAAAAD3//7/AAAAAAAAAAD2//7/AAAAAAAAAAD1//7/AAAAAAAAAAD0//7/AAAAAAAAAADz//7/AAAAAAAAAADy//7/AAAAAAAAAADx//7/AAAAAAAAAADw//7/AAAAAAAAAADv//7/AAAAAAAAAADu//7/AAAAAAAAAADt//7/AAAAAAAAAADs//7/AAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD//wIAAAAAAAAAAAAAAAIAAAAAAAAAAAD8/wIAAAAAAAAAAAD7/wIAAAAAAAAAAAD6/wIAAAAAAAAAAAD5/wIAAAAAAAAAAAD4/wIAAAAAAAAAAAD3/wIAAAAAAAAAAAD2/wIAAAAAAAAAAAD1/wIAAAAAAAAAAAD0/wIAAAAAAAAAAADz/wIAAAAAAAAAAADy/wIAAAAAAAAAAADx/wIAAAAAAAAAAADw/wIAAAAAAAAAAADv/wIAAAAAAAAAAADu/wIAAAAAAAAAAADt/wIAAAAAAAAAAADs/wIAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAIAAIAAAAAAAAAAAAJAAIAAAAAAAAAAAAKAAIAAAAAAAAAAAALAAIAAAAAAAAAAAAMAAIAAAAAAAAAAAANAAIAAAAAAAAAAAAOAAIAAAAAAAAAAAAPAAIAAAAAAAAAAAAQAAIAAAAAAAAAAAARAAIAAAAAAAAAAAABAP7/AAAAAAAAAAACAP7/AAAAAAAAAAADAP7/AAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAEAP7/AQAAAAAAAAAFAP7/AQAAAAAAAAAGAP7/AQAAAAAAAAAHAP7/AQAAAAAAAAAIAP7/AQAAAAAAAAARAP7/AQABAAAAAAAQAP7/AQAAAAAAAAAPAP7/AQAAAAAAAAAOAP7/AQAAAAAAAAANAP7/AQAAAAAAAAAMAP7/AQAAAAAAAAALAP7/AQAAAAAAAAAKAP7/AQAAAAAAAAAJAP7/AQAAAAAAAAAAAP7/AQAAAAAAAAD///7/AQAAAAAAAAD+//7/AQAAAAAAAAD9//7/AQAAAAAAAAD8//7/AQAAAAAAAAD7//7/AQAAAAAAAAD6//7/AQAAAAAAAAD5//7/AQAAAAAAAAD4//7/AQAAAAAAAAD3//7/AQAAAAAAAAD2//7/AQAAAAAAAAD1//7/AQAAAAAAAAD0//7/AQAAAAAAAADz//7/AQAAAAAAAADy//7/AQAAAAAAAADx//7/AQAAAAAAAADw//7/AQAAAAAAAADv//7/AQAAAAAAAADu//7/AQAAAAAAAADt//7/AQAAAAAAAADs//7/AQAIAAAAAAD9/wIAAQAAAAAAAAD+/wIAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAIAAQAAAAAAAAD8/wIAAQAAAAAAAAD7/wIAAQAAAAAAAAD6/wIAAQAAAAAAAAD5/wIAAQAAAAAAAAD4/wIAAQAAAAAAAAD3/wIAAQAAAAAAAAD2/wIAAQAAAAAAAAD1/wIAAQAAAAAAAAD0/wIAAQAAAAAAAADz/wIAAQAAAAAAAADy/wIAAQAAAAAAAADx/wIAAQAAAAAAAADw/wIAAQAAAAAAAADv/wIAAQAAAAAAAADu/wIAAQAAAAAAAADt/wIAAQAAAAAAAADs/wIAAQAIAAAAAAAEAAIAAQAAAAAAAAAFAAIAAQAAAAAAAAAGAAIAAQAAAAAAAAAHAAIAAQAAAAAAAAAIAAIAAQAAAAAAAAAJAAIAAQAAAAAAAAAKAAIAAQAAAAAAAAALAAIAAQAAAAAAAAAMAAIAAQAAAAAAAAANAAIAAQAAAAAAAAAOAAIAAQAAAAAAAAAPAAIAAQAAAAAAAAAQAAIAAQAAAAAAAAARAAIAAQABAAAAAAABAP7/AQAAAAAAAAACAP7/AQAAAAAAAAADAP7/AQAAAAAAAAABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAADAAIAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_ed451")
 navigation_enabled = false

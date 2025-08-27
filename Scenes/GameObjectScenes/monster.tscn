@@ -4,6 +4,17 @@
 [ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_j4gd6"]
 [ext_resource type="Texture2D" uid="uid://cxx1s0eqjln3w" path="res://Assets/Sprites/CreatureTransform.png" id="3_6tarr"]
 [ext_resource type="Shader" uid="uid://dnbhhaa514qwf" path="res://Scripts/Shaders/Highlightable.gdshader" id="4_vsloc"]
+<<<<<<< HEAD
+[ext_resource type="Texture2D" uid="uid://l4d6ilovluhm" path="res://Assets/Sprites/MonsterSprites/CreatureIdle.png" id="6_pcxkc"]
+[ext_resource type="Texture2D" uid="uid://cdenjy1c2b7b8" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt1.png" id="7_jqvtn"]
+[ext_resource type="Texture2D" uid="uid://c5r01xywsvotu" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt2.png" id="8_adkw6"]
+[ext_resource type="Texture2D" uid="uid://b8xceecbwhy8" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt3.png" id="9_ydwep"]
+[ext_resource type="Texture2D" uid="uid://cve33cpynqqbv" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt4.png" id="10_sqbqj"]
+[ext_resource type="Texture2D" uid="uid://2ep14bkvph41" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt5.png" id="11_w3cn7"]
+[ext_resource type="Texture2D" uid="uid://4abcpqytbqlu" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt6.png" id="12_5tn72"]
+[ext_resource type="Texture2D" uid="uid://cvawpar2il3ug" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt7.png" id="13_havqq"]
+[ext_resource type="Texture2D" uid="uid://bkb7as4vxf2rh" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt18.png" id="24_muyb7"]
+=======
 [ext_resource type="Texture2D" uid="uid://b531ehnmikdrb" path="res://Assets/Sprites/Explosion.png" id="5_juj33"]
 [ext_resource type="Texture2D" uid="uid://l4d6ilovluhm" path="res://Assets/Sprites/CreatureIdle.png" id="6_pcxkc"]
 [ext_resource type="Texture2D" uid="uid://c8nux08scb8ct" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt1.png" id="7_jqvtn"]
@@ -14,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dytgon3vdmm42" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt6.png" id="12_5tn72"]
 [ext_resource type="Texture2D" uid="uid://clfvktyawuvgi" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt7.png" id="13_havqq"]
 [ext_resource type="Texture2D" uid="uid://djn6kvhk63gse" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt18.png" id="24_muyb7"]
+>>>>>>> parent of a7e235a (Added um animal moves around)
 [ext_resource type="Script" uid="uid://cjvcto8x5m7el" path="res://Scripts/GameObjects/Classes/Awareness_Display.gd" id="25_45bqt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n8eh6"]

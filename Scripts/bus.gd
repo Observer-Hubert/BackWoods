@@ -30,6 +30,8 @@ signal dialogue_end
 signal cutscene_start
 ##Emitted when a cutscene ends.
 signal cutscene_end
+##Emitted as a request to change the scene.
+signal change_scene
 
 func stamina_update(newValue: float, exhausted: bool) -> void:
 	stamina_updated.emit(newValue, exhausted)
@@ -75,3 +77,6 @@ func start_cutscene() -> void:
 
 func end_cutscene() -> void:
 	cutscene_end.emit()
+
+func request_change_scene(sceneName: String):
+	change_scene.emit(sceneName)

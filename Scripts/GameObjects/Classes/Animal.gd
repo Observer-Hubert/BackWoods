@@ -44,6 +44,53 @@ func _physics_process(delta: float) -> void:
 	if not observingPlayer:
 		change_Awareness(-awareness_Decay_Rate * delta)
 
+<<<<<<< HEAD:Scripts/GameObjects/Classes/Creatures/Animal.gd
+func _target_Reached() -> void:
+	super()
+	if desiredPOI is HidingPlace and currentState == animalStates.FLEEING:
+		desiredPOI.Hide()
+		queue_free()
+	#elif currentState == animalStates.IDLE:
+	sprite.play("Standing")
+
+func _forage_Scan() -> bool:
+	var nearest_Forage = poi_search_area.search_Forage_Places(poi_Flag as HidingPlace.animals)
+	if nearest_Forage is ForageZone:
+		desiredPos = nearest_Forage.position
+		desiredPOI = nearest_Forage
+		return true
+	else:
+		return false
+
+func _hide_Scan() -> bool:
+	var nearest_Hide = poi_search_area.search_Hiding_Places(poi_Flag as HidingPlace.animals)
+	if nearest_Hide is HidingPlace:
+		desiredPos = nearest_Hide.hide_Entry_Point
+		desiredPOI = nearest_Hide
+		return true
+	else:
+		return false
+
+func _wander() -> void:
+	var randX = randf_range(-max_Dist_From_Origin,max_Dist_From_Origin) + behavior_Origin.x
+	var randY = randf_range(-max_Dist_From_Origin,max_Dist_From_Origin) + behavior_Origin.y	
+	desiredPos = Vector2(randX, randY)
+	sprite.play("Moving")
+
+func _renew_State() -> void:
+	reachedPos = false
+	match currentState:
+		animalStates.IDLE:
+			_wander()
+		animalStates.FLEEING:
+			if not _hide_Scan():
+				if lastNoisePos.x < to_global(position).x:
+					desiredPos = position + Vector2(1000.0, 0.0)
+				else:
+					desiredPos = position - Vector2(1000.0, 0.0)
+
+=======
+>>>>>>> parent of a7e235a (Added um animal moves around):Scripts/GameObjects/Classes/Animal.gd
 #These will be overwritten by inheriting classes, and provide functionality to the states, being called on a corresponding state change.
 func _idle_State_Setup() -> void:
 	pass

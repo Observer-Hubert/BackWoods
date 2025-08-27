@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ck6f1ixu2e14m"]
+[gd_scene load_steps=5 format=3 uid="uid://ck6f1ixu2e14m"]
 
 [ext_resource type="Script" uid="uid://daisbylqclbl3" path="res://Scripts/main.gd" id="1_6tb2e"]
 [ext_resource type="PackedScene" uid="uid://17tjoyebqqsn" path="res://Scenes/UIScenes/main_menu.tscn" id="2_wpvoy"]
+[ext_resource type="Script" uid="uid://bfqs5ujvbutim" path="res://Scripts/music_player.gd" id="3_8gbba"]
+[ext_resource type="AudioStream" uid="uid://cyo3rfrbrnhsx" path="res://Assets/Sounds/Songs/Main_Menu_Simple.wav" id="3_jjvhh"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -17,3 +19,10 @@ script = ExtResource("1_6tb2e")
 [node name="Main_Menu" parent="Main_UI" instance=ExtResource("2_wpvoy")]
 
 [node name="Main_2D" type="Node2D" parent="."]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_jjvhh")
+volume_db = 8.0
+autoplay = true
+script = ExtResource("3_8gbba")

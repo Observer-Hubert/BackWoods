@@ -162,7 +162,11 @@ func _physics_process(delta: float) -> void:
 				sprite.speed_scale = 1.0 * SPRINTSPEEDMOD
 				visibility_area.change_Visibility(2.5,2.5)
 			else:
+<<<<<<< HEAD
+				visibility_area.change_Visibility()
+=======
 				visibility_area.change_Visibility(1.5,1.5)
+>>>>>>> parent of a7e235a (Added um animal moves around)
 				sprite.speed_scale = 1.0
 			velocity = velocity.move_toward(desiredVel, ACCEL * delta)
 			if velocity.x < 0.0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c0bqo6wnxwu6h"]
+[gd_scene load_steps=26 format=3 uid="uid://c0bqo6wnxwu6h"]
 
 [ext_resource type="Script" uid="uid://d0ymbcmvw3txj" path="res://Scripts/UIElements/pause_menu.gd" id="1_1ktxu"]
 [ext_resource type="Script" uid="uid://da37prj2dr1tv" path="res://Scripts/UIElements/player_following_ui_anchor.gd" id="1_fx710"]
@@ -10,7 +10,14 @@
 [ext_resource type="Script" uid="uid://btqakl04378gi" path="res://Scripts/UIElements/bush_tooltip.gd" id="4_j64a8"]
 [ext_resource type="Texture2D" uid="uid://d2ykbqhg7t1tg" path="res://Assets/Sprites/E2.png" id="5_dqtgo"]
 [ext_resource type="Script" uid="uid://7yvbmjatgt7" path="res://Scripts/UIElements/dialogue_box.gd" id="10_m4nqq"]
+<<<<<<< HEAD
+[ext_resource type="Texture2D" uid="uid://b0qwco6n31pw6" path="res://Assets/Sprites/NatureSprites/Bush.png" id="11_srcf5"]
+[ext_resource type="Texture2D" uid="uid://ceypkx4exdcfs" path="res://Assets/Sprites/CamOverlay.png" id="12_hi4y3"]
+[ext_resource type="Script" uid="uid://c5fx8ns1nr87f" path="res://Scripts/UIElements/cam_overlay.gd" id="13_y5cqh"]
+[ext_resource type="Texture2D" uid="uid://bh7ogxkq11ma7" path="res://Assets/Sprites/ReticleSheet.png" id="14_y5cqh"]
+=======
 [ext_resource type="Texture2D" uid="uid://b0qwco6n31pw6" path="res://Assets/Sprites/Bush.png" id="11_srcf5"]
+>>>>>>> parent of a7e235a (Added um animal moves around)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdn60"]
 bg_color = Color(0.154876, 0.154876, 0.154876, 1)
@@ -116,6 +123,14 @@ frame_0/texture = ExtResource("4_4ph5n")
 frame_1/texture = ExtResource("5_dqtgo")
 frame_1/duration = 1.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyeu0"]
+atlas = ExtResource("12_hi4y3")
+region = Rect2(0, 0, 480, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm65w"]
+atlas = ExtResource("14_y5cqh")
+region = Rect2(0, 0, 480, 360)
+
 [node name="Forest_Scene_UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -133,6 +148,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -480.0
+offset_right = -480.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 50
@@ -305,3 +322,31 @@ autowrap_mode = 2
 [node name="CharTimer" type="Timer" parent="DialogueBox"]
 
 [node name="NextTimer" type="Timer" parent="DialogueBox"]
+
+[node name="CamOverlay" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_kyeu0")
+script = ExtResource("13_y5cqh")
+
+[node name="Reticle" type="TextureRect" parent="CamOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_wm65w")

@@ -1,7 +1,38 @@
+<<<<<<< HEAD
+[gd_scene load_steps=13 format=3 uid="uid://17tjoyebqqsn"]
+=======
 [gd_scene load_steps=3 format=3 uid="uid://17tjoyebqqsn"]
+>>>>>>> parent of a7e235a (Added um animal moves around)
 
 [ext_resource type="Theme" uid="uid://cukrveftb5565" path="res://Assets/Themes/Default_UI_Theme.tres" id="1_wj3mk"]
 [ext_resource type="Script" uid="uid://cplfopbg0ssov" path="res://Scripts/UIElements/quit_button.gd" id="2_prfj7"]
+<<<<<<< HEAD
+[ext_resource type="Texture2D" uid="uid://cwsvvxgvhuk1i" path="res://Assets/Sprites/Menu/SignWords.png" id="3_15g01"]
+[ext_resource type="Texture2D" uid="uid://bavabhisxx3go" path="res://Assets/Sprites/Menu/MenuFinalVersion1.png" id="3_iyrik"]
+[ext_resource type="Script" uid="uid://b2docipxc5pwu" path="res://Scripts/UIElements/main_menu_buttons.gd" id="4_8atao"]
+[ext_resource type="Script" uid="uid://cdst38u128wtr" path="res://Scripts/Menu.gd" id="4_15g01"]
+[ext_resource type="Shader" uid="uid://d366bv01pmjd8" path="res://Scripts/Shaders/Screen.gdshader" id="7_2vqsh"]
+[ext_resource type="Texture2D" uid="uid://ceypkx4exdcfs" path="res://Assets/Sprites/CamOverlay.png" id="7_m6svy"]
+[ext_resource type="Texture2D" uid="uid://ough7dpuoek4" path="res://Assets/Sprites/BlankFullscreen.png" id="8_m6svy"]
+[ext_resource type="Script" uid="uid://8f7kw4b7k61j" path="res://Scripts/UIElements/play_button.gd" id="8_ubesp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8atao"]
+atlas = ExtResource("3_15g01")
+region = Rect2(0, 0, 480, 360)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ubesp"]
+shader = ExtResource("7_2vqsh")
+shader_parameter/min_opacity = 0.8
+shader_parameter/max_opacity = 1.0
+shader_parameter/inactive = true
+shader_parameter/frequency = 4.0
+shader_parameter/speed = 5.0
+=======
+>>>>>>> parent of a7e235a (Added um animal moves around)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubesp"]
+atlas = ExtResource("7_m6svy")
+region = Rect2(0, 0, 480, 360)
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -23,7 +54,42 @@ grow_horizontal = 2
 theme = ExtResource("1_wj3mk")
 text = "BACKWOODS"
 
+<<<<<<< HEAD
+[node name="Timer" type="Timer" parent="MenuBG"]
+wait_time = 0.1
+autostart = true
+
+[node name="MenuButtons" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_8atao")
+script = ExtResource("4_8atao")
+
+[node name="Post-Processing" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ubesp")
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 360.0
+texture = ExtResource("8_m6svy")
+
+[node name="CameraOverlay" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ubesp")
+
+[node name="PlayButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+=======
 [node name="Button" type="Button" parent="."]
+>>>>>>> parent of a7e235a (Added um animal moves around)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,6 +103,7 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "PLAY"
+script = ExtResource("8_ubesp")
 
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 1
