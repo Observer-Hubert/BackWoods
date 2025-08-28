@@ -107,24 +107,36 @@ func _input(event: InputEvent) -> void:
 			sprite.animation_finished.connect(func idleCam() -> void:
 				sprite.play("Calm_Cam_Idle")
 				change_State(playerStates.AIMING))
+		# If the player presses the aim key while in a bush, they move to the aiming state.
+		elif event.is_action_pressed("Aim") and currentState == playerStates.HIDING:
+			change_State(playerStates.BUSY)
+			sprite.play("Hiding_Raise_Cam")
+			sprite.animation_finished.connect(func idleCam() -> void:
+				sprite.play("Hiding_Cam")
+				change_State(playerStates.AIMING))
 		# If the player presses the aim key while aiming, they snap a picture.
 		elif event.is_action_pressed("Aim") and currentState == playerStates.AIMING:
 			if loaded == true:
 				Bus.signal_photo_taken()
 				$CameraSound.play()
 				$CameraClick.play()
+				loud_sound_area.make_Noise(75.0)
 				loaded = false
 			else:
 				loaded = true
 			Bus.signal_cam_loaded(loaded)
 		# If the player presses the cancel input while aiming, they return to free movement.
-		elif event.is_action_pressed("Cancel") and (currentState == playerStates.AIMING or currentState == playerStates.HIDING):
+		elif event.is_action_pressed("Cancel") and currentState == playerStates.AIMING:
 			if _get_Previous_State() != currentState:
 				visibility_area.change_Visibility()
 				sprite.z_index = 0
 				change_State(_get_Previous_State())
 			else:
 				change_State(playerStates.FREE_MOVEMENT)
+		elif event.is_action_pressed("Cancel") and currentState == playerStates.HIDING:
+			change_State(playerStates.FREE_MOVEMENT)
+			visibility_area.change_Visibility()
+			sprite.z_index = 0
 		elif event.is_action_pressed("Interact"):
 			if currentState == playerStates.FREE_MOVEMENT:
 				if interactTarget:
@@ -170,7 +182,7 @@ func _physics_process(delta: float) -> void:
 				desiredVel *= SPRINTSPEEDMOD
 				stamina -= SPRINTSTAMCOST * delta
 				sprite.speed_scale = 1.0 * SPRINTSPEEDMOD
-				visibility_area.change_Visibility(2.5,2.5)
+				visibility_area.change_Visibility(1.5,1.5)
 			else:
 				visibility_area.change_Visibility()
 				sprite.speed_scale = 1.0

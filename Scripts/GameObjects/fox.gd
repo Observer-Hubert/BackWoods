@@ -20,6 +20,7 @@ func _investigating_State_Setup() -> void:
 	pass
 
 func _fleeing_State_Setup() -> void:
+	moveSpeed = base_Move_Speed * flee_mod
 	reachedPos = false
 	if not _hide_Scan():
 		if lastNoisePos.x < to_global(position).x:

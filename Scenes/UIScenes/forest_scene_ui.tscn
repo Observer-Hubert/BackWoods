@@ -6,10 +6,10 @@
 [ext_resource type="Script" uid="uid://1yb8upxjam40" path="res://Scripts/UIElements/main_menu_button.gd" id="2_31j1v"]
 [ext_resource type="Theme" uid="uid://cukrveftb5565" path="res://Assets/Themes/Default_UI_Theme.tres" id="2_l5s8k"]
 [ext_resource type="Script" uid="uid://djnjdo3unxyww" path="res://Scripts/UIElements/stamina_bar.gd" id="3_otvop"]
-[ext_resource type="Texture2D" uid="uid://petsbq472kqs" path="res://Assets/Sprites/UISprites/E1.png" id="4_4ph5n"]
 [ext_resource type="Script" uid="uid://btqakl04378gi" path="res://Scripts/UIElements/bush_tooltip.gd" id="4_j64a8"]
 [ext_resource type="Script" uid="uid://deufvguj81wio" path="res://Scripts/UIElements/setting_checkbox.gd" id="4_kyeu0"]
-[ext_resource type="Texture2D" uid="uid://d2ykbqhg7t1tg" path="res://Assets/Sprites/UISprites/E2.png" id="5_dqtgo"]
+[ext_resource type="Texture2D" uid="uid://c4k7yneypdgqd" path="res://Assets/Sprites/UISprites/Z1.png" id="8_1700j"]
+[ext_resource type="Texture2D" uid="uid://dh5e3pvm5rk15" path="res://Assets/Sprites/UISprites/Z2.png" id="9_a13eb"]
 [ext_resource type="Script" uid="uid://7yvbmjatgt7" path="res://Scripts/UIElements/dialogue_box.gd" id="10_m4nqq"]
 [ext_resource type="Texture2D" uid="uid://b0qwco6n31pw6" path="res://Assets/Sprites/NatureSprites/Bush.png" id="11_srcf5"]
 [ext_resource type="Texture2D" uid="uid://ceypkx4exdcfs" path="res://Assets/Sprites/UISprites/CamOverlay.png" id="12_hi4y3"]
@@ -140,8 +140,8 @@ _data = {
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_qxnei"]
 frames = 2
-frame_0/texture = ExtResource("4_4ph5n")
-frame_1/texture = ExtResource("5_dqtgo")
+frame_0/texture = ExtResource("8_1700j")
+frame_1/texture = ExtResource("9_a13eb")
 frame_1/duration = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kyeu0"]

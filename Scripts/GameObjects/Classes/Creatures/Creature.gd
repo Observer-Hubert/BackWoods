@@ -10,7 +10,7 @@ class_name Creature extends AnimatableBody2D
 
 @export_group("Movement")
 ##Determines how fast the creature moves.
-@export_range(10.0, 200.0, 5.0) var move_Speed: float = 150.0
+@export_range(10.0, 200.0, 5.0) var base_Move_Speed: float = 150.0
 ##Determines how quickly the creature accelerates and decelerates per second.
 @export_range(10.0, 2000.0, 10.0) var accel: float = 150.0
 
@@ -44,6 +44,8 @@ var velocity: Vector2 = Vector2.ZERO
 var desiredPos: Vector2
 #reachedPos is true when the creature has met with its desired position.
 var reachedPos: bool = false
+#moveSpeed is the current movespeed of the creature
+var moveSpeed: float = base_Move_Speed
 
 #Emitted when the creature's awareness is updated.
 signal awareness_updated
@@ -79,7 +81,7 @@ func _update_Agent() -> void:
 		if navigation_agent != null:
 			navigation_agent.target_position = Vector2(desiredPos.x, clamp(desiredPos.y, MINY, MAXY))
 			var dir = to_local(navigation_agent.get_next_path_position()).normalized()
-			navigation_agent.velocity = dir * move_Speed
+			navigation_agent.velocity = dir * moveSpeed
 
 func _set_Vel(safe_vel: Vector2):
 	velocity = safe_vel

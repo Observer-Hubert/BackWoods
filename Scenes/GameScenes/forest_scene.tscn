@@ -268,7 +268,7 @@ color = Color(0.099986, 0.099986, 0.099986, 1)
 
 [node name="Fox" parent="." instance=ExtResource("4_knqvc")]
 position = Vector2(-20, 117)
-move_Speed = 120.0
+curious = true
 
 [node name="Bush" parent="." instance=ExtResource("18_d64m6")]
 position = Vector2(107, 105)

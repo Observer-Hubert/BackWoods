@@ -3,7 +3,7 @@ extends TextureRect
 # FADETIME is the time in seconds that it takes the Tooltip to fade in and out.
 const FADETIME: float = 0.5
 const MINOPACITY: float = 0.0
-const MAXOPACITY: float = 0.7
+const MAXOPACITY: float = 0.5
 
 func _ready() -> void:
 	# The Tooltip should be invisible to start so that it only displays when it is accurate.

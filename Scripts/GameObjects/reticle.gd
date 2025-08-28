@@ -35,9 +35,17 @@ func _update_Visibility(state: int) -> void:
 		visible = true
 		monitoring = true
 		position = startPos
+		var tween = get_tree().create_tween()
+		tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
+		var effect = AudioServer.get_bus_effect(0,1)
+		tween.tween_property(effect,"cutoff_hz", 1600, 0.5)
 		Bus.request_cam_focus(self)
 	else:
 		monitoring = false
+		var tween = get_tree().create_tween()
+		tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
+		var effect = AudioServer.get_bus_effect(0,1)
+		tween.tween_property(effect,"cutoff_hz", 10000, 0.5)
 		visible = false
 
 #_snap_To_Grid() ensures the coordinates of the passed vector 2 are divisible by the CELLSIZE, rounding them down to the nearest multiple.
