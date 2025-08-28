@@ -1,0 +1,17 @@
+[gd_resource type="AnimatedTexture" load_steps=5 format=3 uid="uid://hmhoxpvdyiyh"]
+
+[ext_resource type="Texture2D" uid="uid://c25xwaxnhaea2" path="res://Assets/Sprites/Humans/BillTalkingHead/BillTalk1.png" id="1_dl2eu"]
+[ext_resource type="Texture2D" uid="uid://ijr5t3t7ea5u" path="res://Assets/Sprites/Humans/BillTalkingHead/BillTalk2.png" id="2_c7qph"]
+[ext_resource type="Texture2D" uid="uid://b28dqa2ubp58s" path="res://Assets/Sprites/Humans/BillTalkingHead/BillTalk3.png" id="3_2up31"]
+[ext_resource type="Texture2D" uid="uid://cc1ux6i2h0f5v" path="res://Assets/Sprites/Humans/BillTalkingHead/BillTalk4.png" id="4_fysmq"]
+
+[resource]
+frames = 4
+speed_scale = 7.0
+frame_0/texture = ExtResource("1_dl2eu")
+frame_1/texture = ExtResource("2_c7qph")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_2up31")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_fysmq")
+frame_3/duration = 1.0

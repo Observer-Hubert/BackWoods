@@ -7,15 +7,16 @@ class_name Player
 @onready var sprite: AnimatedSprite2D = $PlayerSprite
 @onready var visibility_area: Area2D = $PlayerVisibilityArea
 @onready var loud_sound_area: Area2D = $PlayerLoudSoundArea
+@onready var step_audio: AudioStreamPlayer2D = $StepAudio
 
 const SPEED: float = 150.0 
 const YSPEEDMOD: float = 0.75
-const SPRINTSPEEDMOD: float = 2.5
+const SPRINTSPEEDMOD: float = 2.0
 #ACCEL is velocity acceleration per second.
 const ACCEL: float = 1500.0
 const STAMMAX: float = 100.0
 #SPRINTSTAMCOST is how much stamina it costs to sprint per second
-const SPRINTSTAMCOST: float = 100.0
+const SPRINTSTAMCOST: float = 50.0
 #STAMREGEN is how much stamina the player regenerates per second while not running
 const STAMREGEN: float = 25.0
 #EXHAUSTEDREGENMOD * 100 percent of the stamina regen is subtracted from stamina regen when the player is exhausted
@@ -44,6 +45,7 @@ func change_State(newState: playerStates) -> void:
 		playerStates.HIDING:
 			set_collision_mask_value(1, false)
 			currentState = playerStates.HIDING
+			visibility_area.change_Visibility(0.25,0.25)
 			sprite.play("Hiding")
 			sprite.z_index = 2
 			sprite.flip_h = true
@@ -106,11 +108,13 @@ func _input(event: InputEvent) -> void:
 				change_State(playerStates.AIMING))
 		# If the player presses the aim key while aiming, they snap a picture.
 		elif event.is_action_pressed("Aim") and currentState == playerStates.AIMING:
-			#visibility_light.flash()
 			Bus.signal_photo_taken()
+			$CameraSound.play()
+			$CameraClick.play()
 		# If the player presses the cancel input while aiming, they return to free movement.
 		elif event.is_action_pressed("Cancel") and (currentState == playerStates.AIMING or currentState == playerStates.HIDING):
 			if _get_Previous_State() != currentState:
+				visibility_area.change_Visibility()
 				sprite.z_index = 0
 				change_State(_get_Previous_State())
 			else:
@@ -162,7 +166,7 @@ func _physics_process(delta: float) -> void:
 				sprite.speed_scale = 1.0 * SPRINTSPEEDMOD
 				visibility_area.change_Visibility(2.5,2.5)
 			else:
-				visibility_area.change_Visibility(1.5,1.5)
+				visibility_area.change_Visibility()
 				sprite.speed_scale = 1.0
 			velocity = velocity.move_toward(desiredVel, ACCEL * delta)
 			if velocity.x < 0.0:
@@ -172,10 +176,9 @@ func _physics_process(delta: float) -> void:
 		else:
 			sprite.play("Calm_Idle")
 	#If the player is not moving or cannot move, we should decelerate their velocity.
-	if currentState != playerStates.FREE_MOVEMENT or not movementInput:
+	if (currentState != playerStates.FREE_MOVEMENT or not movementInput) and velocity.x + velocity.y != 0.0:
 		velocity = velocity.move_toward(Vector2.ZERO, ACCEL * delta)
 		visibility_area.change_Visibility()
-		sprite.speed_scale = 1.0
 	#If the player's stamina is ever 0 or below, regardless of their current state, they should become exhausted.
 	if stamina <= 0.0:
 		loud_sound_area.make_Noise(200.0)

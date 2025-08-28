@@ -1,0 +1,156 @@
+[gd_scene load_steps=26 format=3 uid="uid://bahr8sos3gca8"]
+
+[ext_resource type="Script" uid="uid://ctrpr5yxe0i0i" path="res://Scripts/GameObjects/fox.gd" id="1_4gorx"]
+[ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_08gwn"]
+[ext_resource type="Texture2D" uid="uid://bv01k1wevlbou" path="res://Assets/Sprites/AnimalSprites/FoxSit.png" id="3_5jibb"]
+[ext_resource type="Material" uid="uid://bemxeuwh5jgyo" path="res://Assets/Materials/HighlightableObject.tres" id="4_rxply"]
+[ext_resource type="Texture2D" uid="uid://dqlccwvas36fc" path="res://Assets/Sprites/AnimalSprites/SquirrelRun.png" id="5_lyekn"]
+[ext_resource type="Texture2D" uid="uid://bc1nlqbngnqnq" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator1.png" id="6_1n2y7"]
+[ext_resource type="Texture2D" uid="uid://xx5l6imohj65" path="res://Assets/Sprites/AnimalSprites/SquirrelStand.png" id="6_lb5du"]
+[ext_resource type="Texture2D" uid="uid://cegjtkjbt5f5b" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator2.png" id="7_72sqq"]
+[ext_resource type="Texture2D" uid="uid://dv0t6n71vaa4l" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator3.png" id="8_5iis3"]
+[ext_resource type="Texture2D" uid="uid://1dxxtllvr2b0" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator4.png" id="9_umhkf"]
+[ext_resource type="Texture2D" uid="uid://1pt6wfqeogc" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator5.png" id="10_wvwc0"]
+[ext_resource type="Texture2D" uid="uid://bjnquxjc5rnnb" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator6.png" id="11_uro1n"]
+[ext_resource type="Script" uid="uid://cjvcto8x5m7el" path="res://Scripts/GameObjects/Classes/Awareness_Display.gd" id="12_6vap5"]
+[ext_resource type="Script" uid="uid://febcobub1jxx" path="res://Scripts/GameObjects/hiding_search_area.gd" id="13_42b0p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmbr4"]
+atlas = ExtResource("3_5jibb")
+region = Rect2(0, 0, 24, 36)
+
+[sub_resource type="Resource" id="Resource_dl5oq"]
+script = ExtResource("2_08gwn")
+texture = SubResource("AtlasTexture_lmbr4")
+caption = "That's a fox!"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hm7ag"]
+size = Vector2(11, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm6i3"]
+atlas = ExtResource("5_lyekn")
+region = Rect2(0, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxnmd"]
+atlas = ExtResource("5_lyekn")
+region = Rect2(15, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmpjq"]
+atlas = ExtResource("5_lyekn")
+region = Rect2(30, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0isl1"]
+atlas = ExtResource("5_lyekn")
+region = Rect2(45, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48qpd"]
+atlas = ExtResource("6_lb5du")
+region = Rect2(0, 0, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7e253"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mm6i3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxnmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmpjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0isl1")
+}],
+"loop": true,
+"name": &"Moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48qpd")
+}],
+"loop": true,
+"name": &"Standing",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u1unb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_1n2y7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_72sqq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5iis3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_umhkf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wvwc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_uro1n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g06i8"]
+radius = 500.0
+
+[node name="Squirrel" type="AnimatableBody2D" node_paths=PackedStringArray("poi_search_area", "behavior_timer", "sprite", "awareness_display", "navigation_agent")]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 2
+sync_to_physics = false
+script = ExtResource("1_4gorx")
+behavior_Interval = 2.0
+poi_Flag = 1
+poi_search_area = NodePath("POISearchArea")
+behavior_timer = NodePath("BehaviorTimer")
+photo_Data = SubResource("Resource_dl5oq")
+move_Speed = 85.0
+accel = 130.0
+sprite = NodePath("SquirrelSprite")
+awareness_display = NodePath("AwarenessDisplay")
+navigation_agent = NodePath("NavigationAgent")
+
+[node name="SquirrelCollider" type="CollisionShape2D" parent="."]
+z_as_relative = false
+shape = SubResource("RectangleShape2D_hm7ag")
+
+[node name="SquirrelSprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+texture_repeat = 1
+material = ExtResource("4_rxply")
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_7e253")
+animation = &"Moving"
+offset = Vector2(0, -5)
+
+[node name="BehaviorTimer" type="Timer" parent="."]
+
+[node name="AwarenessDisplay" type="AnimatedSprite2D" parent="."]
+z_index = 6
+position = Vector2(0, -23)
+sprite_frames = SubResource("SpriteFrames_u1unb")
+script = ExtResource("12_6vap5")
+
+[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 25.0
+max_speed = 1000.0
+debug_use_custom = true
+
+[node name="POISearchArea" type="Area2D" parent="."]
+script = ExtResource("13_42b0p")
+
+[node name="POISearchCollider" type="CollisionShape2D" parent="POISearchArea"]
+shape = SubResource("CircleShape2D_g06i8")

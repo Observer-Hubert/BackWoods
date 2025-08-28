@@ -1,0 +1,23 @@
+[gd_resource type="AnimatedTexture" load_steps=7 format=3 uid="uid://dgl7jfhk6s85d"]
+
+[ext_resource type="Texture2D" uid="uid://c5m361tcdvjox" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalk1.png" id="1_btic0"]
+[ext_resource type="Texture2D" uid="uid://d08f00si3ofep" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalk2.png" id="2_14uhv"]
+[ext_resource type="Texture2D" uid="uid://da4edwrih5qqn" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalk3.png" id="3_eeei2"]
+[ext_resource type="Texture2D" uid="uid://iueh0wmjpjvs" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalk4.png" id="4_hwg5m"]
+[ext_resource type="Texture2D" uid="uid://c0ggfclsa8oh4" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalk5.png" id="5_my71s"]
+[ext_resource type="Texture2D" uid="uid://bbf2upwmv2hi1" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalk6.png" id="6_thla6"]
+
+[resource]
+frames = 6
+speed_scale = 7.0
+frame_0/texture = ExtResource("1_btic0")
+frame_1/texture = ExtResource("2_14uhv")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_eeei2")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_hwg5m")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("5_my71s")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("6_thla6")
+frame_5/duration = 1.0

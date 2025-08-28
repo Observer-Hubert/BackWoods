@@ -23,8 +23,15 @@ Bus="*res://Scripts/bus.gd"
 
 window/size/viewport_width=480
 window/size/viewport_height=360
+window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="uid://s0j2s1t8a2mw"
+mouse_cursor/custom_image_hotspot=Vector2(43, 43)
+
+[editor]
+
+export/convert_text_resources_to_binary=false
 
 [input]
 

@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://cyr76eoscixwd"]
+
+[ext_resource type="Script" uid="uid://cp4msv1oaminq" path="res://Scripts/GameObjects/Classes/AnimalInteractables/Hiding_Place.gd" id="1_8px5r"]
+[ext_resource type="Texture2D" uid="uid://c3m1ua750ow66" path="res://Assets/Sprites/AnimalSprites/LogFoxHiding.png" id="2_t4j78"]
+[ext_resource type="Texture2D" uid="uid://dhcmgcflpr60" path="res://Assets/Sprites/NatureSprites/log.png" id="3_73xvt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hudk7"]
+atlas = ExtResource("2_t4j78")
+region = Rect2(0, 0, 150, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tn66b"]
+atlas = ExtResource("2_t4j78")
+region = Rect2(150, 0, 150, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2ljc"]
+atlas = ExtResource("2_t4j78")
+region = Rect2(300, 0, 150, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jsjq"]
+atlas = ExtResource("2_t4j78")
+region = Rect2(450, 0, 150, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3xrs"]
+atlas = ExtResource("2_t4j78")
+region = Rect2(600, 0, 150, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0r61"]
+atlas = ExtResource("2_t4j78")
+region = Rect2(750, 0, 150, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mas5"]
+atlas = ExtResource("2_t4j78")
+region = Rect2(900, 0, 150, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_knqvc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hudk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tn66b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2ljc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jsjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3xrs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0r61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mas5")
+}],
+"loop": false,
+"name": &"Hide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_73xvt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uogbx"]
+size = Vector2(9, 4)
+
+[node name="Log" type="StaticBody2D" node_paths=PackedStringArray("sprite")]
+y_sort_enabled = true
+script = ExtResource("1_8px5r")
+sprite = NodePath("LogSprite")
+valid_Hiders = 1
+
+[node name="LogSprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-33, 13)
+sprite_frames = SubResource("SpriteFrames_knqvc")
+offset = Vector2(0, -13)
+
+[node name="LogCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uogbx")
+
+[node name="HideEntry" type="Node2D" parent="."]
+position = Vector2(-89, 0)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 15.0

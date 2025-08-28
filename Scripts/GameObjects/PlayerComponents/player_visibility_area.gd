@@ -29,4 +29,4 @@ func _process(delta: float) -> void:
 		if body is Creature:
 			body.change_Awareness(visibility_Scale * delta)
 			if body.currentAwareness == body.MAXAWARENESS:
-				body.hear_Noise(position)
+				body.hear_Noise(to_global(position))

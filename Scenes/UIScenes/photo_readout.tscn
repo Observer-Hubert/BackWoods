@@ -43,7 +43,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_xfdru"]
 resource_name = "Print"
-length = 7.0
+length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -51,10 +51,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.966667, 1.2, 1.93333, 2.13333, 3, 3.26667, 3.46667),
-"transitions": PackedFloat32Array(0.757858, 1, 0.784584, 1, 0.784584, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.63333, 0.666663, 1.63333, 1.86666, 2.59999, 2.79999, 3.66666, 3.93333, 4.13333),
+"transitions": PackedFloat32Array(1, 1, 0.757858, 1, 0.784584, 1, 0.784584, 1, 1, 1),
 "update": 0,
-"values": [Vector2(10, -155), Vector2(10, -100), Vector2(10, -110), Vector2(10, -50), Vector2(10, -55), Vector2(10, 0), Vector2(10, -5), Vector2(10, 0)]
+"values": [Vector2(10, -160), Vector2(10, -160), Vector2(10, -155), Vector2(10, -100), Vector2(10, -110), Vector2(10, -50), Vector2(10, -55), Vector2(10, 0), Vector2(10, -5), Vector2(10, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -105,10 +105,10 @@ _data = {
 
 [node name="PhotoReadout" type="PanelContainer"]
 process_mode = 1
-offset_left = 24.0
-offset_top = -10.0
-offset_right = 154.0
-offset_bottom = 149.0
+offset_left = 10.0
+offset_top = -155.0
+offset_right = 140.0
+offset_bottom = 4.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rw0bx")
 script = ExtResource("1_ot3dj")
@@ -152,5 +152,5 @@ text_overrun_behavior = 3
 
 [node name="ReadoutAnimPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_6p2ql")
+&"": SubResource("AnimationLibrary_6p2ql")
 }

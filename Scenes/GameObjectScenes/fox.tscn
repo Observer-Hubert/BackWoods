@@ -1,20 +1,18 @@
-[gd_scene load_steps=20 format=3 uid="uid://d12le13000kon"]
+[gd_scene load_steps=19 format=3 uid="uid://d12le13000kon"]
 
 [ext_resource type="Script" uid="uid://ctrpr5yxe0i0i" path="res://Scripts/GameObjects/fox.gd" id="1_7u81j"]
 [ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_wi0pi"]
-[ext_resource type="Texture2D" uid="uid://bv01k1wevlbou" path="res://Assets/Sprites/FoxSit.png" id="3_0fn8s"]
+[ext_resource type="Texture2D" uid="uid://bv01k1wevlbou" path="res://Assets/Sprites/AnimalSprites/FoxSit.png" id="3_0fn8s"]
 [ext_resource type="Material" uid="uid://bemxeuwh5jgyo" path="res://Assets/Materials/HighlightableObject.tres" id="4_sbluu"]
 [ext_resource type="SpriteFrames" uid="uid://dsyrg653tilam" path="res://Assets/Sprites/SpriteFramesResources/FoxSpriteFrames.tres" id="5_egivf"]
-[ext_resource type="Texture2D" uid="uid://cvchr8xcepg1g" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator1.png" id="6_cfhs2"]
-[ext_resource type="Texture2D" uid="uid://dsbrgkhubwq7r" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator2.png" id="7_bdt0w"]
-[ext_resource type="Texture2D" uid="uid://ybed8lj8ygkg" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator3.png" id="8_g06i8"]
-[ext_resource type="Texture2D" uid="uid://dys0ru22mqijk" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator4.png" id="9_hvhog"]
-[ext_resource type="Texture2D" uid="uid://1yu3r11fs8ll" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator5.png" id="10_h4npw"]
-[ext_resource type="Texture2D" uid="uid://kujy6olg7fx7" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator6.png" id="11_0igop"]
-[ext_resource type="Texture2D" uid="uid://bqho4sxi3duki" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator7.png" id="12_waadd"]
-[ext_resource type="Texture2D" uid="uid://cv7axb83evchg" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator8.png" id="13_8gfm3"]
-[ext_resource type="Texture2D" uid="uid://cymah4ekcarg0" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator9.png" id="14_uuycf"]
+[ext_resource type="Texture2D" uid="uid://bc1nlqbngnqnq" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator1.png" id="6_cfhs2"]
+[ext_resource type="Texture2D" uid="uid://cegjtkjbt5f5b" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator2.png" id="7_bdt0w"]
+[ext_resource type="Texture2D" uid="uid://dv0t6n71vaa4l" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator3.png" id="8_g06i8"]
+[ext_resource type="Texture2D" uid="uid://1dxxtllvr2b0" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator4.png" id="9_hvhog"]
+[ext_resource type="Texture2D" uid="uid://1pt6wfqeogc" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator5.png" id="10_h4npw"]
+[ext_resource type="Texture2D" uid="uid://bjnquxjc5rnnb" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator6.png" id="11_0igop"]
 [ext_resource type="Script" uid="uid://cjvcto8x5m7el" path="res://Scripts/GameObjects/Classes/Awareness_Display.gd" id="15_d5j82"]
+[ext_resource type="Script" uid="uid://febcobub1jxx" path="res://Scripts/GameObjects/hiding_search_area.gd" id="16_bdt0w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lmbr4"]
 atlas = ExtResource("3_0fn8s")
@@ -48,28 +46,26 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_0igop")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_waadd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_8gfm3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_uuycf")
 }],
 "loop": true,
 "name": &"default",
 "speed": 0.0
 }]
 
-[node name="Fox" type="AnimatableBody2D" node_paths=PackedStringArray("sprite", "awareness_display", "navigation_agent")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_g06i8"]
+radius = 500.0
+
+[node name="Fox" type="AnimatableBody2D" node_paths=PackedStringArray("poi_search_area", "behavior_timer", "sprite", "awareness_display", "navigation_agent")]
 y_sort_enabled = true
+collision_layer = 4
+collision_mask = 2
 sync_to_physics = false
 script = ExtResource("1_7u81j")
-behavior_Interval = 4.0
+behavior_Interval = 5.0
+poi_search_area = NodePath("POISearchArea")
+behavior_timer = NodePath("BehaviorTimer")
 photo_Data = SubResource("Resource_dl5oq")
-move_Speed = 100.0
+move_Speed = 175.0
 accel = 130.0
 sprite = NodePath("FoxSprite")
 awareness_display = NodePath("AwarenessDisplay")
@@ -87,8 +83,8 @@ texture_repeat = 1
 material = ExtResource("4_sbluu")
 position = Vector2(0, 13)
 sprite_frames = ExtResource("5_egivf")
-animation = &"Moving"
-frame = 2
+animation = &"Standing"
+frame_progress = 0.282538
 offset = Vector2(0, -13)
 
 [node name="BehaviorTimer" type="Timer" parent="."]
@@ -101,5 +97,11 @@ script = ExtResource("15_d5j82")
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-radius = 25.0
+max_speed = 1000.0
 debug_use_custom = true
+
+[node name="POISearchArea" type="Area2D" parent="."]
+script = ExtResource("16_bdt0w")
+
+[node name="POISearchCollider" type="CollisionShape2D" parent="POISearchArea"]
+shape = SubResource("CircleShape2D_g06i8")

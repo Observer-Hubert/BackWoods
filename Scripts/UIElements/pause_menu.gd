@@ -18,9 +18,17 @@ func _input(event: InputEvent) -> void:
 func _enter() -> void:
 	anim_player.play("Enter")
 	get_tree().paused = true
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
+	var effect = AudioServer.get_bus_effect(0,0)
+	tween.tween_property(effect,"cutoff_hz", 2000, 0.5)
 	active = true
 
 func _exit() -> void:
 	anim_player.play("Exit")
 	get_tree().paused = false
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
+	var effect = AudioServer.get_bus_effect(0,0)
+	tween.tween_property(effect,"cutoff_hz", 0, 0.5)
 	active = false

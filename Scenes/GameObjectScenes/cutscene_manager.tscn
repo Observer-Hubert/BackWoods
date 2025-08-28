@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://e7iihql0oihy" path="res://Scripts/GameObjects/Classes/Cutscene_Manager.gd" id="1_na4g4"]
 [ext_resource type="Script" uid="uid://ss60pgxo4vwc" path="res://Scripts/Resources/cutscene_keyframe_resource.gd" id="2_5eu6j"]
 [ext_resource type="Script" uid="uid://b04o5nhw2f6up" path="res://Scripts/Resources/dialogue_data_resource.gd" id="3_51ilx"]
-[ext_resource type="Texture2D" uid="uid://dve0obujd0kww" path="res://Assets/Sprites/Earl.png" id="4_shlol"]
+[ext_resource type="Texture2D" uid="uid://dve0obujd0kww" path="res://Assets/Sprites/Humans/Earl.png" id="4_shlol"]
 [ext_resource type="Script" uid="uid://bg3nyllgew138" path="res://Scripts/GameObjects/Classes/Cutscene_Trigger.gd" id="5_eaoo6"]
 
 [sub_resource type="Resource" id="Resource_l88fr"]
@@ -81,7 +81,7 @@ movement_easing_Mode = 0
 metadata/_custom_type_script = "uid://ss60pgxo4vwc"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ohwx"]
-size = Vector2(200, 75)
+size = Vector2(200, 8.5)
 
 [node name="CutsceneManager" type="Node2D"]
 script = ExtResource("1_na4g4")
@@ -92,4 +92,5 @@ position = Vector2(600, 53)
 script = ExtResource("5_eaoo6")
 
 [node name="CutsceneTriggerCollider" type="CollisionShape2D" parent="CutsceneTrigger"]
+position = Vector2(0, -33.25)
 shape = SubResource("RectangleShape2D_2ohwx")

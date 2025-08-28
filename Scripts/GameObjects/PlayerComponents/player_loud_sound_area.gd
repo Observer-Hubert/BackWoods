@@ -7,7 +7,7 @@ func _ready() -> void:
 
 func _pass_Sound(body) -> void:
 	if body is Creature:
-		body.hear_Noise(position)
+		body.hear_Noise(to_global(position))
 
 func make_Noise(radius: float, duration: float = 0.1) -> void:
 	collider.shape.radius = radius

@@ -1,12 +1,12 @@
 [gd_scene load_steps=23 format=3 uid="uid://c64jqfkk821sh"]
 
-[ext_resource type="Script" uid="uid://dgwi0rjjbpna4" path="res://Scripts/GameObjects/Classes/Human.gd" id="1_f4xm4"]
+[ext_resource type="Script" uid="uid://dgwi0rjjbpna4" path="res://Scripts/GameObjects/Classes/Creatures/Human.gd" id="1_f4xm4"]
 [ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_xiiis"]
-[ext_resource type="Texture2D" uid="uid://dve0obujd0kww" path="res://Assets/Sprites/Earl.png" id="3_88t30"]
+[ext_resource type="Texture2D" uid="uid://dve0obujd0kww" path="res://Assets/Sprites/Humans/Earl.png" id="3_88t30"]
 [ext_resource type="Shader" uid="uid://dnbhhaa514qwf" path="res://Scripts/Shaders/Highlightable.gdshader" id="4_di57q"]
-[ext_resource type="Script" uid="uid://b2otj1oosia5n" path="res://Scripts/GameObjects/Classes/Dialogue_Zone.gd" id="5_oscy7"]
+[ext_resource type="Script" uid="uid://b2otj1oosia5n" path="res://Scripts/GameObjects/Classes/Interactables/Dialogue_Zone.gd" id="5_oscy7"]
 [ext_resource type="Script" uid="uid://b04o5nhw2f6up" path="res://Scripts/Resources/dialogue_data_resource.gd" id="6_p5fnc"]
-[ext_resource type="Texture2D" uid="uid://dgl7jfhk6s85d" path="res://Assets/Sprites/PlayerTalking/PlayerTalkHead.tres" id="7_365et"]
+[ext_resource type="Texture2D" uid="uid://dgl7jfhk6s85d" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalkHead.tres" id="7_365et"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_blyvn"]
 atlas = ExtResource("3_88t30")
@@ -101,10 +101,11 @@ text_End_Time = 0.2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mybmx"]
 size = Vector2(100, 100)
 
-[node name="Earl" type="AnimatableBody2D"]
+[node name="Earl" type="AnimatableBody2D" node_paths=PackedStringArray("sprite")]
 y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_f4xm4")
+sprite = NodePath("EarlSprite")
 photo_Data = SubResource("Resource_ahegq")
 
 [node name="EarlSprite" type="AnimatedSprite2D" parent="."]

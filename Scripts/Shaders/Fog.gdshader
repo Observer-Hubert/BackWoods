@@ -6,6 +6,7 @@ uniform float fog_slowness: hint_range(0.0, 25.0, 0.1);
 uniform float min_fog_mod: hint_range(0.0, 1.0, 0.01);
 uniform float max_fog_mod: hint_range(0.0, 1.0, 0.01);
 uniform vec3 fog_color: source_color;
+uniform bool screen_active;
 
 varying vec2 world_position;
 
@@ -20,5 +21,8 @@ void fragment() {
 	vec2 pixel = floor(UV * vec2(480,360))/vec2(480,360);
 	color.rgb += fog_color.rgb;
 	color *= clamp(texture(noise_texture, pixel + TIME/fog_slowness + world_position - floor(pixel + TIME/fog_slowness + world_position)), min_fog_mod, max_fog_mod);
-	COLOR = color;
+	vec2 pixel2 = UV / TEXTURE_PIXEL_SIZE;
+	float odd = clamp((round((pixel2.y/4.0)) - floor(pixel2.y/4.0)),0.8, 1.0);
+	COLOR.rgb = color.rgb * clamp(odd + float((int(screen_active)*-1)+1), 0.0, 1.0);
+	COLOR.a = color.a;
 }

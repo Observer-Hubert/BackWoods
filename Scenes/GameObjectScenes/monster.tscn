@@ -1,19 +1,18 @@
-[gd_scene load_steps=55 format=3 uid="uid://bi1lilyfrxssq"]
+[gd_scene load_steps=37 format=3 uid="uid://bi1lilyfrxssq"]
 
-[ext_resource type="Script" uid="uid://235ao5av20kn" path="res://Scripts/GameObjects/Classes/Monster.gd" id="1_5kvrd"]
+[ext_resource type="Script" uid="uid://235ao5av20kn" path="res://Scripts/GameObjects/Classes/Creatures/Monster.gd" id="1_5kvrd"]
 [ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_j4gd6"]
-[ext_resource type="Texture2D" uid="uid://cxx1s0eqjln3w" path="res://Assets/Sprites/CreatureTransform.png" id="3_6tarr"]
+[ext_resource type="Texture2D" uid="uid://cxx1s0eqjln3w" path="res://Assets/Sprites/MonsterSprites/CreatureTransform.png" id="3_6tarr"]
 [ext_resource type="Shader" uid="uid://dnbhhaa514qwf" path="res://Scripts/Shaders/Highlightable.gdshader" id="4_vsloc"]
-[ext_resource type="Texture2D" uid="uid://b531ehnmikdrb" path="res://Assets/Sprites/Explosion.png" id="5_juj33"]
-[ext_resource type="Texture2D" uid="uid://l4d6ilovluhm" path="res://Assets/Sprites/CreatureIdle.png" id="6_pcxkc"]
-[ext_resource type="Texture2D" uid="uid://c8nux08scb8ct" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt1.png" id="7_jqvtn"]
-[ext_resource type="Texture2D" uid="uid://xqvwmuvlclxb" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt2.png" id="8_adkw6"]
-[ext_resource type="Texture2D" uid="uid://c1mliyhwgn3la" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt3.png" id="9_ydwep"]
-[ext_resource type="Texture2D" uid="uid://b7kbjv2ypvv0k" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt4.png" id="10_sqbqj"]
-[ext_resource type="Texture2D" uid="uid://bvi68sqpbdwsq" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt5.png" id="11_w3cn7"]
-[ext_resource type="Texture2D" uid="uid://dytgon3vdmm42" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt6.png" id="12_5tn72"]
-[ext_resource type="Texture2D" uid="uid://clfvktyawuvgi" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt7.png" id="13_havqq"]
-[ext_resource type="Texture2D" uid="uid://djn6kvhk63gse" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt18.png" id="24_muyb7"]
+[ext_resource type="Texture2D" uid="uid://l4d6ilovluhm" path="res://Assets/Sprites/MonsterSprites/CreatureIdle.png" id="6_pcxkc"]
+[ext_resource type="Texture2D" uid="uid://cdenjy1c2b7b8" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt1.png" id="7_jqvtn"]
+[ext_resource type="Texture2D" uid="uid://c5r01xywsvotu" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt2.png" id="8_adkw6"]
+[ext_resource type="Texture2D" uid="uid://b8xceecbwhy8" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt3.png" id="9_ydwep"]
+[ext_resource type="Texture2D" uid="uid://cve33cpynqqbv" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt4.png" id="10_sqbqj"]
+[ext_resource type="Texture2D" uid="uid://2ep14bkvph41" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt5.png" id="11_w3cn7"]
+[ext_resource type="Texture2D" uid="uid://4abcpqytbqlu" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt6.png" id="12_5tn72"]
+[ext_resource type="Texture2D" uid="uid://cvawpar2il3ug" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt7.png" id="13_havqq"]
+[ext_resource type="Texture2D" uid="uid://bkb7as4vxf2rh" path="res://Assets/Sprites/Eye Indicators/Evil_alt/eye_indicator_evil_alt18.png" id="24_muyb7"]
 [ext_resource type="Script" uid="uid://cjvcto8x5m7el" path="res://Scripts/GameObjects/Classes/Awareness_Display.gd" id="25_45bqt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n8eh6"]
@@ -30,74 +29,6 @@ shader = ExtResource("4_vsloc")
 shader_parameter/highlight_color = Color(1, 0, 0, 1)
 shader_parameter/active = false
 shader_parameter/highlight_opacity = 1.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gu2q3"]
-atlas = ExtResource("5_juj33")
-region = Rect2(0, 0, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_03adv"]
-atlas = ExtResource("5_juj33")
-region = Rect2(72, 0, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uic4p"]
-atlas = ExtResource("5_juj33")
-region = Rect2(144, 0, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gdyam"]
-atlas = ExtResource("5_juj33")
-region = Rect2(216, 0, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uo4bi"]
-atlas = ExtResource("5_juj33")
-region = Rect2(288, 0, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d64m6"]
-atlas = ExtResource("5_juj33")
-region = Rect2(360, 0, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_km8ga"]
-atlas = ExtResource("5_juj33")
-region = Rect2(0, 101, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h5irk"]
-atlas = ExtResource("5_juj33")
-region = Rect2(72, 101, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iuivk"]
-atlas = ExtResource("5_juj33")
-region = Rect2(144, 101, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2xxxl"]
-atlas = ExtResource("5_juj33")
-region = Rect2(216, 101, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_788rb"]
-atlas = ExtResource("5_juj33")
-region = Rect2(288, 101, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e8ivi"]
-atlas = ExtResource("5_juj33")
-region = Rect2(360, 101, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3g13k"]
-atlas = ExtResource("5_juj33")
-region = Rect2(0, 202, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xwhl4"]
-atlas = ExtResource("5_juj33")
-region = Rect2(72, 202, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x05ck"]
-atlas = ExtResource("5_juj33")
-region = Rect2(144, 202, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d1hrl"]
-atlas = ExtResource("5_juj33")
-region = Rect2(216, 202, 72, 101)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8dot7"]
-atlas = ExtResource("5_juj33")
-region = Rect2(288, 202, 72, 101)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7nxgo"]
 atlas = ExtResource("3_6tarr")
@@ -165,62 +96,6 @@ region = Rect2(0, 0, 100, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0jp4w"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gu2q3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_03adv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uic4p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gdyam")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uo4bi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d64m6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_km8ga")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h5irk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iuivk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2xxxl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_788rb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e8ivi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3g13k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xwhl4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x05ck")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d1hrl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8dot7")
-}],
-"loop": false,
-"name": &"Explosion",
-"speed": 20.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7nxgo")
@@ -322,6 +197,7 @@ animations = [{
 
 [node name="Monster" type="AnimatableBody2D" node_paths=PackedStringArray("sprite", "awareness_display", "navigation_agent")]
 y_sort_enabled = true
+collision_layer = 5
 sync_to_physics = false
 script = ExtResource("1_5kvrd")
 photo_Data = SubResource("Resource_3ky5o")
@@ -333,7 +209,7 @@ navigation_agent = NodePath("NavigationAgent")
 material = SubResource("ShaderMaterial_wmubm")
 position = Vector2(0, 50)
 sprite_frames = SubResource("SpriteFrames_0jp4w")
-frame_progress = 0.339302
+animation = &"Transform"
 offset = Vector2(0, -50)
 
 [node name="CreatureCollider" type="CollisionShape2D" parent="."]
@@ -342,7 +218,6 @@ shape = SubResource("RectangleShape2D_abp1f")
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-radius = 25.0
 debug_use_custom = true
 
 [node name="AwarenessDisplay" type="AnimatedSprite2D" parent="."]
