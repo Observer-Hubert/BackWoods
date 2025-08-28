@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dtrdai0y5hrhw"]
 
-[ext_resource type="Script" uid="uid://des8prwtc7j82" path="res://Scripts/GameObjects/Classes/Bush.gd" id="1_87ggj"]
-[ext_resource type="Texture2D" uid="uid://quysgfvu8lqy" path="res://Assets/Sprites/BigBush.png" id="2_hfamv"]
+[ext_resource type="Script" uid="uid://des8prwtc7j82" path="res://Scripts/GameObjects/Classes/Interactables/Bush.gd" id="1_87ggj"]
+[ext_resource type="Texture2D" uid="uid://quysgfvu8lqy" path="res://Assets/Sprites/NatureSprites/BigBush.png" id="2_hfamv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkyf7"]
 size = Vector2(90, 52)

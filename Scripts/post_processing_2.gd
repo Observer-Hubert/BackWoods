@@ -5,6 +5,6 @@ func _ready() -> void:
 
 func _change_Visibility(state: int) -> void:
 	if state == 2:
-		visible = true
+		material.set_shader_parameter("screen_active", true)
 	else:
-		visible = false
+		material.set_shader_parameter("screen_active", false)

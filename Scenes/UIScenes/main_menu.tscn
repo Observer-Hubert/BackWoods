@@ -1,7 +1,94 @@
-[gd_scene load_steps=3 format=3 uid="uid://17tjoyebqqsn"]
+[gd_scene load_steps=24 format=3 uid="uid://17tjoyebqqsn"]
 
-[ext_resource type="Theme" uid="uid://cukrveftb5565" path="res://Assets/Themes/Default_UI_Theme.tres" id="1_wj3mk"]
 [ext_resource type="Script" uid="uid://cplfopbg0ssov" path="res://Scripts/UIElements/quit_button.gd" id="2_prfj7"]
+[ext_resource type="Texture2D" uid="uid://cwsvvxgvhuk1i" path="res://Assets/Sprites/Menu/SignWords.png" id="3_15g01"]
+[ext_resource type="Texture2D" uid="uid://bavabhisxx3go" path="res://Assets/Sprites/Menu/MenuFinalVersion1.png" id="3_iyrik"]
+[ext_resource type="Script" uid="uid://b2docipxc5pwu" path="res://Scripts/UIElements/main_menu_buttons.gd" id="4_8atao"]
+[ext_resource type="Script" uid="uid://cdst38u128wtr" path="res://Scripts/Menu.gd" id="4_15g01"]
+[ext_resource type="Shader" uid="uid://d366bv01pmjd8" path="res://Scripts/Shaders/Screen.gdshader" id="7_2vqsh"]
+[ext_resource type="Texture2D" uid="uid://ceypkx4exdcfs" path="res://Assets/Sprites/UISprites/CamOverlay.png" id="7_m6svy"]
+[ext_resource type="Texture2D" uid="uid://ough7dpuoek4" path="res://Assets/Sprites/BlankFullscreen.png" id="8_m6svy"]
+[ext_resource type="Script" uid="uid://8f7kw4b7k61j" path="res://Scripts/UIElements/play_button.gd" id="8_ubesp"]
+[ext_resource type="Texture2D" uid="uid://f0ji1yies52c" path="res://Assets/Sprites/UISprites/WoodPanels.png" id="10_bqk5s"]
+[ext_resource type="Script" uid="uid://cfpv4uxh65g18" path="res://Scripts/UIElements/options_menu.gd" id="10_wqqy5"]
+[ext_resource type="Theme" uid="uid://j1lapft7rpcs" path="res://Assets/Themes/Main_Menu_OptionsMenu.tres" id="11_bqk5s"]
+[ext_resource type="Script" uid="uid://b8xvfyynu3av4" path="res://Scripts/UIElements/audio_volume_slider.gd" id="11_wqqy5"]
+[ext_resource type="AudioStream" uid="uid://de58h88ho4enw" path="res://Assets/Sounds/Crazy_Wind.wav" id="14_oknqb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8atao"]
+atlas = ExtResource("3_15g01")
+region = Rect2(0, 0, 480, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oknqb"]
+atlas = ExtResource("10_bqk5s")
+region = Rect2(0, 0, 152, 74)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i5mao"]
+texture = SubResource("AtlasTexture_oknqb")
+
+[sub_resource type="Animation" id="Animation_xwwgg"]
+resource_name = "Enter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.267943, 0.535887),
+"update": 0,
+"values": [Vector2(-480, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7mldm"]
+resource_name = "Exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2.21914, 0.267943),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-480, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6qthl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fuegl"]
+_data = {
+&"Enter": SubResource("Animation_xwwgg"),
+&"Exit": SubResource("Animation_7mldm"),
+&"RESET": SubResource("Animation_6qthl")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ubesp"]
+shader = ExtResource("7_2vqsh")
+shader_parameter/min_opacity = 0.8
+shader_parameter/max_opacity = 1.0
+shader_parameter/active = true
+shader_parameter/frequency = 4.0
+shader_parameter/speed = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubesp"]
+atlas = ExtResource("7_m6svy")
+region = Rect2(0, 0, 480, 360)
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -11,44 +98,210 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="."]
+[node name="MenuBG" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -51.5
-offset_right = 51.5
-offset_bottom = 23.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-theme = ExtResource("1_wj3mk")
-text = "BACKWOODS"
+grow_vertical = 2
+texture = ExtResource("3_iyrik")
+script = ExtResource("4_15g01")
 
-[node name="Button" type="Button" parent="."]
+[node name="Timer" type="Timer" parent="MenuBG"]
+wait_time = 0.1
+autostart = true
+
+[node name="MenuButtons" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_8atao")
+script = ExtResource("4_8atao")
+
+[node name="PlayButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+offset_left = 87.0
+offset_top = 30.0
+offset_right = 201.0
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.577144
 text = "PLAY"
+script = ExtResource("8_ubesp")
 
-[node name="QuitButton" type="Button" parent="."]
+[node name="OptionsButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -23.5
-offset_top = -31.0
-offset_right = 23.5
+anchor_bottom = 0.5
+offset_left = -102.5
+offset_top = 29.0
+offset_right = -15.5
+offset_bottom = 60.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+rotation = -0.245022
+text = "OPTIOIND"
+
+[node name="OptionsMenu" type="MarginContainer" parent="." node_paths=PackedStringArray("anim_player", "exit_button")]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+script = ExtResource("10_wqqy5")
+anim_player = NodePath("PauseMenuAnimPlayer")
+exit_button = NodePath("MenuPanel/MenuPanelMargin/MenuVBox/QuitResumeHbox/ExitButton")
+
+[node name="MenuPanel" type="PanelContainer" parent="OptionsMenu"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_i5mao")
+
+[node name="MenuPanelMargin" type="MarginContainer" parent="OptionsMenu/MenuPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="MenuVBox" type="VBoxContainer" parent="OptionsMenu/MenuPanel/MenuPanelMargin"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="OptionsMenu/MenuPanel/MenuPanelMargin/MenuVBox"]
+layout_mode = 2
+theme = ExtResource("11_bqk5s")
+text = "Options"
+horizontal_alignment = 1
+
+[node name="MasterVolumeHBox" type="HBoxContainer" parent="OptionsMenu/MenuPanel/MenuPanelMargin/MenuVBox"]
+layout_mode = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="OptionsMenu/MenuPanel/MenuPanelMargin/MenuVBox/MasterVolumeHBox"]
+layout_mode = 2
+theme = ExtResource("11_bqk5s")
+text = "Master"
+horizontal_alignment = 1
+justification_flags = 162
+
+[node name="MasterVolumeSlider" type="HSlider" parent="OptionsMenu/MenuPanel/MenuPanelMargin/MenuVBox/MasterVolumeHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme = ExtResource("11_bqk5s")
+max_value = 1.0
+step = 0.01
+value = 1.0
+scrollable = false
+script = ExtResource("11_wqqy5")
+
+[node name="MusicVolumeHBox" type="HBoxContainer" parent="OptionsMenu/MenuPanel/MenuPanelMargin/MenuVBox"]
+layout_mode = 2
+
+[node name="MusicVolumeLabel" type="Label" parent="OptionsMenu/MenuPanel/MenuPanelMargin/MenuVBox/MusicVolumeHBox"]
+layout_mode = 2
+theme = ExtResource("11_bqk5s")
+text = "Music  "
+horizontal_alignment = 1
+justification_flags = 162
+
+[node name="MusicVolumeSlider" type="HSlider" parent="OptionsMenu/MenuPanel/MenuPanelMargin/MenuVBox/MusicVolumeHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme = ExtResource("11_bqk5s")
+max_value = 1.0
+step = 0.01
+value = 1.0
+scrollable = false
+script = ExtResource("11_wqqy5")
+busIndex = 1
+
+[node name="SFXVolumeHBox" type="HBoxContainer" parent="OptionsMenu/MenuPanel/MenuPanelMargin/MenuVBox"]
+layout_mode = 2
+
+[node name="MusicVolumeLabel" type="Label" parent="OptionsMenu/MenuPanel/MenuPanelMargin/MenuVBox/SFXVolumeHBox"]
+layout_mode = 2
+theme = ExtResource("11_bqk5s")
+text = "SFX      "
+horizontal_alignment = 1
+justification_flags = 162
+
+[node name="MusicVolumeSlider" type="HSlider" parent="OptionsMenu/MenuPanel/MenuPanelMargin/MenuVBox/SFXVolumeHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme = ExtResource("11_bqk5s")
+max_value = 1.0
+step = 0.01
+value = 1.0
+scrollable = false
+script = ExtResource("11_wqqy5")
+busIndex = 2
+
+[node name="QuitResumeHbox" type="HBoxContainer" parent="OptionsMenu/MenuPanel/MenuPanelMargin/MenuVBox"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="ExitButton" type="Button" parent="OptionsMenu/MenuPanel/MenuPanelMargin/MenuVBox/QuitResumeHbox"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_bqk5s")
+text = "EXIT MENU 
+"
+
+[node name="QuitButton" type="Button" parent="OptionsMenu/MenuPanel/MenuPanelMargin/MenuVBox/QuitResumeHbox"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_bqk5s")
 text = "QUIT"
 script = ExtResource("2_prfj7")
+
+[node name="PauseMenuAnimPlayer" type="AnimationPlayer" parent="OptionsMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_fuegl")
+}
+movie_quit_on_finish = true
+
+[node name="Post-Processing" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ubesp")
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 360.0
+mouse_filter = 2
+texture = ExtResource("8_m6svy")
+
+[node name="CameraOverlay" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_ubesp")
+
+[node name="MenuAmbiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_oknqb")
+autoplay = true
+bus = &"SFX"

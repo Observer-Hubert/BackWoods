@@ -1,16 +1,19 @@
-[gd_scene load_steps=39 format=3 uid="uid://b51t1d6nj1g15"]
+[gd_scene load_steps=43 format=3 uid="uid://b51t1d6nj1g15"]
 
 [ext_resource type="Script" uid="uid://dge07r76em3lb" path="res://Scripts/GameObjects/Classes/Player.gd" id="1_k2fbt"]
 [ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_44jg2"]
-[ext_resource type="Texture2D" uid="uid://bsnmrjn6n267q" path="res://Assets/Sprites/PlayerIdle.png" id="6_aojk1"]
-[ext_resource type="Texture2D" uid="uid://c103hx210gdcp" path="res://Assets/Sprites/FlashLight.png" id="6_k023w"]
+[ext_resource type="Texture2D" uid="uid://bsnmrjn6n267q" path="res://Assets/Sprites/PlayerSprites/PlayerIdle.png" id="6_aojk1"]
+[ext_resource type="Texture2D" uid="uid://c103hx210gdcp" path="res://Assets/Sprites/LightSprites/FlashLight.png" id="6_k023w"]
 [ext_resource type="Script" uid="uid://ckpg0woxjxlct" path="res://Scripts/GameObjects/PlayerComponents/camera_flash.gd" id="6_petpc"]
-[ext_resource type="Texture2D" uid="uid://ddhieyimg2vou" path="res://Assets/Sprites/StartAim.png" id="7_nrby6"]
-[ext_resource type="Texture2D" uid="uid://djsqt42p4ewkc" path="res://Assets/Sprites/PlayerHiding.png" id="8_tqrir"]
-[ext_resource type="Texture2D" uid="uid://dogldv70obnkn" path="res://Assets/Sprites/PlayerWalk.png" id="8_wkso4"]
-[ext_resource type="AudioStream" uid="uid://csssvll7hwroa" path="res://Assets/Sounds/Grass_Step_Legit.wav" id="10_6hpkm"]
+[ext_resource type="Script" uid="uid://bd0gr30kpsmjd" path="res://Scripts/GameObjects/PlayerComponents/player_sprite.gd" id="7_bnwc5"]
+[ext_resource type="Texture2D" uid="uid://ddhieyimg2vou" path="res://Assets/Sprites/PlayerSprites/StartAim.png" id="7_nrby6"]
+[ext_resource type="Texture2D" uid="uid://djsqt42p4ewkc" path="res://Assets/Sprites/PlayerSprites/PlayerHiding.png" id="8_tqrir"]
+[ext_resource type="Texture2D" uid="uid://dogldv70obnkn" path="res://Assets/Sprites/PlayerSprites/PlayerWalk.png" id="8_wkso4"]
 [ext_resource type="Script" uid="uid://dmv5asg1v2l6q" path="res://Scripts/GameObjects/PlayerComponents/player_visibility_area.gd" id="10_p8q5l"]
 [ext_resource type="Script" uid="uid://mmdhxqi1kvah" path="res://Scripts/GameObjects/PlayerComponents/player_loud_sound_area.gd" id="10_tqrir"]
+[ext_resource type="AudioStream" uid="uid://busnb4cdfrdso" path="res://Assets/Sounds/Grass_Step_Legit_3.wav" id="11_0qel8"]
+[ext_resource type="AudioStream" uid="uid://d22v1l63qvcax" path="res://Assets/Sounds/Shoot.wav" id="13_gef5h"]
+[ext_resource type="AudioStream" uid="uid://c73litgbwqy1y" path="res://Assets/Sounds/click.wav" id="14_d1uyj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_74bxx"]
 atlas = ExtResource("7_nrby6")
@@ -19,7 +22,7 @@ region = Rect2(64, 64, 32, 32)
 [sub_resource type="Resource" id="Resource_8id4v"]
 script = ExtResource("2_44jg2")
 texture = SubResource("AtlasTexture_74bxx")
-caption = "That's you!"
+caption = "That's me."
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byora"]
 atlas = ExtResource("7_nrby6")
@@ -209,13 +212,20 @@ animations = [{
 size = Vector2(32, 24)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hx6nt"]
-radius = 50.0
+radius = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0qel8"]
 radius = 0.01
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0qel8"]
+random_pitch = 1.1
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("11_0qel8")
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
+collision_layer = 5
 motion_mode = 1
 script = ExtResource("1_k2fbt")
 photo_Data = SubResource("Resource_8id4v")
@@ -223,10 +233,9 @@ photo_Data = SubResource("Resource_8id4v")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_drrt1")
-animation = &"Calm_Raise_Cam"
-frame = 2
-frame_progress = 1.0
+animation = &"Calm_Walk"
 offset = Vector2(0, -31)
+script = ExtResource("7_bnwc5")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12)
@@ -245,8 +254,10 @@ script = ExtResource("6_petpc")
 [node name="CameraFlashTimer" type="Timer" parent="CameraFlashLight"]
 
 [node name="PlayerVisibilityArea" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("10_p8q5l")
-base_Visibility_Range = 50.0
+base_Visibility_Range = 110.0
 base_Visibility_Scale = 50.0
 
 [node name="PlayerVisibilityCollider" type="CollisionShape2D" parent="PlayerVisibilityArea"]
@@ -255,14 +266,19 @@ shape = SubResource("CircleShape2D_hx6nt")
 
 [node name="PlayerLoudSoundArea" type="Area2D" parent="."]
 position = Vector2(0, -12)
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("10_tqrir")
 
 [node name="LoudSoundCollider" type="CollisionShape2D" parent="PlayerLoudSoundArea"]
 shape = SubResource("CircleShape2D_0qel8")
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-position = Vector2(0, -12)
-radius = 20.0
+[node name="StepAudio" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_0qel8")
+volume_db = 8.0
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_6hpkm")
+[node name="CameraSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_gef5h")
+
+[node name="CameraClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_d1uyj")
