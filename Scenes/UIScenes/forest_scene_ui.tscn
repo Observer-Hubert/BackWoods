@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c0bqo6wnxwu6h"]
+[gd_scene load_steps=41 format=3 uid="uid://c0bqo6wnxwu6h"]
 
 [ext_resource type="Script" uid="uid://d0ymbcmvw3txj" path="res://Scripts/UIElements/pause_menu.gd" id="1_1ktxu"]
 [ext_resource type="Script" uid="uid://da37prj2dr1tv" path="res://Scripts/UIElements/player_following_ui_anchor.gd" id="1_fx710"]
@@ -8,12 +8,15 @@
 [ext_resource type="Script" uid="uid://djnjdo3unxyww" path="res://Scripts/UIElements/stamina_bar.gd" id="3_otvop"]
 [ext_resource type="Texture2D" uid="uid://petsbq472kqs" path="res://Assets/Sprites/UISprites/E1.png" id="4_4ph5n"]
 [ext_resource type="Script" uid="uid://btqakl04378gi" path="res://Scripts/UIElements/bush_tooltip.gd" id="4_j64a8"]
+[ext_resource type="Script" uid="uid://deufvguj81wio" path="res://Scripts/UIElements/setting_checkbox.gd" id="4_kyeu0"]
 [ext_resource type="Texture2D" uid="uid://d2ykbqhg7t1tg" path="res://Assets/Sprites/UISprites/E2.png" id="5_dqtgo"]
 [ext_resource type="Script" uid="uid://7yvbmjatgt7" path="res://Scripts/UIElements/dialogue_box.gd" id="10_m4nqq"]
 [ext_resource type="Texture2D" uid="uid://b0qwco6n31pw6" path="res://Assets/Sprites/NatureSprites/Bush.png" id="11_srcf5"]
 [ext_resource type="Texture2D" uid="uid://ceypkx4exdcfs" path="res://Assets/Sprites/UISprites/CamOverlay.png" id="12_hi4y3"]
 [ext_resource type="Script" uid="uid://c5fx8ns1nr87f" path="res://Scripts/UIElements/cam_overlay.gd" id="13_y5cqh"]
 [ext_resource type="Texture2D" uid="uid://bh7ogxkq11ma7" path="res://Assets/Sprites/UISprites/ReticleSheet.png" id="14_y5cqh"]
+[ext_resource type="Texture2D" uid="uid://ds1b00mcnfwbw" path="res://Assets/Sprites/UISprites/FilmIndicator.png" id="16_wm65w"]
+[ext_resource type="Script" uid="uid://33nxdw35e03h" path="res://Scripts/UIElements/film_indicator.gd" id="17_1700j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdn60"]
 bg_color = Color(0.154876, 0.154876, 0.154876, 1)
@@ -24,6 +27,28 @@ corner_radius_bottom_left = 25
 shadow_color = Color(0, 0, 0, 0.686275)
 shadow_size = 8
 shadow_offset = Vector2(8, 8)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wm65w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1700j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a13eb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nyjet"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b6puk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j2evr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i273t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ykk0v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_prtfu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_14232"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kp46f"]
 
 [sub_resource type="Animation" id="Animation_xwwgg"]
 resource_name = "Enter"
@@ -127,6 +152,10 @@ region = Rect2(0, 0, 480, 360)
 atlas = ExtResource("14_y5cqh")
 region = Rect2(0, 0, 480, 360)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1700j"]
+atlas = ExtResource("16_wm65w")
+region = Rect2(0, 0, 480, 360)
+
 [node name="Forest_Scene_UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -178,6 +207,31 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 25
 text = "MENU"
 horizontal_alignment = 1
+
+[node name="Screen Filter" type="HBoxContainer" parent="PauseMenu/MenuPanel/MenuPanelMargin/MenuVBox"]
+layout_mode = 2
+
+[node name="CRTLabel" type="Label" parent="PauseMenu/MenuPanel/MenuPanelMargin/MenuVBox/Screen Filter"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+text = "CRT Filter"
+vertical_alignment = 2
+
+[node name="ScreenCheckbox" type="CheckBox" parent="PauseMenu/MenuPanel/MenuPanelMargin/MenuVBox/Screen Filter"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wm65w")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_1700j")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_a13eb")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_nyjet")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b6puk")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_j2evr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_i273t")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ykk0v")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_prtfu")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_14232")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kp46f")
+script = ExtResource("4_kyeu0")
 
 [node name="QuitResumeHbox" type="HBoxContainer" parent="PauseMenu/MenuPanel/MenuPanelMargin/MenuVBox"]
 layout_mode = 2
@@ -346,3 +400,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("AtlasTexture_wm65w")
+
+[node name="FilmIndicator" type="TextureRect" parent="CamOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_1700j")
+script = ExtResource("17_1700j")
+
+[node name="Timer" type="Timer" parent="CamOverlay/FilmIndicator"]

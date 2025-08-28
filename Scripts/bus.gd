@@ -14,6 +14,8 @@ signal player_state_updated
 signal photo_taken
 ##emitted when a valid photo is taken, passing the correct photo data.
 signal valid_photo_taken
+##Emitted when the camera is loaded or unloaded
+signal cam_loaded
 ##emitted when a node would like to become the camera's focus.
 signal cam_focus_request
 ##emitted when the player requests to exit the game.
@@ -53,6 +55,9 @@ func signal_photo_taken() -> void:
 
 func signal_valid_photo_taken(photo: PhotoData) -> void:
 	valid_photo_taken.emit(photo)
+
+func signal_cam_loaded(loaded:bool) -> void:
+	cam_loaded.emit(loaded)
 
 func request_cam_focus(focus: Node2D) -> void:
 	cam_focus_request.emit(focus)

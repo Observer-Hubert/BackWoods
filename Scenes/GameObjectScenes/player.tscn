@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://b51t1d6nj1g15"]
+[gd_scene load_steps=44 format=3 uid="uid://b51t1d6nj1g15"]
 
 [ext_resource type="Script" uid="uid://dge07r76em3lb" path="res://Scripts/GameObjects/Classes/Player.gd" id="1_k2fbt"]
 [ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_44jg2"]
@@ -223,6 +223,12 @@ random_volume_offset_db = 2.0
 streams_count = 1
 stream_0/stream = ExtResource("11_0qel8")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gef5h"]
+random_pitch = 1.07
+random_volume_offset_db = 0.1
+streams_count = 1
+stream_0/stream = ExtResource("13_gef5h")
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 5
@@ -276,9 +282,12 @@ shape = SubResource("CircleShape2D_0qel8")
 [node name="StepAudio" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_0qel8")
 volume_db = 8.0
+bus = &"SFX"
 
 [node name="CameraSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_gef5h")
+stream = SubResource("AudioStreamRandomizer_gef5h")
+bus = &"SFX"
 
 [node name="CameraClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_d1uyj")
+bus = &"SFX"

@@ -29,6 +29,7 @@ var exhausted: bool = false
 var currentState: playerStates = playerStates.FREE_MOVEMENT
 var previousStates: Array[playerStates]
 var interactTarget: Node2D
+var loaded: bool = true
 
 func change_State(newState: playerStates) -> void:
 	if currentState != null:
@@ -108,9 +109,14 @@ func _input(event: InputEvent) -> void:
 				change_State(playerStates.AIMING))
 		# If the player presses the aim key while aiming, they snap a picture.
 		elif event.is_action_pressed("Aim") and currentState == playerStates.AIMING:
-			Bus.signal_photo_taken()
-			$CameraSound.play()
-			$CameraClick.play()
+			if loaded == true:
+				Bus.signal_photo_taken()
+				$CameraSound.play()
+				$CameraClick.play()
+				loaded = false
+			else:
+				loaded = true
+			Bus.signal_cam_loaded(loaded)
 		# If the player presses the cancel input while aiming, they return to free movement.
 		elif event.is_action_pressed("Cancel") and (currentState == playerStates.AIMING or currentState == playerStates.HIDING):
 			if _get_Previous_State() != currentState:
