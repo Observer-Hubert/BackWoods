@@ -35,6 +35,9 @@ func _update_Display(QTE: Array[String], time: float) -> void:
 func _input(event: InputEvent) -> void:
 	if in_qte:
 		if event is InputEventKey:
+			if currentQTE.is_empty():
+				print("uh oh")
+				return
 			if event.is_action_pressed("Cancel"):
 				_end_QTE(false)
 			elif event.is_action_pressed("Up") and currentQTE[0] == "Up":
