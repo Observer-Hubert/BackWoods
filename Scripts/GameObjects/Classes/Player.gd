@@ -182,6 +182,12 @@ func _input(event: InputEvent) -> void:
 						var tween = get_tree().create_tween()
 						tween.tween_property(self, "position", endPos, position.distance_to(endPos)/(SPEED*YSPEEDMOD))
 						tween.finished.connect(change_State.bind(playerStates.HIDING))
+					if interactTarget is Moped:
+						print("im out this bitch")
+						var mopedNode = interactTarget as Moped
+						if mopedNode.moped_Dialogue:
+							Bus.pass_dialogue_event([mopedNode.moped_Dialogue])
+							change_State(playerStates.IN_DIALOGUE)
 			elif currentState == playerStates.IN_DIALOGUE:
 				print("Skipping Dialogue")
 				Bus.skip_dialogue()

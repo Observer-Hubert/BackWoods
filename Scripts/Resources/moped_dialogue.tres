@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://cn68jyts1e8gv"]
+
+[ext_resource type="Script" uid="uid://b04o5nhw2f6up" path="res://Scripts/Resources/dialogue_data_resource.gd" id="1_5etop"]
+
+[resource]
+script = ExtResource("1_5etop")
+speaker = ""
+text = "You hopped on the moped..."
+text_Speed = 0.05
+text_End_Time = 1.0
+metadata/_custom_type_script = "uid://b04o5nhw2f6up"

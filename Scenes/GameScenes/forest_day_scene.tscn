@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://lgcjthia6acr"]
+[gd_scene load_steps=47 format=3 uid="uid://lgcjthia6acr"]
 
 [ext_resource type="PackedScene" uid="uid://b51t1d6nj1g15" path="res://Scenes/GameObjectScenes/player.tscn" id="1_3gtd0"]
 [ext_resource type="Script" uid="uid://wkwbbkujf6en" path="res://Scripts/GameObjects/default_camera.gd" id="2_q85si"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://c5v6hc2ujyfx2" path="res://Scripts/post_processing_2.gd" id="5_gee5c"]
 [ext_resource type="PackedScene" uid="uid://bvnjtysm1trou" path="res://Scenes/GameObjectScenes/reticle.tscn" id="8_gee5c"]
 [ext_resource type="Texture2D" uid="uid://ds7fdp5sebsvd" path="res://Assets/Sprites/MopedStill.png" id="8_ors8c"]
+[ext_resource type="Script" uid="uid://bcxv1oy4ct5uj" path="res://Scripts/GameObjects/Classes/Interactables/Moped.gd" id="8_xctpr"]
+[ext_resource type="Resource" uid="uid://cn68jyts1e8gv" path="res://Scripts/Resources/moped_dialogue.tres" id="9_hlacm"]
 [ext_resource type="Script" uid="uid://dgwi0rjjbpna4" path="res://Scripts/GameObjects/Classes/Creatures/Human.gd" id="9_ors8c"]
 [ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="10_06pbi"]
 [ext_resource type="Texture2D" uid="uid://bknp82x2t5fp8" path="res://Assets/Sprites/Humans/BillDuckStand.png" id="11_xraot"]
@@ -221,9 +223,11 @@ position = Vector2(-1445, 75)
 
 [node name="Reticle" parent="." instance=ExtResource("8_gee5c")]
 
-[node name="Moped" type="StaticBody2D" parent="."]
+[node name="Moped" type="Area2D" parent="."]
 y_sort_enabled = true
 position = Vector2(-1445, 80)
+script = ExtResource("8_xctpr")
+moped_Dialogue = ExtResource("9_hlacm")
 
 [node name="MopedSprite" type="Sprite2D" parent="Moped"]
 y_sort_enabled = true
