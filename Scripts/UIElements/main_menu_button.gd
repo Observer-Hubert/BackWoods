@@ -8,4 +8,5 @@ func _go_Home() -> void:
 	tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
 	var effect = AudioServer.get_bus_effect(0,0)
 	tween.tween_property(effect,"cutoff_hz", 0, 0.5)
+	AudioServer.set_bus_effect_enabled(0,1,false)
 	Bus.request_go_home()

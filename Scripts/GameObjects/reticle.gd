@@ -32,15 +32,17 @@ func _ready() -> void:
 func _update_Visibility(state: int) -> void:
 	# State 2 is the player's Aiming state. The reticle should be active when the player is aiming.
 	if state == 2:
-		visible = true
-		monitoring = true
-		position = startPos
-		var tween = get_tree().create_tween()
-		tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
-		var effect = AudioServer.get_bus_effect(0,1)
-		tween.tween_property(effect,"cutoff_hz", 1600, 0.5)
-		Bus.request_cam_focus(self)
-	else:
+		if not visible:
+			visible = true
+			monitoring = true
+			position = startPos
+			var tween = get_tree().create_tween()
+			tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
+			AudioServer.set_bus_effect_enabled(0,1,true)
+			var effect = AudioServer.get_bus_effect(0,1)
+			tween.tween_property(effect,"cutoff_hz", 1600, 0.5)
+			Bus.request_cam_focus(self)
+	elif state != 5:
 		monitoring = false
 		var tween = get_tree().create_tween()
 		tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)

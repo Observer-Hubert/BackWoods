@@ -16,6 +16,10 @@ signal photo_taken
 signal valid_photo_taken
 ##Emitted when the camera is loaded or unloaded
 signal cam_loaded
+##Emitted when the player generates a QTE
+signal qte_generated
+##Emitted when a QTE is complete, success or not.
+signal qte_completed
 ##emitted when a node would like to become the camera's focus.
 signal cam_focus_request
 ##emitted when the player requests to exit the game.
@@ -58,6 +62,12 @@ func signal_valid_photo_taken(photo: PhotoData) -> void:
 
 func signal_cam_loaded(loaded:bool) -> void:
 	cam_loaded.emit(loaded)
+
+func signal_qte_generated(QTE: Array[String], time: float) -> void:
+	qte_generated.emit(QTE, time)
+
+func signal_qte_completed(success: bool) -> void:
+	qte_completed.emit(success)
 
 func request_cam_focus(focus: Node2D) -> void:
 	cam_focus_request.emit(focus)

@@ -20,9 +20,9 @@ const SPRINTSTAMCOST: float = 50.0
 #STAMREGEN is how much stamina the player regenerates per second while not running
 const STAMREGEN: float = 25.0
 #EXHAUSTEDREGENMOD * 100 percent of the stamina regen is subtracted from stamina regen when the player is exhausted
-const EXHAUSTEDREGENMOD: float = 0.5
+const EXHAUSTEDREGENMOD: float = 0.1
 
-enum playerStates{FREE_MOVEMENT, HIDING, AIMING, IN_DIALOGUE, BUSY}
+enum playerStates{FREE_MOVEMENT, HIDING, AIMING, IN_DIALOGUE, QTE, BUSY}
 
 var stamina: float = STAMMAX
 var exhausted: bool = false
@@ -53,6 +53,9 @@ func change_State(newState: playerStates) -> void:
 		playerStates.IN_DIALOGUE:
 			currentState = playerStates.IN_DIALOGUE
 			sprite.play("Calm_Idle")
+		playerStates.QTE:
+			currentState = playerStates.QTE
+			_generate_QTE()
 		playerStates.BUSY:
 			set_collision_mask_value(1, false)
 			currentState = playerStates.BUSY
@@ -74,6 +77,7 @@ func _ready() -> void:
 	Bus.dialogue_end.connect(_exit_Dialogue)
 	Bus.cutscene_start.connect(_start_Cutscene)
 	Bus.cutscene_end.connect(_end_Cutscene)
+	Bus.qte_completed.connect(_completed_QTE)
 	sprite.play("Calm_Idle")
 
 # Iterates through the previousStates array backwards, and returns the first non-busy state that is different from the current state.
@@ -82,7 +86,7 @@ func _get_Previous_State() -> playerStates:
 	for i in range(0,length,1):
 		var value = previousStates[i]
 		if value != currentState:
-			if value != playerStates.BUSY:
+			if value != playerStates.BUSY and value != playerStates.QTE:
 				return value
 	# If for some reason we cant find a previous state, we will return free movement as a default.
 	return playerStates.FREE_MOVEMENT
@@ -96,6 +100,28 @@ func _start_Cutscene() -> void:
 
 func _end_Cutscene() -> void:
 	change_State(_get_Previous_State())
+
+func _generate_QTE(length: int = 4, time: float = 3.0) -> void:
+	var QTE: Array[String]
+	for i in length:
+		var randomInputIndex = randi_range(0,3)
+		var randomInput: String
+		match randomInputIndex:
+			0:
+				randomInput = "Up"
+			1:
+				randomInput = "Down"
+			2:
+				randomInput = "Left"
+			3:
+				randomInput = "Right"
+		QTE.append(randomInput)
+	Bus.signal_qte_generated(QTE, time)
+
+func _completed_QTE(success: bool) -> void:
+	change_State(_get_Previous_State())
+	if not success:
+		loud_sound_area.make_Noise(250.0)
 
 func _input(event: InputEvent) -> void:
 	# The player should be powerless to exit the busy state
@@ -124,6 +150,7 @@ func _input(event: InputEvent) -> void:
 				loaded = false
 			else:
 				loaded = true
+				change_State(playerStates.QTE)
 			Bus.signal_cam_loaded(loaded)
 		# If the player presses the cancel input while aiming, they return to free movement.
 		elif event.is_action_pressed("Cancel") and currentState == playerStates.AIMING:

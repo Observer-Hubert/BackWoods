@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck8darqaa24gl"]
+
+[ext_resource type="Texture2D" uid="uid://dikmdrpegvlem" path="res://Assets/Sprites/UISprites/ArrowsSheet.png" id="1_biglm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_biglm"]
+atlas = ExtResource("1_biglm")
+region = Rect2(36, 0, 12, 12)
+
+[node name="Arrow" type="TextureRect"]
+texture = SubResource("AtlasTexture_biglm")

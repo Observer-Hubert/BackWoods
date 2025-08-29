@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccmtj50qgcvb0"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wqfns"]
+load_path = "res://.godot/imported/ArrowsSheet.png-bc2835d537d64b301da7f65be33b8955.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fior"]
+atlas = SubResource("CompressedTexture2D_wqfns")
+region = Rect2(0, 0, 12, 12)
+
+[node name="Arrow" type="TextureRect"]
+texture = SubResource("AtlasTexture_1fior")
