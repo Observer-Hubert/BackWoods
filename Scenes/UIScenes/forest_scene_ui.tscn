@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c0bqo6wnxwu6h"]
+[gd_scene load_steps=46 format=3 uid="uid://c0bqo6wnxwu6h"]
 
 [ext_resource type="Script" uid="uid://d0ymbcmvw3txj" path="res://Scripts/UIElements/pause_menu.gd" id="1_1ktxu"]
 [ext_resource type="Script" uid="uid://da37prj2dr1tv" path="res://Scripts/UIElements/player_following_ui_anchor.gd" id="1_fx710"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cn3sprxtc2ny6" path="res://Scripts/UIElements/qte_display.gd" id="11_a13eb"]
 [ext_resource type="Texture2D" uid="uid://b0qwco6n31pw6" path="res://Assets/Sprites/NatureSprites/Bush.png" id="11_srcf5"]
 [ext_resource type="Texture2D" uid="uid://ceypkx4exdcfs" path="res://Assets/Sprites/UISprites/CamOverlay.png" id="12_hi4y3"]
+[ext_resource type="Texture2D" uid="uid://ctcscugeb8bvx" path="res://Assets/Sprites/icon.svg" id="12_j2evr"]
 [ext_resource type="AudioStream" uid="uid://cpjov2bld8q4y" path="res://Assets/Sounds/MetalPipe.wav" id="12_nyjet"]
 [ext_resource type="AudioStream" uid="uid://c6jwm4ic7x2br" path="res://Assets/Sounds/interact1.wav" id="13_b6puk"]
 [ext_resource type="Script" uid="uid://c5fx8ns1nr87f" path="res://Scripts/UIElements/cam_overlay.gd" id="13_y5cqh"]
@@ -338,11 +339,20 @@ script = ExtResource("11_a13eb")
 [node name="InputHBox" type="HBoxContainer" parent="PlayerFollowingUI/QTEDisplay"]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="PlayerFollowingUI/QTEDisplay"]
+[node name="ProgressBar" type="TextureProgressBar" parent="PlayerFollowingUI/QTEDisplay"]
 layout_mode = 2
-show_percentage = false
+step = 0.001
+value = 100.0
+fill_mode = 6
+texture_under = ExtResource("12_j2evr")
+texture_progress = ExtResource("12_j2evr")
+tint_under = Color(0, 1, 0, 1)
+tint_over = Color(0, 1, 1, 1)
+tint_progress = Color(1, 0, 1, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PlayerFollowingUI/QTEDisplay"]
 stream = SubResource("AudioStreamRandomizer_j2evr")
