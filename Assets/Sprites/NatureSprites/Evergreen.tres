@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://borl7wl7yhcmb"]
+
+[ext_resource type="Texture2D" uid="uid://qscc4yc1fcwn" path="res://Assets/Sprites/NatureSprites/EvergreenSheet.png" id="1_kylpu"]
+
+[resource]
+atlas = ExtResource("1_kylpu")
+region = Rect2(0, 0, 64, 100)

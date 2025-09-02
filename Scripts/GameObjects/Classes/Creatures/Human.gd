@@ -4,4 +4,4 @@ class_name Human extends AnimatableBody2D
 @export var photo_Data: PhotoData
 
 func _ready() -> void:
-	sprite.play("default")
+	sprite.play("Seed_Throwing")

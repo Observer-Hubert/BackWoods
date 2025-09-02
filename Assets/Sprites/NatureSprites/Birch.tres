@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://0fm1ad137281"]
+
+[ext_resource type="Texture2D" uid="uid://cc1xjlg523lti" path="res://Assets/Sprites/NatureSprites/BirchSheet.png" id="1_f75iw"]
+
+[resource]
+atlas = ExtResource("1_f75iw")
+region = Rect2(0, 0, 64, 100)

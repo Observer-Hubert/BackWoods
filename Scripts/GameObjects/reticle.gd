@@ -21,6 +21,8 @@ var cellsMoved: int = 0
 var startPos: Vector2
 #highlightSubject is the first highlightable subject among the overlapping bodies.
 var highlightSubject: Node2D
+#Tracks whether the reticle should be active, and thus shouldnt be snapped around when the player changes states
+var active: bool = false
 
 func _ready() -> void:
 	Bus.player_pos_updated.connect(_update_Position)
@@ -32,8 +34,9 @@ func _ready() -> void:
 func _update_Visibility(state: int) -> void:
 	# State 2 is the player's Aiming state. The reticle should be active when the player is aiming.
 	if state == 2:
-		if not visible:
+		if not visible and not active:
 			visible = true
+			active = true
 			monitoring = true
 			position = startPos
 			var tween = get_tree().create_tween()
@@ -42,13 +45,19 @@ func _update_Visibility(state: int) -> void:
 			var effect = AudioServer.get_bus_effect(0,1)
 			tween.tween_property(effect,"cutoff_hz", 1600, 0.5)
 			Bus.request_cam_focus(self)
-	elif state != 5:
+		if visible:
+			active = true
+	#states 5 and 6 are in qte and busy respectively
+	elif state != 4 and state != 5:
 		monitoring = false
+		active = false
 		var tween = get_tree().create_tween()
 		tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
 		var effect = AudioServer.get_bus_effect(0,1)
 		tween.tween_property(effect,"cutoff_hz", 10000, 0.5)
 		visible = false
+	else:
+		active = false
 
 #_snap_To_Grid() ensures the coordinates of the passed vector 2 are divisible by the CELLSIZE, rounding them down to the nearest multiple.
 func _snap_To_Grid(baseVector: Vector2) -> Vector2:
@@ -97,7 +106,7 @@ func _check_Subject(_triggerer: Node2D) -> void:
 
 func _physics_process(delta: float) -> void:
 	# We only need to be dealing with the reticle if it is currently active.
-	if visible:
+	if visible and active:
 		cellMoveTimer -= delta
 		# When the cellMoveTimer reaches 0, we should attempt to move to the cell the player is requesting.
 		if cellMoveTimer <= 0.0:

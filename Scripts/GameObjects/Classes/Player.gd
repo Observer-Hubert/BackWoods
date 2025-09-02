@@ -152,7 +152,7 @@ func _input(event: InputEvent) -> void:
 				loaded = true
 				change_State(playerStates.QTE)
 			Bus.signal_cam_loaded(loaded)
-		# If the player presses the cancel input while aiming, they return to free movement.
+		#If the player presses the cancel input while aiming, they return to free movement.
 		elif event.is_action_pressed("Cancel") and currentState == playerStates.AIMING:
 			if _get_Previous_State() != currentState:
 				visibility_area.change_Visibility()
