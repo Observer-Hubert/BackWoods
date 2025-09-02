@@ -121,6 +121,7 @@ func _generate_QTE(length: int = 4, time: float = 3.0) -> void:
 func _completed_QTE(success: bool) -> void:
 	change_State(_get_Previous_State())
 	if not success:
+		loaded = false
 		loud_sound_area.make_Noise(250.0)
 
 func _input(event: InputEvent) -> void:

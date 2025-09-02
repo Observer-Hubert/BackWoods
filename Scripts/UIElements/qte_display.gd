@@ -53,6 +53,11 @@ func _input_Success() -> void:
 	print("Success")
 	input_hbox.remove_child(input_hbox.get_child(0))
 	currentQTE.pop_front()
+	
+	# After a successful input, end the QTE if it has been completed
+	if currentQTE.is_empty():
+		_end_QTE(true)
+		progress_bar.value = 0.0
 
 func _end_QTE(success: bool) -> void:
 	in_qte = false
