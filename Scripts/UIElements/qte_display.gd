@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-@onready var progress_bar: ProgressBar = $ProgressBar
+@onready var progress_bar: TextureProgressBar = $ProgressBar
 @onready var input_hbox: HBoxContainer = $InputHBox
 
 const qte_arrow_up = preload("res://Scenes/UIScenes/qte_arrow_up.tscn")
@@ -31,6 +31,7 @@ func _update_Display(QTE: Array[String], time: float) -> void:
 			"Down":
 				newArrow = qte_arrow_down.instantiate()
 		input_hbox.add_child(newArrow)
+	print("test")
 	progress_bar.max_value = time
 	progress_bar.value = time
 
