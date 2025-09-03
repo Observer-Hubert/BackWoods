@@ -19,8 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://dgl7jfhk6s85d" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalkHead.tres" id="16_ha06l"]
 [ext_resource type="PackedScene" uid="uid://dtrdai0y5hrhw" path="res://Scenes/GameObjectScenes/bush.tscn" id="17_giji2"]
 [ext_resource type="Texture2D" uid="uid://bvkfcpqg5f4eh" path="res://Assets/Sprites/AnimalSprites/Ducks.png" id="19_hlacm"]
-[ext_resource type="Script" path="res://Scenes/GameScenes/tree.gd" id="19_rg2mq"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/NatureSprites/Birch2.tres" id="20_gqi0k"]
+[ext_resource type="Script" uid="uid://bka8mhrehb1l7" path="res://Scenes/GameScenes/tree.gd" id="19_rg2mq"]
+[ext_resource type="Texture2D" uid="uid://c8klxy6q2jtv8" path="res://Assets/Sprites/NatureSprites/Birch2.tres" id="20_gqi0k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ors8c"]
 shader = ExtResource("4_ceyxi")

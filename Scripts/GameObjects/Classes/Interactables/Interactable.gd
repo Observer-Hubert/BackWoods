@@ -13,3 +13,6 @@ func _check_Player_Entered(body: Node2D) -> void:
 func _check_Player_Exited(body: Node2D) -> void:
 	if body is Player:
 		body.clear_Interact_Target(self)
+
+func interact() -> void:
+	pass

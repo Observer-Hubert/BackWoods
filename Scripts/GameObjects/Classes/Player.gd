@@ -167,6 +167,7 @@ func _input(event: InputEvent) -> void:
 		elif event.is_action_pressed("Interact"):
 			if currentState == playerStates.FREE_MOVEMENT:
 				if interactTarget:
+					interactTarget.interact()
 					if interactTarget is DialogueZone:
 						Bus.pass_dialogue_event(interactTarget.dialoge_Data)
 						change_State(playerStates.IN_DIALOGUE)

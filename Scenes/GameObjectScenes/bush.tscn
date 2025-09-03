@@ -1,7 +1,70 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtrdai0y5hrhw"]
+[gd_scene load_steps=13 format=3 uid="uid://dtrdai0y5hrhw"]
 
 [ext_resource type="Script" uid="uid://des8prwtc7j82" path="res://Scripts/GameObjects/Classes/Interactables/Bush.gd" id="1_87ggj"]
 [ext_resource type="Texture2D" uid="uid://quysgfvu8lqy" path="res://Assets/Sprites/NatureSprites/BigBush.png" id="2_hfamv"]
+[ext_resource type="Texture2D" uid="uid://bfuhwou0iktj" path="res://Assets/Sprites/NatureSprites/BushShakeSheet.png" id="2_qbnqu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l63sx"]
+atlas = ExtResource("2_qbnqu")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nyle"]
+atlas = ExtResource("2_qbnqu")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trspt"]
+atlas = ExtResource("2_qbnqu")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53elq"]
+atlas = ExtResource("2_qbnqu")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7ee3"]
+atlas = ExtResource("2_qbnqu")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reec4"]
+atlas = ExtResource("2_qbnqu")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87ggj"]
+atlas = ExtResource("2_hfamv")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hfamv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l63sx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nyle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trspt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53elq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7ee3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reec4")
+}],
+"loop": false,
+"name": &"Shake",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87ggj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkyf7"]
 size = Vector2(90, 52)
@@ -10,11 +73,13 @@ size = Vector2(90, 52)
 y_sort_enabled = true
 script = ExtResource("1_87ggj")
 
-[node name="BushSprite" type="Sprite2D" parent="."]
+[node name="BushSprite" type="AnimatedSprite2D" parent="."]
 visibility_layer = 2
 texture_filter = 1
 position = Vector2(0, 11)
-texture = ExtResource("2_hfamv")
+sprite_frames = SubResource("SpriteFrames_hfamv")
+animation = &"Shake"
+autoplay = "default"
 offset = Vector2(0, -43)
 
 [node name="BushCollider" type="CollisionShape2D" parent="."]
