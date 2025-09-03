@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://lgcjthia6acr"]
+[gd_scene load_steps=77 format=3 uid="uid://lgcjthia6acr"]
 
 [ext_resource type="PackedScene" uid="uid://b51t1d6nj1g15" path="res://Scenes/GameObjectScenes/player.tscn" id="1_3gtd0"]
 [ext_resource type="Script" uid="uid://wkwbbkujf6en" path="res://Scripts/GameObjects/default_camera.gd" id="2_q85si"]
@@ -18,11 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://c8tmvxrhl03bs" path="res://Assets/Sprites/Humans/BillTalkingHead/BillLaugh.tres" id="15_xctpr"]
 [ext_resource type="Texture2D" uid="uid://dgl7jfhk6s85d" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalkHead.tres" id="16_ha06l"]
 [ext_resource type="PackedScene" uid="uid://dtrdai0y5hrhw" path="res://Scenes/GameObjectScenes/bush.tscn" id="17_giji2"]
-[ext_resource type="PackedScene" uid="uid://d12le13000kon" path="res://Scenes/GameObjectScenes/fox.tscn" id="19_gqi0k"]
 [ext_resource type="Texture2D" uid="uid://bvkfcpqg5f4eh" path="res://Assets/Sprites/AnimalSprites/Ducks.png" id="19_hlacm"]
-[ext_resource type="Script" uid="uid://bka8mhrehb1l7" path="res://Scenes/GameScenes/tree.gd" id="19_rg2mq"]
-[ext_resource type="Texture2D" uid="uid://c8klxy6q2jtv8" path="res://Assets/Sprites/NatureSprites/Birch2.tres" id="20_gqi0k"]
-[ext_resource type="PackedScene" uid="uid://cyr76eoscixwd" path="res://Scenes/GameObjectScenes/log.tscn" id="23_lq33b"]
+[ext_resource type="Script" path="res://Scenes/GameScenes/tree.gd" id="19_rg2mq"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/NatureSprites/Birch2.tres" id="20_gqi0k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ors8c"]
 shader = ExtResource("4_ceyxi")
@@ -405,13 +403,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_gqi0k"]
-vertices = PackedVector2Array(4990, -240, 4990, 240, -4990, 240, -4990, -240)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(0, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(5890, -402, 5749, 666, -6475, 1143, -5688, -515)])
-sample_partition_type = 1
-baking_rect = Rect2(-5000, -250, 10000, 500)
-
 [node name="forest_day_scene" type="Node2D"]
 y_sort_enabled = true
 
@@ -477,10 +468,6 @@ shape = SubResource("RectangleShape2D_gqi0k")
 [node name="Bush" parent="." instance=ExtResource("17_giji2")]
 position = Vector2(-598, 27)
 
-[node name="Fox" parent="." instance=ExtResource("19_gqi0k")]
-position = Vector2(-187, 38)
-max_Dist_From_Origin = 50.0
-
 [node name="Tree" type="StaticBody2D" parent="." node_paths=PackedStringArray("sprite")]
 y_sort_enabled = true
 position = Vector2(226, 38)
@@ -505,11 +492,3 @@ position = Vector2(54, 16)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_q07h3")
 autoplay = "default"
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-y_sort_enabled = true
-navigation_polygon = SubResource("NavigationPolygon_gqi0k")
-
-[node name="Log" parent="." instance=ExtResource("23_lq33b")]
-position = Vector2(-306, -28)
-scale = Vector2(-1, 1)
