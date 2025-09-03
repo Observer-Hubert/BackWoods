@@ -1,6 +1,6 @@
 extends Camera2D
 
-const MOVESPEED: float = 200.0
+const MOVESPEED: float = 750.0
 
 # The subject is the Node the camera will attempt to follow.
 var subject: Node2D = null
