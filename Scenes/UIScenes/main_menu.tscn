@@ -105,7 +105,7 @@ _data = {
 shader = ExtResource("7_2vqsh")
 shader_parameter/min_opacity = 0.8
 shader_parameter/max_opacity = 1.0
-shader_parameter/active = true
+shader_parameter/screen_active = true
 shader_parameter/frequency = 4.0
 shader_parameter/speed = 5.0
 

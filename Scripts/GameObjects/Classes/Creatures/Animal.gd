@@ -5,7 +5,7 @@ class_name Animal extends Creature
 @export_range(0.01,10.0) var behavior_Interval: float = 0.5
 @export var curious: bool = false
 @export var behavior_Origin: Vector2
-@export_range(100.0, 1000.0, 10.0) var max_Dist_From_Origin = 250.0
+@export_range(50.0, 1000.0, 10.0) var max_Dist_From_Origin = 250.0
 @export var poi_Flag: AnimalInteractable.animals
 @export var poi_search_area: POISearchArea
 @export var behavior_timer: Timer

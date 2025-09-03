@@ -65,7 +65,6 @@ behavior_Interval = 5.0
 poi_search_area = NodePath("POISearchArea")
 behavior_timer = NodePath("BehaviorTimer")
 photo_Data = SubResource("Resource_dl5oq")
-move_Speed = 175.0
 accel = 130.0
 sprite = NodePath("FoxSprite")
 awareness_display = NodePath("AwarenessDisplay")
