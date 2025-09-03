@@ -7,9 +7,14 @@ var subject: Node2D = null
 var in_Cutscene: bool = false
 var reachedSubject: bool = false
 
+@export var LBound: float
+@export var RBound: float
+@export var UBound: float
+@export var DBound: float
+
 func _update_Subject(newSubject: Node2D) -> void:
 	_reset()
-	reachedSubject = false
+	reachedSubject = true
 	subject = newSubject
 
 func _reset() -> void:
@@ -31,10 +36,10 @@ func _process(delta) -> void:
 	if not in_Cutscene:
 		if subject != null:
 			if reachedSubject:
-				position.x = subject.position.x
+				position.x = clamp(subject.position.x,LBound,RBound)
 				# The player should not affect the camera's y value, because of the structure of the forest being a hallway.
 				if subject: # is not Player:
-					position.y = subject.position.y
+					position.y = clamp(subject.position.y,UBound,DBound)
 			else:
 				var vel = position.direction_to(subject.position).normalized() * MOVESPEED * delta
 				position += vel

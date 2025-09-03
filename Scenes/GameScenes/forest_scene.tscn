@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dvdp5h3m6sqd"]
+[gd_scene load_steps=39 format=3 uid="uid://dvdp5h3m6sqd"]
 
 [ext_resource type="Shader" uid="uid://cniu4c328lkl5" path="res://Scripts/Shaders/Fog.gdshader" id="1_cplha"]
 [ext_resource type="PackedScene" uid="uid://dqdwegwkotrfu" path="res://Scenes/GameObjectScenes/tilemaps.tscn" id="1_n0bxa"]
@@ -14,10 +14,9 @@
 [ext_resource type="Script" uid="uid://cp4msv1oaminq" path="res://Scripts/GameObjects/Classes/AnimalInteractables/Hiding_Place.gd" id="11_knqvc"]
 [ext_resource type="PackedScene" uid="uid://cyr76eoscixwd" path="res://Scenes/GameObjectScenes/log.tscn" id="12_k0r61"]
 [ext_resource type="Texture2D" uid="uid://c3m1ua750ow66" path="res://Assets/Sprites/AnimalSprites/LogFoxHiding.png" id="12_uogbx"]
-[ext_resource type="Texture2D" uid="uid://be37l5qx7wtxe" path="res://Assets/Sprites/AnimalSprites/SquirrelTreeHide.png" id="14_6jsjq"]
 [ext_resource type="PackedScene" uid="uid://caf2oimg2miey" path="res://Scenes/GameObjectScenes/rabbit.tscn" id="14_hudk7"]
-[ext_resource type="Texture2D" uid="uid://d31xk65l5u8pj" path="res://Assets/Sprites/AnimalSprites/SquirrelTree.png" id="15_f3xrs"]
 [ext_resource type="Texture2D" uid="uid://bu2fuhh81ooyo" path="res://Assets/Sprites/AnimalSprites/BunnyHoleHide.png" id="15_tn66b"]
+[ext_resource type="PackedScene" uid="uid://tuofic8e5dc1" path="res://Scenes/GameObjectScenes/squirrel_tree.tscn" id="16_f3xrs"]
 [ext_resource type="PackedScene" uid="uid://dtrdai0y5hrhw" path="res://Scenes/GameObjectScenes/bush.tscn" id="18_d64m6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n0bxa"]
@@ -112,89 +111,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uogbx"]
 size = Vector2(9, 4)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l88fr"]
-atlas = ExtResource("14_6jsjq")
-region = Rect2(0, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gu2q3"]
-atlas = ExtResource("14_6jsjq")
-region = Rect2(100, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_03adv"]
-atlas = ExtResource("14_6jsjq")
-region = Rect2(200, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uic4p"]
-atlas = ExtResource("14_6jsjq")
-region = Rect2(300, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gdyam"]
-atlas = ExtResource("14_6jsjq")
-region = Rect2(400, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uo4bi"]
-atlas = ExtResource("14_6jsjq")
-region = Rect2(500, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d64m6"]
-atlas = ExtResource("14_6jsjq")
-region = Rect2(600, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_km8ga"]
-atlas = ExtResource("14_6jsjq")
-region = Rect2(700, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iuivk"]
-atlas = ExtResource("15_f3xrs")
-region = Rect2(0, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h5irk"]
-atlas = ExtResource("15_f3xrs")
-region = Rect2(0, 0, 100, 100)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_iuivk"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l88fr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gu2q3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_03adv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uic4p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gdyam")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uo4bi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d64m6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_km8ga")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iuivk")
-}],
-"loop": false,
-"name": &"Hide",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h5irk")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_u56lp"]
 atlas = ExtResource("15_tn66b")
 region = Rect2(0, 0, 40, 40)
@@ -261,6 +177,11 @@ y_sort_enabled = true
 navigation_polygon = SubResource("NavigationPolygon_n0bxa")
 
 [node name="Camera" parent="." instance=ExtResource("2_g8v8w")]
+position = Vector2(-300, 37)
+LBound = -300.0
+RBound = 300.0
+UBound = -300.0
+DBound = 300.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 material = SubResource("ShaderMaterial_6c38j")
@@ -268,7 +189,6 @@ color = Color(0.099986, 0.099986, 0.099986, 1)
 
 [node name="Fox" parent="." instance=ExtResource("4_knqvc")]
 position = Vector2(-20, 117)
-curious = true
 
 [node name="Bush" parent="." instance=ExtResource("18_d64m6")]
 position = Vector2(107, 105)
@@ -277,6 +197,7 @@ position = Vector2(107, 105)
 position = Vector2(1000, 1000)
 
 [node name="Player" parent="." instance=ExtResource("3_hxdjk")]
+position = Vector2(-545, 37)
 collision_layer = 1
 
 [node name="Monster" parent="." instance=ExtResource("8_uogbx")]
@@ -324,28 +245,8 @@ position = Vector2(-63, 0)
 position = Vector2(31, 10)
 radius = 15.0
 
-[node name="SquirrelTree" type="StaticBody2D" parent="." node_paths=PackedStringArray("sprite")]
-y_sort_enabled = true
+[node name="SquirrelTree" parent="." instance=ExtResource("16_f3xrs")]
 position = Vector2(808, 64)
-script = ExtResource("11_knqvc")
-sprite = NodePath("TreeSprite")
-valid_Hiders = 2
-
-[node name="TreeSprite" type="AnimatedSprite2D" parent="SquirrelTree"]
-y_sort_enabled = true
-sprite_frames = SubResource("SpriteFrames_iuivk")
-offset = Vector2(6, -47)
-
-[node name="TreeCollider" type="CollisionShape2D" parent="SquirrelTree"]
-position = Vector2(-1.5, 0)
-shape = SubResource("RectangleShape2D_uogbx")
-
-[node name="HideEntry" type="Node2D" parent="SquirrelTree"]
-position = Vector2(50, 0)
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="SquirrelTree"]
-position = Vector2(-1, 0)
-radius = 8.0
 
 [node name="Rabbit" parent="." instance=ExtResource("14_hudk7")]
 position = Vector2(99, 125)

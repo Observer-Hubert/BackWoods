@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ceypkx4exdcfs" path="res://Assets/Sprites/UISprites/CamOverlay.png" id="12_hi4y3"]
 [ext_resource type="Texture2D" uid="uid://ctcscugeb8bvx" path="res://Assets/Sprites/icon.svg" id="12_j2evr"]
 [ext_resource type="AudioStream" uid="uid://cpjov2bld8q4y" path="res://Assets/Sounds/MetalPipe.wav" id="12_nyjet"]
-[ext_resource type="AudioStream" uid="uid://c6jwm4ic7x2br" path="res://Assets/Sounds/interact1.wav" id="13_b6puk"]
+[ext_resource type="AudioStream" uid="uid://d3qwap67tm4s2" path="res://Assets/Sounds/Failed_QTE.wav" id="13_j2evr"]
 [ext_resource type="Script" uid="uid://c5fx8ns1nr87f" path="res://Scripts/UIElements/cam_overlay.gd" id="13_y5cqh"]
 [ext_resource type="Texture2D" uid="uid://bh7ogxkq11ma7" path="res://Assets/Sprites/UISprites/ReticleSheet.png" id="14_y5cqh"]
 [ext_resource type="Texture2D" uid="uid://ds1b00mcnfwbw" path="res://Assets/Sprites/UISprites/FilmIndicator.png" id="16_wm65w"]
@@ -151,7 +151,7 @@ frame_1/duration = 1.0
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j2evr"]
 playback_mode = 1
 streams_count = 2
-stream_0/stream = ExtResource("13_b6puk")
+stream_0/stream = ExtResource("13_j2evr")
 stream_0/weight = 99.0
 stream_1/stream = ExtResource("12_nyjet")
 
@@ -356,7 +356,7 @@ tint_progress = Color(1, 0, 1, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PlayerFollowingUI/QTEDisplay"]
 stream = SubResource("AudioStreamRandomizer_j2evr")
-volume_db = 24.0
+volume_db = 12.0
 
 [node name="DialogueBox" type="Control" parent="."]
 visible = false

@@ -20,10 +20,11 @@ func _quit_Game() -> void:
 		get_tree().quit()
 
 func _load_Scene(sceneName: String = "forest_scene", uiName: String = "forest_scene_ui") -> void:
+	_unload_Scene()
 	# Loads a scene from the specified file in the Scenes folder, and places it in the main_2d node.
 	var loadedScene: PackedScene = load("./Scenes/GameScenes/" + sceneName + ".tscn")
 	currentScene = loadedScene.instantiate()
-	main_2d.add_child(currentScene)
+	main_2d.add_child.bind(currentScene).call_deferred()
 	# Loads a UI scene in the same fashion as the previous scene, placing it in the main_ui node.
 	var loadedUI: PackedScene = load("./Scenes/UIScenes/" + uiName + ".tscn")
 	currentUI = loadedUI.instantiate()

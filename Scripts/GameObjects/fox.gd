@@ -1,7 +1,7 @@
 extends Animal
 
 func _ready() -> void:
-	desiredPos = position
+	desiredPos = to_global(position)
 	navigation_agent.velocity_computed.connect(_set_Vel)
 	navigation_agent.target_reached.connect(_target_Reached)
 	behavior_timer.timeout.connect(_renew_State)

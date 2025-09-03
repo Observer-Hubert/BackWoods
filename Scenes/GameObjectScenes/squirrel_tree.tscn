@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=3 uid="uid://tuofic8e5dc1"]
+
+[ext_resource type="Script" uid="uid://cp4msv1oaminq" path="res://Scripts/GameObjects/Classes/AnimalInteractables/Hiding_Place.gd" id="1_y8od7"]
+[ext_resource type="Texture2D" uid="uid://be37l5qx7wtxe" path="res://Assets/Sprites/AnimalSprites/SquirrelTreeHide.png" id="2_nwkho"]
+[ext_resource type="Texture2D" uid="uid://d31xk65l5u8pj" path="res://Assets/Sprites/AnimalSprites/SquirrelTree.png" id="3_ml800"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l88fr"]
+atlas = ExtResource("2_nwkho")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu2q3"]
+atlas = ExtResource("2_nwkho")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03adv"]
+atlas = ExtResource("2_nwkho")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uic4p"]
+atlas = ExtResource("2_nwkho")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdyam"]
+atlas = ExtResource("2_nwkho")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo4bi"]
+atlas = ExtResource("2_nwkho")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d64m6"]
+atlas = ExtResource("2_nwkho")
+region = Rect2(600, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km8ga"]
+atlas = ExtResource("2_nwkho")
+region = Rect2(700, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuivk"]
+atlas = ExtResource("3_ml800")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5irk"]
+atlas = ExtResource("3_ml800")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iuivk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l88fr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu2q3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03adv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uic4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdyam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo4bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d64m6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km8ga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuivk")
+}],
+"loop": false,
+"name": &"Hide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5irk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uogbx"]
+size = Vector2(9, 4)
+
+[node name="SquirrelTree" type="StaticBody2D" node_paths=PackedStringArray("sprite")]
+y_sort_enabled = true
+script = ExtResource("1_y8od7")
+sprite = NodePath("TreeSprite")
+valid_Hiders = 2
+
+[node name="TreeSprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_iuivk")
+offset = Vector2(6, -47)
+
+[node name="TreeCollider" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_uogbx")
+
+[node name="HideEntry" type="Node2D" parent="."]
+position = Vector2(50, 0)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(-1, 0)
+radius = 8.0

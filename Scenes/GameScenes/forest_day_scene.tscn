@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://lgcjthia6acr"]
+[gd_scene load_steps=86 format=3 uid="uid://lgcjthia6acr"]
 
 [ext_resource type="PackedScene" uid="uid://b51t1d6nj1g15" path="res://Scenes/GameObjectScenes/player.tscn" id="1_3gtd0"]
 [ext_resource type="Script" uid="uid://wkwbbkujf6en" path="res://Scripts/GameObjects/default_camera.gd" id="2_q85si"]
@@ -19,8 +19,13 @@
 [ext_resource type="Texture2D" uid="uid://dgl7jfhk6s85d" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalkHead.tres" id="16_ha06l"]
 [ext_resource type="PackedScene" uid="uid://dtrdai0y5hrhw" path="res://Scenes/GameObjectScenes/bush.tscn" id="17_giji2"]
 [ext_resource type="Texture2D" uid="uid://bvkfcpqg5f4eh" path="res://Assets/Sprites/AnimalSprites/Ducks.png" id="19_hlacm"]
-[ext_resource type="Script" uid="uid://bka8mhrehb1l7" path="res://Scenes/GameScenes/tree.gd" id="19_rg2mq"]
+[ext_resource type="Script" uid="uid://bka8mhrehb1l7" path="res://Scripts/GameObjects/tree.gd" id="19_rg2mq"]
 [ext_resource type="Texture2D" uid="uid://c8klxy6q2jtv8" path="res://Assets/Sprites/NatureSprites/Birch2.tres" id="20_gqi0k"]
+[ext_resource type="Texture2D" uid="uid://bfk7v8clslex2" path="res://Assets/Sprites/ManufacturedTiles/ParkEntrance.png" id="22_gqi0k"]
+[ext_resource type="PackedScene" uid="uid://bahr8sos3gca8" path="res://Scenes/GameObjectScenes/squirrel.tscn" id="23_gnj2i"]
+[ext_resource type="Script" uid="uid://ciwluf8wf72ym" path="res://Scripts/GameObjects/next_screen_load_zone.gd" id="23_yqxv8"]
+[ext_resource type="PackedScene" uid="uid://tuofic8e5dc1" path="res://Scenes/GameObjectScenes/squirrel_tree.tscn" id="24_yqxv8"]
+[ext_resource type="Script" uid="uid://cdgbablmm388a" path="res://Scripts/fademodulate.gd" id="26_4wijw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ors8c"]
 shader = ExtResource("4_ceyxi")
@@ -403,12 +408,33 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_gqi0k"]
+a = Vector2(190, 140)
+b = Vector2(63, 140)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lq33b"]
+a = Vector2(-163, 140)
+b = Vector2(-57, 140)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_gnj2i"]
+vertices = PackedVector2Array(4990, -240, 4990, 240, -4990, 240, -4990, -240)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(0, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(5890, -402, 5749, 666, -6475, 1143, -5688, -515)])
+sample_partition_type = 1
+baking_rect = Rect2(-5000, -250, 10000, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wijw"]
+size = Vector2(20, 400)
+
 [node name="forest_day_scene" type="Node2D"]
 y_sort_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-1445, 75)
+position = Vector2(-1373, 355)
 script = ExtResource("2_q85si")
+LBound = -1420.0
+UBound = -50.0
+DBound = 300.0
 
 [node name="PostProcessing2" type="Sprite2D" parent="Camera2D"]
 light_mask = 0
@@ -418,7 +444,7 @@ texture = ExtResource("3_pxxaf")
 script = ExtResource("5_gee5c")
 
 [node name="Player" parent="." instance=ExtResource("1_3gtd0")]
-position = Vector2(-1445, 75)
+position = Vector2(-1373, 355)
 
 [node name="Tilemaps" parent="." instance=ExtResource("3_q85si")]
 
@@ -426,7 +452,7 @@ position = Vector2(-1445, 75)
 
 [node name="Moped" type="StaticBody2D" parent="."]
 y_sort_enabled = true
-position = Vector2(-1445, 80)
+position = Vector2(-1501, 410)
 
 [node name="MopedSprite" type="Sprite2D" parent="Moped"]
 y_sort_enabled = true
@@ -440,6 +466,7 @@ shape = SubResource("RectangleShape2D_06pbi")
 
 [node name="Bill" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("sprite")]
 y_sort_enabled = true
+position = Vector2(-647, -18)
 script = ExtResource("9_ors8c")
 sprite = NodePath("BillSprite")
 photo_Data = SubResource("Resource_xraot")
@@ -466,15 +493,15 @@ position = Vector2(0, 26)
 shape = SubResource("RectangleShape2D_gqi0k")
 
 [node name="Bush" parent="." instance=ExtResource("17_giji2")]
-position = Vector2(-598, 27)
+position = Vector2(-832, 80)
 
 [node name="Tree" type="StaticBody2D" parent="." node_paths=PackedStringArray("sprite")]
 y_sort_enabled = true
-position = Vector2(226, 38)
+position = Vector2(-325, 59)
 rotation = 3.14159
 scale = Vector2(1, -1)
 script = ExtResource("19_rg2mq")
-tree_Size = 2
+tree_Size = 1
 sprite = NodePath("Sprite")
 
 [node name="Sprite" type="Sprite2D" parent="Tree"]
@@ -488,7 +515,46 @@ position = Vector2(-6, 43)
 shape = SubResource("RectangleShape2D_rg2mq")
 
 [node name="Ducks" type="AnimatedSprite2D" parent="."]
-position = Vector2(54, 16)
+position = Vector2(-593, -2)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_q07h3")
 autoplay = "default"
+
+[node name="Gate" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-1376, 31)
+
+[node name="Sprite" type="Sprite2D" parent="Gate"]
+y_sort_enabled = true
+position = Vector2(0, 143)
+texture = ExtResource("22_gqi0k")
+offset = Vector2(0, -143)
+
+[node name="Collider1" type="CollisionShape2D" parent="Gate"]
+shape = SubResource("SegmentShape2D_gqi0k")
+
+[node name="Collider2" type="CollisionShape2D" parent="Gate"]
+shape = SubResource("SegmentShape2D_lq33b")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+y_sort_enabled = true
+navigation_polygon = SubResource("NavigationPolygon_gnj2i")
+
+[node name="NextScreenLoadZone" type="Area2D" parent="."]
+position = Vector2(255, -1)
+script = ExtResource("23_yqxv8")
+
+[node name="Collider" type="CollisionShape2D" parent="NextScreenLoadZone"]
+shape = SubResource("RectangleShape2D_4wijw")
+
+[node name="Squirrel" parent="." instance=ExtResource("23_gnj2i")]
+position = Vector2(-882, -30)
+behavior_Origin = Vector2(-882, -30)
+max_Dist_From_Origin = 50.0
+awareness_Modifier = 0.5
+
+[node name="SquirrelTree" parent="." instance=ExtResource("24_yqxv8")]
+position = Vector2(-1001, -44)
+
+[node name="FadeOut" type="CanvasModulate" parent="."]
+script = ExtResource("26_4wijw")
