@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c1i7p1utprsfy" path="res://Assets/Sprites/UISprites/reticleplaceholder.png" id="2_cr6le"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iupsw"]
+size = Vector2(20, 40)
 
 [node name="Reticle" type="Area2D"]
-visible = false
 z_index = 2
 texture_filter = 1
 collision_layer = 7
@@ -15,6 +15,7 @@ monitoring = false
 script = ExtResource("1_ni6vt")
 
 [node name="ReticleCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_iupsw")
 
 [node name="ReticleSprite" type="Sprite2D" parent="."]

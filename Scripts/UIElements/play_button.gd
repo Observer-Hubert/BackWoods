@@ -1,4 +1,4 @@
 extends Button
 
 func _ready() -> void:
-	pressed.connect(Bus.request_change_scene.bind("forest_day_scene"))
+	pressed.connect(Bus.request_change_scene.bind("screen1"))

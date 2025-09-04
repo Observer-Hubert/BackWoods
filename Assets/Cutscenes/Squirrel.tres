@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=9 format=3 uid="uid://dken0mmguiugj"]
+
+[ext_resource type="Script" uid="uid://ss60pgxo4vwc" path="res://Scripts/Resources/cutscene_keyframe_resource.gd" id="1_6gu85"]
+[ext_resource type="Script" uid="uid://b04o5nhw2f6up" path="res://Scripts/Resources/dialogue_data_resource.gd" id="2_neuvb"]
+[ext_resource type="Texture2D" uid="uid://dgl7jfhk6s85d" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalkHead.tres" id="3_6pm1d"]
+[ext_resource type="Script" uid="uid://rslo8c06sfem" path="res://Scripts/Resources/cutscene.gd" id="4_j571m"]
+
+[sub_resource type="Resource" id="Resource_neuvb"]
+script = ExtResource("1_6gu85")
+dialogue_Data = Array[ExtResource("2_neuvb")]([])
+subject = NodePath("../Player")
+subject_Animation = "Calm_Idle"
+subject_End_Animation = ""
+subject_FlipH_When_Moving = false
+subject_Movement = Vector2(0, 0)
+movement_Time = 0.1
+movement_Transition_Type = 0
+movement_easing_Mode = 0
+metadata/_custom_type_script = "uid://ss60pgxo4vwc"
+
+[sub_resource type="Resource" id="Resource_6gu85"]
+script = ExtResource("1_6gu85")
+dialogue_Data = Array[ExtResource("2_neuvb")]([])
+subject = NodePath("../Camera2D")
+subject_Animation = ""
+subject_End_Animation = ""
+subject_FlipH_When_Moving = false
+subject_Movement = Vector2(125, 0)
+movement_Time = 1.0
+movement_Transition_Type = 0
+movement_easing_Mode = 0
+metadata/_custom_type_script = "uid://ss60pgxo4vwc"
+
+[sub_resource type="Resource" id="Resource_hipwa"]
+script = ExtResource("2_neuvb")
+texture = ExtResource("3_6pm1d")
+speaker = "Finch"
+text = "I'd better hide so I dont scare that squirrel."
+text_Speed = 0.05
+text_End_Time = 1.0
+metadata/_custom_type_script = "uid://b04o5nhw2f6up"
+
+[sub_resource type="Resource" id="Resource_yvvif"]
+script = ExtResource("1_6gu85")
+dialogue_Data = Array[ExtResource("2_neuvb")]([SubResource("Resource_hipwa")])
+subject = NodePath("../Player")
+subject_Animation = "Calm_Idle"
+subject_End_Animation = ""
+subject_FlipH_When_Moving = false
+subject_Movement = Vector2(0, 0)
+movement_Time = 1.0
+movement_Transition_Type = 0
+movement_easing_Mode = 0
+metadata/_custom_type_script = "uid://ss60pgxo4vwc"
+
+[resource]
+script = ExtResource("4_j571m")
+cutscene_Data = Array[ExtResource("1_6gu85")]([SubResource("Resource_neuvb"), SubResource("Resource_6gu85"), SubResource("Resource_yvvif")])
+metadata/_custom_type_script = "uid://rslo8c06sfem"

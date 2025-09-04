@@ -10,4 +10,4 @@ func _ready() -> void:
 func _next_Screen(body: Node2D) -> void:
 	if body is Player and not fired:
 		fired = true
-		Bus.request_change_scene(next_screen_Scene_Name)
+		Bus.request_Fade_Out(next_screen_Scene_Name)

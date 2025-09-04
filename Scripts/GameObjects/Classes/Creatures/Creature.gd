@@ -52,10 +52,6 @@ signal awareness_updated
 #Emitted when the creature's maximum awareness is reached.
 signal max_awareness
 
-func _ready() -> void:
-	navigation_agent.velocity_computed.connect(_set_Vel)
-	navigation_agent.target_reached.connect(_target_Reached)
-
 func hear_Noise(noisePos: Vector2) -> void:
 	heardSomething = true
 	lastNoisePos = noisePos
@@ -88,3 +84,12 @@ func _set_Vel(safe_vel: Vector2):
 
 func _target_Reached() -> void:
 	reachedPos = true
+
+func _physics_process(delta: float) -> void:
+	_update_Agent()
+	_check_Flip()
+	if reachedPos == false:
+		print(lastNoisePos)
+		move_and_collide(velocity * delta)
+	if not observingPlayer:
+		change_Awareness(-awareness_Decay_Rate * delta)

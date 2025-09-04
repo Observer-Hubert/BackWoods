@@ -36,13 +36,14 @@ func _process(delta) -> void:
 	if not in_Cutscene:
 		if subject != null:
 			if reachedSubject:
-				position.x = clamp(subject.position.x,LBound,RBound)
-				# The player should not affect the camera's y value, because of the structure of the forest being a hallway.
-				if subject: # is not Player:
+				if subject is Player:
+					position.x = clamp(subject.position.x,LBound,RBound)
 					position.y = clamp(subject.position.y,UBound,DBound)
+				else:
+					position = subject.position
 			else:
 				var vel = position.direction_to(subject.position).normalized() * MOVESPEED * delta
 				position += vel
 				if position.distance_to(subject.position) < 10.0:
 					reachedSubject = true
-			Bus.camera_pos_update(position)
+	Bus.camera_pos_update(position)

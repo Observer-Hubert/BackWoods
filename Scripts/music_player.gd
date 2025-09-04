@@ -17,7 +17,7 @@ func _play_Track(track: AudioStreamWAV) -> void:
 
 func _scene_Music_Update(sceneName: String) -> void:
 	match sceneName:
-		"forest_scene":
+		"screen3":
 			_play_Track(SPOOKY_FOREST)
-		"forest_day_scene":
+		"screen1":
 			_play_Track(LOVELY_FOREST)

@@ -32,12 +32,16 @@ signal dialogue_event
 signal dialogue_skip
 ##emitted when the current dialogue event ends.
 signal dialogue_end
+##Emitted when a cutscene is triggered
+signal cutscene_trigger
 ##Emitted when a cutscene begins.
 signal cutscene_start
 ##Emitted when a cutscene ends.
 signal cutscene_end
 ##Emitted as a request to change the scene.
 signal change_scene
+##Emitted when a fadeout is requested
+signal fade_out
 
 func stamina_update(newValue: float, exhausted: bool) -> void:
 	stamina_updated.emit(newValue, exhausted)
@@ -87,11 +91,17 @@ func skip_dialogue() -> void:
 func end_dialogue() -> void:
 	dialogue_end.emit()
 
+func trigger_cutscene(sceneName: String) -> void:
+	cutscene_trigger.emit(sceneName)
+
 func start_cutscene() -> void:
 	cutscene_start.emit()
 
 func end_cutscene() -> void:
 	cutscene_end.emit()
 
-func request_change_scene(sceneName: String):
+func request_change_scene(sceneName: String) -> void:
 	change_scene.emit(sceneName)
+
+func request_Fade_Out(sceneName: String) -> void:
+	fade_out.emit(sceneName)

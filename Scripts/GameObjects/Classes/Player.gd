@@ -86,7 +86,7 @@ func _get_Previous_State() -> playerStates:
 	for i in range(0,length,1):
 		var value = previousStates[i]
 		if value != currentState:
-			if value != playerStates.BUSY and value != playerStates.QTE:
+			if value != playerStates.BUSY and value != playerStates.QTE and value != playerStates.IN_DIALOGUE:
 				return value
 	# If for some reason we cant find a previous state, we will return free movement as a default.
 	return playerStates.FREE_MOVEMENT

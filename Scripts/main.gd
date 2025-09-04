@@ -19,7 +19,7 @@ func _go_Home() -> void:
 func _quit_Game() -> void:
 		get_tree().quit()
 
-func _load_Scene(sceneName: String = "forest_scene", uiName: String = "forest_scene_ui") -> void:
+func _load_Scene(sceneName: String = "screen1", uiName: String = "forest_scene_ui") -> void:
 	_unload_Scene()
 	# Loads a scene from the specified file in the Scenes folder, and places it in the main_2d node.
 	var loadedScene: PackedScene = load("./Scenes/GameScenes/" + sceneName + ".tscn")

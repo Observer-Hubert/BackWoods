@@ -1,8 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://bahr8sos3gca8"]
+[gd_scene load_steps=24 format=3 uid="uid://bahr8sos3gca8"]
 
-[ext_resource type="Script" uid="uid://ctrpr5yxe0i0i" path="res://Scripts/GameObjects/fox.gd" id="1_4gorx"]
+[ext_resource type="Script" uid="uid://ctrpr5yxe0i0i" path="res://Scripts/GameObjects/basic_animal.gd" id="1_4gorx"]
 [ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_08gwn"]
-[ext_resource type="Texture2D" uid="uid://bv01k1wevlbou" path="res://Assets/Sprites/AnimalSprites/FoxSit.png" id="3_5jibb"]
 [ext_resource type="Material" uid="uid://bemxeuwh5jgyo" path="res://Assets/Materials/HighlightableObject.tres" id="4_rxply"]
 [ext_resource type="Texture2D" uid="uid://dqlccwvas36fc" path="res://Assets/Sprites/AnimalSprites/SquirrelRun.png" id="5_lyekn"]
 [ext_resource type="Texture2D" uid="uid://bc1nlqbngnqnq" path="res://Assets/Sprites/Eye Indicators/Normal/eye_indicator1.png" id="6_1n2y7"]
@@ -15,14 +14,10 @@
 [ext_resource type="Script" uid="uid://cjvcto8x5m7el" path="res://Scripts/GameObjects/Classes/Awareness_Display.gd" id="12_6vap5"]
 [ext_resource type="Script" uid="uid://febcobub1jxx" path="res://Scripts/GameObjects/hiding_search_area.gd" id="13_42b0p"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lmbr4"]
-atlas = ExtResource("3_5jibb")
-region = Rect2(0, 0, 24, 36)
-
 [sub_resource type="Resource" id="Resource_dl5oq"]
 script = ExtResource("2_08gwn")
-texture = SubResource("AtlasTexture_lmbr4")
-caption = "That's a fox!"
+texture = ExtResource("6_lb5du")
+caption = "That's a squirrel!"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hm7ag"]
 size = Vector2(11, 3)
@@ -115,7 +110,6 @@ poi_Flag = 1
 poi_search_area = NodePath("POISearchArea")
 behavior_timer = NodePath("BehaviorTimer")
 photo_Data = SubResource("Resource_dl5oq")
-move_Speed = 85.0
 accel = 130.0
 sprite = NodePath("SquirrelSprite")
 awareness_display = NodePath("AwarenessDisplay")

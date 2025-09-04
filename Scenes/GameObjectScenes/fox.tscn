@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://d12le13000kon"]
 
-[ext_resource type="Script" uid="uid://ctrpr5yxe0i0i" path="res://Scripts/GameObjects/fox.gd" id="1_7u81j"]
+[ext_resource type="Script" uid="uid://ctrpr5yxe0i0i" path="res://Scripts/GameObjects/basic_animal.gd" id="1_7u81j"]
 [ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_wi0pi"]
 [ext_resource type="Texture2D" uid="uid://bv01k1wevlbou" path="res://Assets/Sprites/AnimalSprites/FoxSit.png" id="3_0fn8s"]
 [ext_resource type="Material" uid="uid://bemxeuwh5jgyo" path="res://Assets/Materials/HighlightableObject.tres" id="4_sbluu"]

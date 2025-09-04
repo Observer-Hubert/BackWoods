@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3mcoteeescf1"]
+[gd_scene load_steps=11 format=3 uid="uid://d3mcoteeescf1"]
 
 [ext_resource type="Script" uid="uid://b88oweudqxvm5" path="res://Scripts/UIElements/photo_readout.gd" id="1_ot3dj"]
 [ext_resource type="Texture2D" uid="uid://6kewcgrkf4is" path="res://Assets/Sprites/32x64standin.png" id="2_tglud"]
+[ext_resource type="Texture2D" uid="uid://etyamgwgj7gq" path="res://Assets/Sprites/UISprites/PoloroidOutline.png" id="3_theo8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rw0bx"]
 bg_color = Color(0.775063, 0.775063, 0.775063, 1)
@@ -142,6 +143,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="ReadoutCaption" type="Label" parent="ReadoutMargin/ReadoutVbox/CaptionCenter"]
+z_index = 1
 custom_minimum_size = Vector2(120, 25)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.129558, 0.129558, 0.129558, 1)
@@ -149,6 +151,10 @@ theme_override_fonts/font = SubResource("SystemFont_yb8pp")
 horizontal_alignment = 1
 autowrap_mode = 2
 text_overrun_behavior = 3
+
+[node name="PolaroidOutline" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("3_theo8")
 
 [node name="ReadoutAnimPlayer" type="AnimationPlayer" parent="."]
 libraries = {

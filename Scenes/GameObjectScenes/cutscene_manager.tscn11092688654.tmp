@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3 uid="uid://cqm3476fji55w"]
+
+[ext_resource type="Script" uid="uid://e7iihql0oihy" path="res://Scripts/GameObjects/Classes/Cutscene_Manager.gd" id="1_na4g4"]
+[ext_resource type="Script" uid="uid://ss60pgxo4vwc" path="res://Scripts/Resources/cutscene_keyframe_resource.gd" id="2_5eu6j"]
+[ext_resource type="Script" uid="uid://b04o5nhw2f6up" path="res://Scripts/Resources/dialogue_data_resource.gd" id="3_51ilx"]
+[ext_resource type="Script" uid="uid://rslo8c06sfem" path="res://Scripts/Resources/cutscene.gd" id="4_na4g4"]
+[ext_resource type="Script" uid="uid://bg3nyllgew138" path="res://Scripts/GameObjects/Classes/Cutscene_Trigger.gd" id="5_eaoo6"]
+
+[sub_resource type="Resource" id="Resource_5eu6j"]
+script = ExtResource("3_51ilx")
+speaker = "Bob douglass"
+text = "AAAAAA"
+text_Speed = 0.05
+text_End_Time = 1.0
+metadata/_custom_type_script = "uid://b04o5nhw2f6up"
+
+[sub_resource type="Resource" id="Resource_51ilx"]
+script = ExtResource("2_5eu6j")
+dialogue_Data = Array[ExtResource("3_51ilx")]([SubResource("Resource_5eu6j")])
+subject = NodePath("")
+subject_Animation = ""
+subject_End_Animation = ""
+subject_FlipH_When_Moving = false
+subject_Movement = Vector2(0, 0)
+movement_Time = 1.0
+movement_Transition_Type = 0
+movement_easing_Mode = 0
+metadata/_custom_type_script = "uid://ss60pgxo4vwc"
+
+[sub_resource type="Resource" id="Resource_shlol"]
+script = ExtResource("4_na4g4")
+cutscene_Data = Array[ExtResource("2_5eu6j")]([SubResource("Resource_51ilx")])
+metadata/_custom_type_script = "uid://rslo8c06sfem"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ohwx"]
+size = Vector2(200, 80)
+
+[node name="CutsceneManager" type="Node2D"]
+script = ExtResource("1_na4g4")
+cutscene = SubResource("Resource_shlol")
+
+[node name="CutsceneTrigger" type="Area2D" parent="."]
+position = Vector2(0, 53)
+script = ExtResource("5_eaoo6")
+
+[node name="CutsceneTriggerCollider" type="CollisionShape2D" parent="CutsceneTrigger"]
+position = Vector2(0, -33.25)
+shape = SubResource("RectangleShape2D_2ohwx")

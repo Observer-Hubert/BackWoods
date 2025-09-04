@@ -39,14 +39,6 @@ func change_State(newState: animalStates) -> void:
 			_fleeing_State_Setup()
 	currentState = newState
 
-func _physics_process(delta: float) -> void:
-	_update_Agent()
-	_check_Flip()
-	if reachedPos == false:
-		move_and_collide(velocity * delta)
-	if not observingPlayer:
-		change_Awareness(-awareness_Decay_Rate * delta)
-
 func _target_Reached() -> void:
 	super()
 	if desiredPOI is HidingPlace and currentState == animalStates.FLEEING:

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=7 format=3 uid="uid://bmxg77ju41fso"]
+
+[ext_resource type="Script" uid="uid://b04o5nhw2f6up" path="res://Scripts/Resources/dialogue_data_resource.gd" id="1_y3bmf"]
+[ext_resource type="Texture2D" uid="uid://dgl7jfhk6s85d" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalkHead.tres" id="2_g1a5u"]
+[ext_resource type="Script" uid="uid://ss60pgxo4vwc" path="res://Scripts/Resources/cutscene_keyframe_resource.gd" id="3_uw032"]
+[ext_resource type="Script" uid="uid://rslo8c06sfem" path="res://Scripts/Resources/cutscene.gd" id="4_g1a5u"]
+
+[sub_resource type="Resource" id="Resource_3v101"]
+script = ExtResource("1_y3bmf")
+texture = ExtResource("2_g1a5u")
+speaker = "Finch"
+text = "Greenwood park. It's been years..."
+text_Speed = 0.1
+text_End_Time = 1.0
+metadata/_custom_type_script = "uid://b04o5nhw2f6up"
+
+[sub_resource type="Resource" id="Resource_222m3"]
+script = ExtResource("3_uw032")
+dialogue_Data = Array[ExtResource("1_y3bmf")]([SubResource("Resource_3v101")])
+subject = NodePath("../Player")
+subject_Animation = "Calm_Idle"
+subject_End_Animation = ""
+subject_FlipH_When_Moving = false
+subject_Movement = Vector2(0, 0)
+movement_Time = 1.0
+movement_Transition_Type = 0
+movement_easing_Mode = 0
+metadata/_custom_type_script = "uid://ss60pgxo4vwc"
+
+[resource]
+script = ExtResource("4_g1a5u")
+cutscene_Data = Array[ExtResource("3_uw032")]([SubResource("Resource_222m3")])
+metadata/_custom_type_script = "uid://rslo8c06sfem"
