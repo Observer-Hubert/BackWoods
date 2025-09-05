@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d38fxxviundxi"]
+[gd_scene load_steps=23 format=3 uid="uid://d38fxxviundxi"]
 
 [ext_resource type="PackedScene" uid="uid://djw6rh8supver" path="res://Scenes/GameObjectScenes/Tilemaps/screen2tilemaps.tscn" id="1_ikcna"]
 [ext_resource type="Script" uid="uid://wkwbbkujf6en" path="res://Scripts/GameObjects/default_camera.gd" id="1_jsarp"]
@@ -9,11 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://bvnjtysm1trou" path="res://Scenes/GameObjectScenes/reticle.tscn" id="7_bk76g"]
 [ext_resource type="Texture2D" uid="uid://ds7fdp5sebsvd" path="res://Assets/Sprites/MopedStill.png" id="8_j4qui"]
 [ext_resource type="PackedScene" uid="uid://uelep41gur0l" path="res://Scenes/GameObjectScenes/tree.tscn" id="9_38jpb"]
+[ext_resource type="PackedScene" uid="uid://cyr76eoscixwd" path="res://Scenes/GameObjectScenes/log.tscn" id="10_twgyt"]
+[ext_resource type="PackedScene" uid="uid://d12le13000kon" path="res://Scenes/GameObjectScenes/fox.tscn" id="16_wj4n1"]
+[ext_resource type="PackedScene" uid="uid://caf2oimg2miey" path="res://Scenes/GameObjectScenes/rabbit.tscn" id="17_vlm78"]
+[ext_resource type="PackedScene" uid="uid://ekb6bh0fa60u" path="res://Scenes/GameObjectScenes/rabbit_hole.tscn" id="18_7wi3j"]
 [ext_resource type="PackedScene" uid="uid://dtrdai0y5hrhw" path="res://Scenes/GameObjectScenes/bush.tscn" id="18_p6dd1"]
 [ext_resource type="PackedScene" uid="uid://cqm3476fji55w" path="res://Scenes/GameObjectScenes/cutscene_manager.tscn" id="22_odn3d"]
 [ext_resource type="Resource" uid="uid://dken0mmguiugj" path="res://Assets/Cutscenes/Squirrel.tres" id="23_fymgw"]
-[ext_resource type="Script" uid="uid://ciwluf8wf72ym" path="res://Scripts/GameObjects/next_screen_load_zone.gd" id="24_ri6lk"]
-[ext_resource type="Script" uid="uid://cdgbablmm388a" path="res://Scripts/fademodulate.gd" id="27_i80vi"]
+[ext_resource type="Script" path="res://Scripts/GameObjects/next_screen_load_zone.gd" id="24_ri6lk"]
+[ext_resource type="Script" path="res://Scripts/fademodulate.gd" id="27_i80vi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ors8c"]
 shader = ExtResource("2_kiqbh")
@@ -82,14 +86,45 @@ navigation_polygon = SubResource("NavigationPolygon_gnj2i")
 y_sort_enabled = true
 
 [node name="Tree" parent="Trees" instance=ExtResource("9_38jpb")]
-position = Vector2(-318, 49)
+position = Vector2(-1461, -78)
+tree_Type = 2
 tree_Size = 0
+
+[node name="Log" parent="Trees" instance=ExtResource("10_twgyt")]
+position = Vector2(-856, -88)
+scale = Vector2(-1, 1)
+
+[node name="Tree2" parent="Trees" instance=ExtResource("9_38jpb")]
+position = Vector2(-647, 61)
+
+[node name="Tree3" parent="Trees" instance=ExtResource("9_38jpb")]
+position = Vector2(-1239, 12)
+tree_Type = 3
+
+[node name="Tree4" parent="Trees" instance=ExtResource("9_38jpb")]
+position = Vector2(-603, -97)
+tree_Type = 1
+
+[node name="Tree5" parent="Trees" instance=ExtResource("9_38jpb")]
+position = Vector2(-699, -103)
 
 [node name="Bushes" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Bush" parent="Bushes" instance=ExtResource("18_p6dd1")]
-position = Vector2(-1154, 99)
+position = Vector2(-1565, -18)
+
+[node name="Bush2" parent="Bushes" instance=ExtResource("18_p6dd1")]
+position = Vector2(-1464, 53)
+
+[node name="Bush3" parent="Bushes" instance=ExtResource("18_p6dd1")]
+position = Vector2(-1034, 110)
+
+[node name="Bush4" parent="Bushes" instance=ExtResource("18_p6dd1")]
+position = Vector2(-820, 45)
+
+[node name="Bush5" parent="Bushes" instance=ExtResource("18_p6dd1")]
+position = Vector2(-246, -18)
 
 [node name="CutsceneManager" parent="." instance=ExtResource("22_odn3d")]
 position = Vector2(255, -1)
@@ -108,3 +143,14 @@ visible = false
 color = Color(0, 0, 0, 1)
 script = ExtResource("27_i80vi")
 desiredModulateColor = Color(1, 0.682353, 0.686275, 1)
+
+[node name="Fox" parent="." instance=ExtResource("16_wj4n1")]
+position = Vector2(-617, 16)
+behavior_Origin = Vector2(-617, 16)
+
+[node name="Rabbit" parent="." instance=ExtResource("17_vlm78")]
+position = Vector2(-1278, -56)
+behavior_Origin = Vector2(-1278, -56)
+
+[node name="RabbitHole" parent="Rabbit" instance=ExtResource("18_7wi3j")]
+position = Vector2(75, 95)

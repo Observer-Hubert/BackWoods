@@ -1,9 +1,8 @@
-[gd_scene load_steps=45 format=3 uid="uid://dvdp5h3m6sqd"]
+[gd_scene load_steps=36 format=3 uid="uid://dvdp5h3m6sqd"]
 
-[ext_resource type="PackedScene" uid="uid://dqdwegwkotrfu" path="res://Scenes/GameObjectScenes/Tilemaps/screen1tilemaps.tscn" id="1_55ekv"]
 [ext_resource type="PackedScene" uid="uid://b4djqfg5c81dk" path="res://Scenes/GameObjectScenes/camera.tscn" id="2_fo5wj"]
 [ext_resource type="Shader" uid="uid://cniu4c328lkl5" path="res://Scripts/Shaders/Fog.gdshader" id="3_6xslx"]
-[ext_resource type="Script" uid="uid://cdgbablmm388a" path="res://Scripts/fademodulate.gd" id="4_l0pw3"]
+[ext_resource type="Script" path="res://Scripts/fademodulate.gd" id="4_l0pw3"]
 [ext_resource type="PackedScene" uid="uid://d12le13000kon" path="res://Scenes/GameObjectScenes/fox.tscn" id="5_yasr0"]
 [ext_resource type="PackedScene" uid="uid://dtrdai0y5hrhw" path="res://Scenes/GameObjectScenes/bush.tscn" id="6_kwby2"]
 [ext_resource type="PackedScene" uid="uid://bvnjtysm1trou" path="res://Scenes/GameObjectScenes/reticle.tscn" id="7_p3p48"]
@@ -12,16 +11,16 @@
 [ext_resource type="PackedScene" uid="uid://bahr8sos3gca8" path="res://Scenes/GameObjectScenes/squirrel.tscn" id="10_v3kqe"]
 [ext_resource type="PackedScene" uid="uid://c64jqfkk821sh" path="res://Scenes/GameObjectScenes/earl.tscn" id="11_m2v1k"]
 [ext_resource type="PackedScene" uid="uid://cqm3476fji55w" path="res://Scenes/GameObjectScenes/cutscene_manager.tscn" id="12_2bpxe"]
-[ext_resource type="Resource" uid="uid://bci38lsrc8miy" path="res://Assets/Cutscenes/Transform.tres" id="12_6xslx"]
 [ext_resource type="PackedScene" uid="uid://cyr76eoscixwd" path="res://Scenes/GameObjectScenes/log.tscn" id="13_mmol6"]
 [ext_resource type="Script" uid="uid://cp4msv1oaminq" path="res://Scripts/GameObjects/Classes/AnimalInteractables/Hiding_Place.gd" id="14_7pmms"]
 [ext_resource type="Texture2D" uid="uid://c3m1ua750ow66" path="res://Assets/Sprites/AnimalSprites/LogFoxHiding.png" id="15_mdjlb"]
 [ext_resource type="Texture2D" uid="uid://dhcmgcflpr60" path="res://Assets/Sprites/NatureSprites/log.png" id="16_04sjd"]
-[ext_resource type="PackedScene" uid="uid://tuofic8e5dc1" path="res://Scenes/GameObjectScenes/squirrel_tree.tscn" id="17_afhbf"]
+[ext_resource type="PackedScene" uid="uid://uelep41gur0l" path="res://Scenes/GameObjectScenes/tree.tscn" id="16_fo5wj"]
+[ext_resource type="PackedScene" path="res://Scenes/GameObjectScenes/squirrel_tree.tscn" id="17_afhbf"]
 [ext_resource type="PackedScene" uid="uid://caf2oimg2miey" path="res://Scenes/GameObjectScenes/rabbit.tscn" id="18_rjrqb"]
-[ext_resource type="Texture2D" uid="uid://bu2fuhh81ooyo" path="res://Assets/Sprites/AnimalSprites/BunnyHoleHide.png" id="19_uf2uf"]
-[ext_resource type="Script" uid="uid://ciwluf8wf72ym" path="res://Scripts/GameObjects/next_screen_load_zone.gd" id="20_o3gxc"]
-[ext_resource type="Script" uid="uid://bg3nyllgew138" path="res://Scripts/GameObjects/Classes/Cutscene_Trigger.gd" id="21_fo5wj"]
+[ext_resource type="PackedScene" uid="uid://ekb6bh0fa60u" path="res://Scenes/GameObjectScenes/rabbit_hole.tscn" id="19_55ekv"]
+[ext_resource type="Script" path="res://Scripts/GameObjects/next_screen_load_zone.gd" id="20_o3gxc"]
+[ext_resource type="PackedScene" uid="uid://bqw32k8l41nkh" path="res://Scenes/GameObjectScenes/Tilemaps/screen3tilemaps.tscn" id="21_6xslx"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n0bxa"]
 vertices = PackedVector2Array(4990, -240, 4990, 240, -4990, 240, -4990, -240)
@@ -115,72 +114,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uogbx"]
 size = Vector2(9, 4)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u56lp"]
-atlas = ExtResource("19_uf2uf")
-region = Rect2(0, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l7vmt"]
-atlas = ExtResource("19_uf2uf")
-region = Rect2(40, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6u6kh"]
-atlas = ExtResource("19_uf2uf")
-region = Rect2(80, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dpn7n"]
-atlas = ExtResource("19_uf2uf")
-region = Rect2(120, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ohwx"]
-atlas = ExtResource("19_uf2uf")
-region = Rect2(160, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jywxe"]
-atlas = ExtResource("19_uf2uf")
-region = Rect2(160, 0, 40, 40)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_l88fr"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u56lp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l7vmt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6u6kh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dpn7n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2ohwx")
-}],
-"loop": false,
-"name": &"Hide",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jywxe")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u56lp"]
 size = Vector2(20, 400)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xslx"]
-size = Vector2(50, 50)
 
 [node name="Forest_Scene" type="Node2D"]
 process_mode = 1
 y_sort_enabled = true
-
-[node name="Tilemaps" parent="." instance=ExtResource("1_55ekv")]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 y_sort_enabled = true
@@ -189,7 +128,7 @@ navigation_polygon = SubResource("NavigationPolygon_n0bxa")
 [node name="Camera" parent="." instance=ExtResource("2_fo5wj")]
 position = Vector2(-300, 37)
 LBound = -300.0
-RBound = 1500.0
+RBound = 300.0
 UBound = -300.0
 DBound = 300.0
 
@@ -212,8 +151,6 @@ collision_layer = 1
 
 [node name="Monster" parent="." instance=ExtResource("9_5jdb5")]
 position = Vector2(594, -44)
-base_Move_Speed = 310.0
-accel = 6.0
 
 [node name="Squirrel" parent="." instance=ExtResource("10_v3kqe")]
 position = Vector2(63, 108)
@@ -222,13 +159,9 @@ position = Vector2(63, 108)
 position = Vector2(-167, 59)
 
 [node name="CutsceneManager" parent="." instance=ExtResource("12_2bpxe")]
-cutscene = ExtResource("12_6xslx")
 
 [node name="Bush2" parent="." instance=ExtResource("6_kwby2")]
 position = Vector2(-182, 100)
-
-[node name="Bush3" parent="." instance=ExtResource("6_kwby2")]
-position = Vector2(280, 121)
 
 [node name="Log" parent="." instance=ExtResource("13_mmol6")]
 position = Vector2(-306, -28)
@@ -243,7 +176,8 @@ valid_Hiders = 1
 
 [node name="LogSprite" type="AnimatedSprite2D" parent="Log2"]
 y_sort_enabled = true
-position = Vector2(0, 13)
+position = Vector2(448, -45)
+scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_knqvc")
 offset = Vector2(0, -13)
 
@@ -261,41 +195,53 @@ radius = 15.0
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="Tree" parent="Trees" instance=ExtResource("16_fo5wj")]
+position = Vector2(957, -84)
+tree_Type = 2
+
+[node name="Tree2" parent="Trees" instance=ExtResource("16_fo5wj")]
+position = Vector2(1204, 27)
+tree_Type = 3
+
+[node name="Tree3" parent="Trees" instance=ExtResource("16_fo5wj")]
+position = Vector2(1721, -100)
+tree_Type = 1
+
+[node name="Tree4" parent="Trees" instance=ExtResource("16_fo5wj")]
+position = Vector2(1829, -95)
+
+[node name="Tree5" parent="Trees" instance=ExtResource("16_fo5wj")]
+position = Vector2(1778, 61)
+tree_Type = 1
+
 [node name="Bushes" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Bush" parent="Bushes" instance=ExtResource("6_kwby2")]
-position = Vector2(107, 105)
+position = Vector2(1391, 104)
+
+[node name="Bush2" parent="Bushes" instance=ExtResource("6_kwby2")]
+position = Vector2(1612, 55)
+
+[node name="Bush3" parent="Bushes" instance=ExtResource("6_kwby2")]
+position = Vector2(954, 50)
+
+[node name="Bush4" parent="Bushes" instance=ExtResource("6_kwby2")]
+position = Vector2(862, -26)
+
+[node name="Bush5" parent="Bushes" instance=ExtResource("6_kwby2")]
+position = Vector2(2246, -14)
 
 [node name="SquirrelTree" parent="." instance=ExtResource("17_afhbf")]
-position = Vector2(808, 64)
+position = Vector2(533, -282)
 
 [node name="Rabbit" parent="." instance=ExtResource("18_rjrqb")]
-position = Vector2(99, 125)
+visible = false
+position = Vector2(169, 160)
+rotation = 0.0373425
 
-[node name="RabbitHole" type="StaticBody2D" parent="." node_paths=PackedStringArray("sprite")]
-y_sort_enabled = true
-position = Vector2(-306, 122)
-script = ExtResource("14_7pmms")
-sprite = NodePath("HoleSprite")
-valid_Hiders = 4
-
-[node name="HoleSprite" type="AnimatedSprite2D" parent="RabbitHole"]
-y_sort_enabled = true
-position = Vector2(0, 13)
-sprite_frames = SubResource("SpriteFrames_l88fr")
-offset = Vector2(0, -13)
-
-[node name="HoleCollider" type="CollisionShape2D" parent="RabbitHole"]
-position = Vector2(9, 13)
-shape = SubResource("RectangleShape2D_uogbx")
-
-[node name="HideEntry" type="Node2D" parent="RabbitHole"]
-position = Vector2(-13, 10)
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="RabbitHole"]
-position = Vector2(9, 13)
-radius = 6.63
+[node name="RabbitHole" parent="." instance=ExtResource("19_55ekv")]
+position = Vector2(1226, 32)
 
 [node name="NextScreenLoadZone" type="Area2D" parent="."]
 position = Vector2(-576, -1)
@@ -305,11 +251,5 @@ next_screen_Scene_Name = "forest_day_scene"
 [node name="Collider" type="CollisionShape2D" parent="NextScreenLoadZone"]
 shape = SubResource("RectangleShape2D_u56lp")
 
-[node name="CutsceneTrigger" type="Area2D" parent="."]
-position = Vector2(584, 25)
-script = ExtResource("21_fo5wj")
-cutsceneName = "Transform"
-metadata/_custom_type_script = "uid://bg3nyllgew138"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger"]
-shape = SubResource("RectangleShape2D_6xslx")
+[node name="Tilemaps" parent="." instance=ExtResource("21_6xslx")]
+visible = false
