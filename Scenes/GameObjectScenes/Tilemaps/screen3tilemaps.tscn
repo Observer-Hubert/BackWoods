@@ -1,20 +1,20 @@
-[gd_scene load_steps=27 format=4 uid="uid://dqdwegwkotrfu"]
+[gd_scene load_steps=27 format=4 uid="uid://bqw32k8l41nkh"]
 
-[ext_resource type="Texture2D" uid="uid://dq2styifgs51i" path="res://Assets/Sprites/NatureSprites/grass.png" id="1_7aekr"]
-[ext_resource type="Texture2D" uid="uid://j1tgxsp30mns" path="res://Assets/Sprites/ManufacturedTiles/ParkingLotSheet.png" id="1_jd47k"]
-[ext_resource type="Texture2D" uid="uid://bvlhnl4jed573" path="res://Assets/Sprites/ManufacturedTiles/Fence.png" id="2_e1uku"]
-[ext_resource type="Texture2D" uid="uid://2dovqmwx4h63" path="res://Assets/Sprites/NatureSprites/MooseTracksThick.png" id="3_22idi"]
-[ext_resource type="Texture2D" uid="uid://b82mbyri5gh7u" path="res://Assets/Sprites/NatureSprites/DirtPath.png" id="4_o6g1v"]
-[ext_resource type="Texture2D" uid="uid://5fjyhunptoma" path="res://Assets/Sprites/NatureSprites/MooseTracksThin.png" id="5_tkhp4"]
-[ext_resource type="Texture2D" uid="uid://b3n7sqxsv00a4" path="res://Assets/Sprites/ManufacturedTiles/FenceSheet.png" id="6_e1uku"]
-[ext_resource type="Texture2D" uid="uid://344vf6i2jjrl" path="res://Assets/Sprites/ManufacturedTiles/InlaidSidewalkSheet.png" id="7_vsyk0"]
-[ext_resource type="Texture2D" uid="uid://cnw5ibkgpdja8" path="res://Assets/Sprites/ManufacturedTiles/SidewalkSheet.png" id="8_2qhg1"]
-[ext_resource type="Texture2D" uid="uid://cp02if0xdh7qe" path="res://Assets/Sprites/ManufacturedTiles/StonePathSheet.png" id="9_blgdx"]
+[ext_resource type="Texture2D" uid="uid://j1tgxsp30mns" path="res://Assets/Sprites/ManufacturedTiles/ParkingLotSheet.png" id="1_fq40j"]
+[ext_resource type="Texture2D" uid="uid://dq2styifgs51i" path="res://Assets/Sprites/NatureSprites/grass.png" id="2_ff0ns"]
+[ext_resource type="Texture2D" uid="uid://bvlhnl4jed573" path="res://Assets/Sprites/ManufacturedTiles/Fence.png" id="3_alaq8"]
+[ext_resource type="Texture2D" uid="uid://2dovqmwx4h63" path="res://Assets/Sprites/NatureSprites/MooseTracksThick.png" id="4_r4pki"]
+[ext_resource type="Texture2D" uid="uid://b82mbyri5gh7u" path="res://Assets/Sprites/NatureSprites/DirtPath.png" id="5_wfltl"]
+[ext_resource type="Texture2D" uid="uid://5fjyhunptoma" path="res://Assets/Sprites/NatureSprites/MooseTracksThin.png" id="6_68vc8"]
+[ext_resource type="Texture2D" uid="uid://344vf6i2jjrl" path="res://Assets/Sprites/ManufacturedTiles/InlaidSidewalkSheet.png" id="7_m3641"]
+[ext_resource type="Texture2D" uid="uid://cnw5ibkgpdja8" path="res://Assets/Sprites/ManufacturedTiles/SidewalkSheet.png" id="8_lvsr1"]
+[ext_resource type="Texture2D" uid="uid://cp02if0xdh7qe" path="res://Assets/Sprites/ManufacturedTiles/StonePathSheet.png" id="9_e0ucn"]
+[ext_resource type="Texture2D" uid="uid://b3n7sqxsv00a4" path="res://Assets/Sprites/ManufacturedTiles/FenceSheet.png" id="10_0qkfs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2qhg1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jgf4f"]
-texture = ExtResource("1_jd47k")
+texture = ExtResource("1_fq40j")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -39,7 +39,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jd47k"]
 resource_name = "Grass"
-texture = ExtResource("1_7aekr")
+texture = ExtResource("2_ff0ns")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -62,19 +62,19 @@ sources/1 = SubResource("TileSetAtlasSource_jd47k")
 sources/0 = SubResource("TileSetAtlasSource_jgf4f")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2qhg1"]
-texture = ExtResource("2_e1uku")
+texture = ExtResource("3_alaq8")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 18, 32, 18.5, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_blgdx"]
-texture = ExtResource("3_22idi")
+texture = ExtResource("4_r4pki")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qii4l"]
 resource_name = "Path"
-texture = ExtResource("4_o6g1v")
+texture = ExtResource("5_wfltl")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -199,12 +199,12 @@ texture_region_size = Vector2i(64, 64)
 0:5/0/terrains_peering_bit/top_right_corner = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xd3bg"]
-texture = ExtResource("5_tkhp4")
+texture = ExtResource("6_68vc8")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ed451"]
-texture = ExtResource("7_vsyk0")
+texture = ExtResource("7_m3641")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -217,7 +217,7 @@ texture_region_size = Vector2i(64, 64)
 8:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mhjyj"]
-texture = ExtResource("8_2qhg1")
+texture = ExtResource("8_lvsr1")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -230,7 +230,7 @@ texture_region_size = Vector2i(64, 64)
 8:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q3pag"]
-texture = ExtResource("9_blgdx")
+texture = ExtResource("9_e0ucn")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -263,7 +263,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, 32, -32, 32, 
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p51ld"]
-texture = ExtResource("2_e1uku")
+texture = ExtResource("3_alaq8")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/y_sort_origin = 32
@@ -271,7 +271,7 @@ texture_region_size = Vector2i(64, 64)
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_tn66b")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_22idi"]
-texture = ExtResource("6_e1uku")
+texture = ExtResource("10_0qkfs")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/y_sort_origin = 14
@@ -330,7 +330,7 @@ tile_set = SubResource("TileSet_vsyk0")
 [node name="PathTilemap" type="TileMapLayer" parent="."]
 z_index = -1
 texture_filter = 1
-tile_map_data = PackedByteArray("AAD//wAAAgABAAAAAGAAAAAAAgABAAAAAGABAAAAAgABAAAAAGD+/wAAAgABAAAAAGACAAAAAgABAAAAAGADAAAAAgABAAAAAGAEAAAAAgABAAAAAGAFAAAAAgAAAAQAAFAFAAEAAgAAAAIAADAGAAAAAgABAAIAAFDt/wAABgAAAAAAAFDu/wAABgAAAAAAAFDv/wAABgAAAAAAAFDw/wAABgAEAAAAAFD9/wAAAgABAAIAAGDr/wMABgADAAAAADDr/wIABgABAAAAAADr/wEABgABAAAAAADr/wAABgAFAAAAAADs/wAABgAAAAAAAFDw/wEABgAEAAAAAGDx/wEABgAAAAAAAFDy/wEABgAAAAAAAFDz/wEABgAAAAAAAFD0/wEABgAAAAAAAFD1/wEABgAAAAAAAFD2/wEABgAFAAAAADD2/wAABgABAAAAAAD2////BgAFAAAAAAD3////BgAAAAAAAFD4////BgAAAAAAAFD5////BgACAAAAAFA=")
+tile_map_data = PackedByteArray("AAD//wAAAgABAAAAAGAAAAAAAgABAAAAAGABAAAAAgABAAAAAGD+/wAAAgABAAAAAGACAAAAAgABAAAAAGADAAAAAgABAAAAAGAEAAAAAgABAAAAAGAFAAAAAgAAAAQAAFAFAAEAAgAAAAIAADAGAAAAAgABAAAAAFDt/wAABgAAAAAAAFDu/wAABgAAAAAAAFDv/wAABgAAAAAAAFDw/wAABgAEAAAAAFD9/wAAAgABAAIAAGDr/wMABgADAAAAADDr/wIABgABAAAAAADr/wEABgABAAAAAADr/wAABgAFAAAAAADs/wAABgAAAAAAAFDw/wEABgAEAAAAAGDx/wEABgAAAAAAAFDy/wEABgAAAAAAAFDz/wEABgAAAAAAAFD0/wEABgAAAAAAAFD1/wEABgAAAAAAAFD2/wEABgAFAAAAADD2/wAABgABAAAAAAD2////BgAFAAAAAAD3////BgAAAAAAAFD4////BgAAAAAAAFD5////BgACAAAAAFAHAAAAAgABAAAAAFAIAAAAAgABAAAAAFAJAAAAAgABAAAAAFAKAAAAAgABAAAAAFALAAAAAgABAAAAAFAMAAAAAgAAAAMAADAMAP//AgAAAAAAAAAMAP7/AgAAAAMAAAANAP7/AgABAAAAAFAOAP7/AgABAAAAAFAPAP7/AgABAAAAAFAQAP7/AgABAAMAAFAQAP//AgAAAAAAAAAQAAAAAgAAAAAAAAAQAAEAAgABAAMAAGARAAEAAgABAAAAAFASAAEAAgABAAEAAGATAAEAAgABAAEAAFAUAAEAAgAAAAMAADAUAAAAAgAAAAMAAAAVAAAAAgABAAAAAFAWAAAAAgABAAAAAFAXAAAAAgABAAMAAFAXAAEAAgABAAMAAGAYAAEAAgABAAAAAFAZAAEAAgABAAAAAFAaAAEAAgAAAAMAADAaAP//AgAAAAMAAAAaAAAAAgAAAAEAAAAbAP//AgABAAAAAFAcAP//AgABAAAAAFAdAP//AgABAAAAAFAeAP//AgABAAMAAFAeAAAAAgABAAMAAGAfAAAAAgABAAAAAFAgAAAAAgABAAAAAFAhAAAAAgABAAAAAFAiAAAAAgABAAAAAFAjAAAAAgABAAAAAFAkAAAAAgABAAAAAFAlAAAAAgABAAAAAFAmAAAAAgABAAAAAFA=")
 tile_set = SubResource("TileSet_jgf4f")
 
 [node name="SceneryTilemap" type="TileMapLayer" parent="."]

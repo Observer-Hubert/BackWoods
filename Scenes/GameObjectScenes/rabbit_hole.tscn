@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://ekb6bh0fa60u"]
+
+[ext_resource type="Script" uid="uid://cp4msv1oaminq" path="res://Scripts/GameObjects/Classes/AnimalInteractables/Hiding_Place.gd" id="1_dmgbf"]
+[ext_resource type="Texture2D" uid="uid://bu2fuhh81ooyo" path="res://Assets/Sprites/AnimalSprites/BunnyHoleHide.png" id="2_xs1pc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u56lp"]
+atlas = ExtResource("2_xs1pc")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7vmt"]
+atlas = ExtResource("2_xs1pc")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u6kh"]
+atlas = ExtResource("2_xs1pc")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpn7n"]
+atlas = ExtResource("2_xs1pc")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ohwx"]
+atlas = ExtResource("2_xs1pc")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jywxe"]
+atlas = ExtResource("2_xs1pc")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l88fr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u56lp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7vmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u6kh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpn7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ohwx")
+}],
+"loop": false,
+"name": &"Hide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jywxe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uogbx"]
+size = Vector2(9, 4)
+
+[node name="RabbitHole" type="StaticBody2D" node_paths=PackedStringArray("sprite")]
+y_sort_enabled = true
+script = ExtResource("1_dmgbf")
+sprite = NodePath("HoleSprite")
+valid_Hiders = 4
+
+[node name="HoleSprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 13)
+sprite_frames = SubResource("SpriteFrames_l88fr")
+offset = Vector2(0, -13)
+
+[node name="HoleCollider" type="CollisionShape2D" parent="."]
+position = Vector2(9, 13)
+shape = SubResource("RectangleShape2D_uogbx")
+
+[node name="HideEntry" type="Node2D" parent="."]
+position = Vector2(-13, 10)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(9, 13)
+radius = 6.63
