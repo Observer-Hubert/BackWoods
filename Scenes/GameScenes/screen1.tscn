@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://lgcjthia6acr"]
+[gd_scene load_steps=98 format=3 uid="uid://lgcjthia6acr"]
 
 [ext_resource type="Script" uid="uid://wkwbbkujf6en" path="res://Scripts/GameObjects/default_camera.gd" id="1_e7kbd"]
 [ext_resource type="Shader" uid="uid://d366bv01pmjd8" path="res://Scripts/Shaders/Screen.gdshader" id="2_vg3ax"]
@@ -18,8 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://c8tmvxrhl03bs" path="res://Assets/Sprites/Humans/BillTalkingHead/BillLaugh.tres" id="16_od3xe"]
 [ext_resource type="Texture2D" uid="uid://dgl7jfhk6s85d" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalkHead.tres" id="17_4fs4l"]
 [ext_resource type="PackedScene" uid="uid://dtrdai0y5hrhw" path="res://Scenes/GameObjectScenes/bush.tscn" id="18_4ewng"]
-[ext_resource type="Script" uid="uid://bka8mhrehb1l7" path="res://Scripts/GameObjects/tree.gd" id="19_0urjc"]
-[ext_resource type="Texture2D" uid="uid://c8klxy6q2jtv8" path="res://Assets/Sprites/NatureSprites/Birch2.tres" id="20_r4rcb"]
 [ext_resource type="Texture2D" uid="uid://bvkfcpqg5f4eh" path="res://Assets/Sprites/AnimalSprites/Ducks.png" id="21_tu6wn"]
 [ext_resource type="Script" uid="uid://b5cjbmh5mlnfq" path="res://Scripts/GameObjects/Classes/Interactables/Duck_Zone.gd" id="22_1d2b1"]
 [ext_resource type="Texture2D" uid="uid://bfk7v8clslex2" path="res://Assets/Sprites/ManufacturedTiles/ParkEntrance.png" id="22_xkdrt"]
@@ -31,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://tuofic8e5dc1" path="res://Scenes/GameObjectScenes/squirrel_tree.tscn" id="27_smq0w"]
 [ext_resource type="Script" uid="uid://cdgbablmm388a" path="res://Scripts/fademodulate.gd" id="28_p6uwm"]
 [ext_resource type="Script" uid="uid://bg3nyllgew138" path="res://Scripts/GameObjects/Classes/Cutscene_Trigger.gd" id="29_c83up"]
+[ext_resource type="PackedScene" uid="uid://uelep41gur0l" path="res://Scenes/GameObjectScenes/tree.tscn" id="29_vg3ax"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ors8c"]
 shader = ExtResource("2_vg3ax")
@@ -440,9 +439,6 @@ size = Vector2(200, 80)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_222m3"]
 size = Vector2(100, 400)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rg2mq"]
-size = Vector2(12, 10)
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e7kbd"]
 normal = Vector2(2, 0)
 distance = -838.81
@@ -619,107 +615,22 @@ shape = SubResource("RectangleShape2D_222m3")
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Tree" type="StaticBody2D" parent="Trees" node_paths=PackedStringArray("sprite")]
-y_sort_enabled = true
+[node name="Tree6" parent="Trees" instance=ExtResource("29_vg3ax")]
+position = Vector2(-1574, 26)
+rotation = 0.0
+scale = Vector2(1, 1)
+
+[node name="Tree" parent="Trees" instance=ExtResource("29_vg3ax")]
 position = Vector2(-325, 59)
-rotation = 3.14159
-scale = Vector2(1, -1)
-script = ExtResource("19_0urjc")
-tree_Size = 1
-sprite = NodePath("Sprite")
-
-[node name="Sprite" type="Sprite2D" parent="Trees/Tree"]
-y_sort_enabled = true
-position = Vector2(1.14795, 45.4006)
-texture = ExtResource("20_r4rcb")
-offset = Vector2(-1.14795, -45.4006)
-
-[node name="Collider" type="CollisionShape2D" parent="Trees/Tree"]
-position = Vector2(-6, 43)
-shape = SubResource("RectangleShape2D_rg2mq")
-
-[node name="Tree2" type="StaticBody2D" parent="Trees" node_paths=PackedStringArray("sprite")]
-y_sort_enabled = true
-position = Vector2(-441, -193)
-rotation = 3.14159
-scale = Vector2(1, -1)
-script = ExtResource("19_0urjc")
-tree_Type = 2
-tree_Size = 2
-sprite = NodePath("Sprite")
-
-[node name="Sprite" type="Sprite2D" parent="Trees/Tree2"]
-y_sort_enabled = true
-position = Vector2(1.14795, 45.4006)
-texture = ExtResource("20_r4rcb")
-offset = Vector2(-1.14795, -45.4006)
-
-[node name="Collider" type="CollisionShape2D" parent="Trees/Tree2"]
-position = Vector2(-6, 43)
-shape = SubResource("RectangleShape2D_rg2mq")
-
-[node name="Tree3" type="StaticBody2D" parent="Trees" node_paths=PackedStringArray("sprite")]
-y_sort_enabled = true
-position = Vector2(-1157, -192)
-rotation = 3.14159
-scale = Vector2(1, -1)
-script = ExtResource("19_0urjc")
-tree_Type = 1
-tree_Size = 1
-sprite = NodePath("Sprite")
-
-[node name="Sprite" type="Sprite2D" parent="Trees/Tree3"]
-y_sort_enabled = true
-position = Vector2(1.14795, 45.4006)
-texture = ExtResource("20_r4rcb")
-offset = Vector2(-1.14795, -45.4006)
-
-[node name="Collider" type="CollisionShape2D" parent="Trees/Tree3"]
-position = Vector2(-6, 43)
-shape = SubResource("RectangleShape2D_rg2mq")
-
-[node name="Tree4" type="StaticBody2D" parent="Trees" node_paths=PackedStringArray("sprite")]
-y_sort_enabled = true
-position = Vector2(-1157, 75)
-rotation = 3.14159
-scale = Vector2(1, -1)
-script = ExtResource("19_0urjc")
-sprite = NodePath("Sprite")
-
-[node name="Sprite" type="Sprite2D" parent="Trees/Tree4"]
-y_sort_enabled = true
-position = Vector2(1.14795, 45.4006)
-texture = ExtResource("20_r4rcb")
-offset = Vector2(-1.14795, -45.4006)
-
-[node name="Collider" type="CollisionShape2D" parent="Trees/Tree4"]
-position = Vector2(-6, 43)
-shape = SubResource("RectangleShape2D_rg2mq")
-
-[node name="Tree5" type="StaticBody2D" parent="Trees" node_paths=PackedStringArray("sprite")]
-y_sort_enabled = true
-position = Vector2(-1338, -44)
-rotation = 3.14159
-scale = Vector2(1, -1)
-script = ExtResource("19_0urjc")
-tree_Size = 2
-sprite = NodePath("Sprite")
-
-[node name="Sprite" type="Sprite2D" parent="Trees/Tree5"]
-y_sort_enabled = true
-position = Vector2(1.14795, 45.4006)
-texture = ExtResource("20_r4rcb")
-offset = Vector2(-1.14795, -45.4006)
-
-[node name="Collider" type="CollisionShape2D" parent="Trees/Tree5"]
-position = Vector2(-6, 43)
-shape = SubResource("RectangleShape2D_rg2mq")
 
 [node name="Bushes" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Bush" parent="Bushes" instance=ExtResource("18_4ewng")]
 position = Vector2(-832, 80)
+
+[node name="Bush2" parent="Bushes" instance=ExtResource("18_4ewng")]
+position = Vector2(-134, 94)
 
 [node name="Navigation_collision" type="Node2D" parent="."]
 y_sort_enabled = true

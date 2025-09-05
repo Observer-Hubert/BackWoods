@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d38fxxviundxi"]
+[gd_scene load_steps=19 format=3 uid="uid://d38fxxviundxi"]
 
 [ext_resource type="PackedScene" uid="uid://djw6rh8supver" path="res://Scenes/GameObjectScenes/Tilemaps/screen2tilemaps.tscn" id="1_ikcna"]
 [ext_resource type="Script" uid="uid://wkwbbkujf6en" path="res://Scripts/GameObjects/default_camera.gd" id="1_jsarp"]
@@ -8,9 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://b51t1d6nj1g15" path="res://Scenes/GameObjectScenes/player.tscn" id="5_ekavp"]
 [ext_resource type="PackedScene" uid="uid://bvnjtysm1trou" path="res://Scenes/GameObjectScenes/reticle.tscn" id="7_bk76g"]
 [ext_resource type="Texture2D" uid="uid://ds7fdp5sebsvd" path="res://Assets/Sprites/MopedStill.png" id="8_j4qui"]
+[ext_resource type="PackedScene" uid="uid://uelep41gur0l" path="res://Scenes/GameObjectScenes/tree.tscn" id="9_38jpb"]
 [ext_resource type="PackedScene" uid="uid://dtrdai0y5hrhw" path="res://Scenes/GameObjectScenes/bush.tscn" id="18_p6dd1"]
-[ext_resource type="Script" uid="uid://bka8mhrehb1l7" path="res://Scripts/GameObjects/tree.gd" id="19_5470l"]
-[ext_resource type="Texture2D" uid="uid://c8klxy6q2jtv8" path="res://Assets/Sprites/NatureSprites/Birch2.tres" id="20_dpkfm"]
 [ext_resource type="PackedScene" uid="uid://cqm3476fji55w" path="res://Scenes/GameObjectScenes/cutscene_manager.tscn" id="22_odn3d"]
 [ext_resource type="Resource" uid="uid://dken0mmguiugj" path="res://Assets/Cutscenes/Squirrel.tres" id="23_fymgw"]
 [ext_resource type="Script" uid="uid://ciwluf8wf72ym" path="res://Scripts/GameObjects/next_screen_load_zone.gd" id="24_ri6lk"]
@@ -26,9 +25,6 @@ shader_parameter/speed = 5.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06pbi"]
 size = Vector2(44, 8)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rg2mq"]
-size = Vector2(12, 10)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gnj2i"]
 vertices = PackedVector2Array(4990, -240, 4990, 240, -4990, 240, -4990, -240)
@@ -78,31 +74,22 @@ offset = Vector2(-1, -20)
 position = Vector2(1, 20)
 shape = SubResource("RectangleShape2D_06pbi")
 
-[node name="Bush" parent="." instance=ExtResource("18_p6dd1")]
-position = Vector2(-1154, 99)
-
-[node name="Tree" type="StaticBody2D" parent="." node_paths=PackedStringArray("sprite")]
-y_sort_enabled = true
-position = Vector2(-325, 59)
-rotation = 3.14159
-scale = Vector2(1, -1)
-script = ExtResource("19_5470l")
-tree_Size = 1
-sprite = NodePath("Sprite")
-
-[node name="Sprite" type="Sprite2D" parent="Tree"]
-y_sort_enabled = true
-position = Vector2(1.14795, 45.4006)
-texture = ExtResource("20_dpkfm")
-offset = Vector2(-1.14795, -45.4006)
-
-[node name="Collider" type="CollisionShape2D" parent="Tree"]
-position = Vector2(-6, 43)
-shape = SubResource("RectangleShape2D_rg2mq")
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 y_sort_enabled = true
 navigation_polygon = SubResource("NavigationPolygon_gnj2i")
+
+[node name="Trees" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tree" parent="Trees" instance=ExtResource("9_38jpb")]
+position = Vector2(-318, 49)
+tree_Size = 0
+
+[node name="Bushes" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Bush" parent="Bushes" instance=ExtResource("18_p6dd1")]
+position = Vector2(-1154, 99)
 
 [node name="CutsceneManager" parent="." instance=ExtResource("22_odn3d")]
 position = Vector2(255, -1)

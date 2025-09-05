@@ -7,6 +7,7 @@
 size = Vector2(20, 40)
 
 [node name="Reticle" type="Area2D"]
+visible = false
 z_index = 2
 texture_filter = 1
 collision_layer = 7

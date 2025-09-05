@@ -3,5 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://d2wbrukl81ydr" path="res://Assets/Sprites/NatureSprites/BirchSheet2.png" id="1_3w4sr"]
 
 [resource]
+resource_local_to_scene = true
 atlas = ExtResource("1_3w4sr")
 region = Rect2(0, 0, 64, 100)

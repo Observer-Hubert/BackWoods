@@ -197,9 +197,6 @@ desiredModulateColor = Color(0.0980392, 0.0980392, 0.0980392, 1)
 [node name="Fox" parent="." instance=ExtResource("5_yasr0")]
 position = Vector2(-20, 117)
 
-[node name="Bush" parent="." instance=ExtResource("6_kwby2")]
-position = Vector2(107, 105)
-
 [node name="Reticle" parent="." instance=ExtResource("7_p3p48")]
 position = Vector2(1000, 1000)
 
@@ -251,6 +248,15 @@ position = Vector2(-63, 0)
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Log2"]
 position = Vector2(31, 10)
 radius = 15.0
+
+[node name="Trees" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Bushes" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Bush" parent="Bushes" instance=ExtResource("6_kwby2")]
+position = Vector2(107, 105)
 
 [node name="SquirrelTree" parent="." instance=ExtResource("17_afhbf")]
 position = Vector2(808, 64)
