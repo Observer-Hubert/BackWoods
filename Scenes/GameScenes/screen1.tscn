@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://lgcjthia6acr"]
+[gd_scene load_steps=52 format=3 uid="uid://lgcjthia6acr"]
 
 [ext_resource type="Script" uid="uid://wkwbbkujf6en" path="res://Scripts/GameObjects/default_camera.gd" id="1_e7kbd"]
 [ext_resource type="Shader" uid="uid://d366bv01pmjd8" path="res://Scripts/Shaders/Screen.gdshader" id="2_vg3ax"]
@@ -8,15 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dqdwegwkotrfu" path="res://Scenes/GameObjectScenes/Tilemaps/screen1tilemaps.tscn" id="6_ev0fh"]
 [ext_resource type="PackedScene" uid="uid://bvnjtysm1trou" path="res://Scenes/GameObjectScenes/reticle.tscn" id="7_oiufg"]
 [ext_resource type="Texture2D" uid="uid://ds7fdp5sebsvd" path="res://Assets/Sprites/MopedStill.png" id="8_nm4mv"]
-[ext_resource type="Script" uid="uid://dgwi0rjjbpna4" path="res://Scripts/GameObjects/Classes/Creatures/Human.gd" id="9_wnmde"]
+[ext_resource type="PackedScene" uid="uid://wu2n5pjlhcaw" path="res://Scenes/GameObjectScenes/bill.tscn" id="9_debea"]
 [ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="10_8nuoh"]
-[ext_resource type="Texture2D" uid="uid://bknp82x2t5fp8" path="res://Assets/Sprites/Humans/BillDuckStand.png" id="11_rdaac"]
-[ext_resource type="Texture2D" uid="uid://dycd3tm2jga36" path="res://Assets/Sprites/Humans/BillFeedDucks.png" id="12_dvuye"]
-[ext_resource type="Script" uid="uid://b2otj1oosia5n" path="res://Scripts/GameObjects/Classes/Interactables/Dialogue_Zone.gd" id="13_87tni"]
-[ext_resource type="Script" uid="uid://b04o5nhw2f6up" path="res://Scripts/Resources/dialogue_data_resource.gd" id="14_eenle"]
-[ext_resource type="Texture2D" uid="uid://hmhoxpvdyiyh" path="res://Assets/Sprites/Humans/BillTalkingHead/BillTalk.tres" id="15_voyo8"]
-[ext_resource type="Texture2D" uid="uid://c8tmvxrhl03bs" path="res://Assets/Sprites/Humans/BillTalkingHead/BillLaugh.tres" id="16_od3xe"]
-[ext_resource type="Texture2D" uid="uid://dgl7jfhk6s85d" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalkHead.tres" id="17_4fs4l"]
 [ext_resource type="PackedScene" uid="uid://dtrdai0y5hrhw" path="res://Scenes/GameObjectScenes/bush.tscn" id="18_4ewng"]
 [ext_resource type="Texture2D" uid="uid://bvkfcpqg5f4eh" path="res://Assets/Sprites/AnimalSprites/Ducks.png" id="21_tu6wn"]
 [ext_resource type="Script" uid="uid://b5cjbmh5mlnfq" path="res://Scripts/GameObjects/Classes/Interactables/Duck_Zone.gd" id="22_1d2b1"]
@@ -41,281 +34,6 @@ shader_parameter/speed = 5.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06pbi"]
 size = Vector2(44, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xraot"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="Resource" id="Resource_xraot"]
-script = ExtResource("10_8nuoh")
-texture = SubResource("AtlasTexture_xraot")
-caption = "Is that a duck?"
-metadata/_custom_type_script = "uid://itqkeio8b3ey"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_03kwm"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kjy4b"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_222m3"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lwnce"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gnkub"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o1c3j"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oo72k"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(384, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pkduc"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(448, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_emv43"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(512, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ny4kw"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(576, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ixkvo"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(640, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l4rr4"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(704, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p4vwg"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(768, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ysowx"]
-atlas = ExtResource("12_dvuye")
-region = Rect2(832, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qn5on"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(0, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ndc0e"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(32, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3n15x"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(64, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r30vp"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(96, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ha06l"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(128, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_giji2"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(160, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xctpr"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(192, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hlacm"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(224, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7yma3"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(256, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rg2mq"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(288, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gqi0k"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(320, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lq33b"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(352, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gnj2i"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(384, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yqxv8"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(416, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4wijw"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(448, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a4j17"]
-atlas = ExtResource("11_rdaac")
-region = Rect2(480, 0, 32, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_qn5on"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_03kwm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kjy4b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_222m3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lwnce")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gnkub")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o1c3j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oo72k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pkduc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_emv43")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ny4kw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ixkvo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l4rr4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p4vwg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ysowx")
-}],
-"loop": true,
-"name": &"Seed_Throwing",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qn5on")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ndc0e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3n15x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r30vp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ha06l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_giji2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xctpr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hlacm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7yma3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rg2mq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gqi0k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lq33b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gnj2i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yqxv8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4wijw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a4j17")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_03kwm"]
-size = Vector2(20, 8)
-
-[sub_resource type="Resource" id="Resource_hlacm"]
-script = ExtResource("14_eenle")
-texture = ExtResource("15_voyo8")
-speaker = "Bill"
-text = "Why hello there young'in"
-text_Speed = 0.05
-text_End_Time = 1.0
-metadata/_custom_type_script = "uid://b04o5nhw2f6up"
-
-[sub_resource type="Resource" id="Resource_7yma3"]
-script = ExtResource("14_eenle")
-texture = ExtResource("16_od3xe")
-speaker = "Bill"
-text = "I'm still young at heart though!"
-text_Speed = 0.05
-text_End_Time = 1.0
-metadata/_custom_type_script = "uid://b04o5nhw2f6up"
-
-[sub_resource type="Resource" id="Resource_rg2mq"]
-script = ExtResource("14_eenle")
-texture = ExtResource("15_voyo8")
-speaker = "Bill"
-text = "Anyways, I feed duck"
-text_Speed = 0.05
-text_End_Time = 1.0
-metadata/_custom_type_script = "uid://b04o5nhw2f6up"
-
-[sub_resource type="Resource" id="Resource_giji2"]
-script = ExtResource("14_eenle")
-texture = ExtResource("17_4fs4l")
-speaker = "Finch"
-text = "Shut the fuck up"
-text_Speed = 0.2
-text_End_Time = 1.0
-metadata/_custom_type_script = "uid://b04o5nhw2f6up"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqi0k"]
-size = Vector2(70, 92)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2bggi"]
 atlas = ExtResource("21_tu6wn")
@@ -500,34 +218,8 @@ offset = Vector2(-1, -20)
 position = Vector2(1, 20)
 shape = SubResource("RectangleShape2D_06pbi")
 
-[node name="Bill" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("sprite")]
-y_sort_enabled = true
+[node name="Bill" parent="." instance=ExtResource("9_debea")]
 position = Vector2(-647, -18)
-script = ExtResource("9_wnmde")
-sprite = NodePath("BillSprite")
-photo_Data = SubResource("Resource_xraot")
-metadata/_custom_type_script = "uid://dgwi0rjjbpna4"
-
-[node name="BillSprite" type="AnimatedSprite2D" parent="Bill"]
-y_sort_enabled = true
-position = Vector2(0, 28)
-sprite_frames = SubResource("SpriteFrames_qn5on")
-animation = &"Seed_Throwing"
-autoplay = "Seed_Throwing"
-offset = Vector2(0, -28)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bill"]
-position = Vector2(0, 26)
-shape = SubResource("RectangleShape2D_03kwm")
-
-[node name="DialogueZone" type="Area2D" parent="Bill"]
-script = ExtResource("13_87tni")
-dialoge_Data = Array[ExtResource("14_eenle")]([SubResource("Resource_hlacm"), SubResource("Resource_7yma3"), SubResource("Resource_rg2mq"), SubResource("Resource_giji2")])
-metadata/_custom_type_script = "uid://b2otj1oosia5n"
-
-[node name="DialogueCollider" type="CollisionShape2D" parent="Bill/DialogueZone"]
-position = Vector2(-15, 22)
-shape = SubResource("RectangleShape2D_gqi0k")
 
 [node name="Ducks" type="AnimatedSprite2D" parent="."]
 position = Vector2(-593, -2)
@@ -622,6 +314,7 @@ scale = Vector2(1, 1)
 
 [node name="Tree" parent="Trees" instance=ExtResource("29_vg3ax")]
 position = Vector2(-325, 59)
+tree_Type = 1
 
 [node name="Bushes" type="Node2D" parent="."]
 y_sort_enabled = true
