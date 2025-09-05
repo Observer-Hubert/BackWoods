@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dvdp5h3m6sqd"]
+[gd_scene load_steps=36 format=3 uid="uid://dvdp5h3m6sqd"]
 
 [ext_resource type="PackedScene" uid="uid://b4djqfg5c81dk" path="res://Scenes/GameObjectScenes/camera.tscn" id="2_fo5wj"]
 [ext_resource type="Shader" uid="uid://cniu4c328lkl5" path="res://Scripts/Shaders/Fog.gdshader" id="3_6xslx"]
@@ -15,10 +15,12 @@
 [ext_resource type="Script" uid="uid://cp4msv1oaminq" path="res://Scripts/GameObjects/Classes/AnimalInteractables/Hiding_Place.gd" id="14_7pmms"]
 [ext_resource type="Texture2D" uid="uid://c3m1ua750ow66" path="res://Assets/Sprites/AnimalSprites/LogFoxHiding.png" id="15_mdjlb"]
 [ext_resource type="Texture2D" uid="uid://dhcmgcflpr60" path="res://Assets/Sprites/NatureSprites/log.png" id="16_04sjd"]
+[ext_resource type="PackedScene" uid="uid://uelep41gur0l" path="res://Scenes/GameObjectScenes/tree.tscn" id="16_fo5wj"]
 [ext_resource type="PackedScene" path="res://Scenes/GameObjectScenes/squirrel_tree.tscn" id="17_afhbf"]
 [ext_resource type="PackedScene" uid="uid://caf2oimg2miey" path="res://Scenes/GameObjectScenes/rabbit.tscn" id="18_rjrqb"]
 [ext_resource type="PackedScene" uid="uid://ekb6bh0fa60u" path="res://Scenes/GameObjectScenes/rabbit_hole.tscn" id="19_55ekv"]
 [ext_resource type="Script" path="res://Scripts/GameObjects/next_screen_load_zone.gd" id="20_o3gxc"]
+[ext_resource type="PackedScene" uid="uid://bqw32k8l41nkh" path="res://Scenes/GameObjectScenes/Tilemaps/screen3tilemaps.tscn" id="21_6xslx"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n0bxa"]
 vertices = PackedVector2Array(4990, -240, 4990, 240, -4990, 240, -4990, -240)
@@ -161,9 +163,6 @@ position = Vector2(-167, 59)
 [node name="Bush2" parent="." instance=ExtResource("6_kwby2")]
 position = Vector2(-182, 100)
 
-[node name="Bush3" parent="." instance=ExtResource("6_kwby2")]
-position = Vector2(280, 121)
-
 [node name="Log" parent="." instance=ExtResource("13_mmol6")]
 position = Vector2(-306, -28)
 scale = Vector2(-1, 1)
@@ -177,7 +176,8 @@ valid_Hiders = 1
 
 [node name="LogSprite" type="AnimatedSprite2D" parent="Log2"]
 y_sort_enabled = true
-position = Vector2(0, 13)
+position = Vector2(448, -45)
+scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_knqvc")
 offset = Vector2(0, -13)
 
@@ -195,20 +195,53 @@ radius = 15.0
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="Tree" parent="Trees" instance=ExtResource("16_fo5wj")]
+position = Vector2(957, -84)
+tree_Type = 2
+
+[node name="Tree2" parent="Trees" instance=ExtResource("16_fo5wj")]
+position = Vector2(1204, 27)
+tree_Type = 3
+
+[node name="Tree3" parent="Trees" instance=ExtResource("16_fo5wj")]
+position = Vector2(1721, -100)
+tree_Type = 1
+
+[node name="Tree4" parent="Trees" instance=ExtResource("16_fo5wj")]
+position = Vector2(1829, -95)
+
+[node name="Tree5" parent="Trees" instance=ExtResource("16_fo5wj")]
+position = Vector2(1778, 61)
+tree_Type = 1
+
 [node name="Bushes" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Bush" parent="Bushes" instance=ExtResource("6_kwby2")]
-position = Vector2(107, 105)
+position = Vector2(1391, 104)
+
+[node name="Bush2" parent="Bushes" instance=ExtResource("6_kwby2")]
+position = Vector2(1612, 55)
+
+[node name="Bush3" parent="Bushes" instance=ExtResource("6_kwby2")]
+position = Vector2(954, 50)
+
+[node name="Bush4" parent="Bushes" instance=ExtResource("6_kwby2")]
+position = Vector2(862, -26)
+
+[node name="Bush5" parent="Bushes" instance=ExtResource("6_kwby2")]
+position = Vector2(2246, -14)
 
 [node name="SquirrelTree" parent="." instance=ExtResource("17_afhbf")]
-position = Vector2(808, 64)
+position = Vector2(533, -282)
 
 [node name="Rabbit" parent="." instance=ExtResource("18_rjrqb")]
-position = Vector2(99, 125)
+visible = false
+position = Vector2(169, 160)
+rotation = 0.0373425
 
 [node name="RabbitHole" parent="." instance=ExtResource("19_55ekv")]
-position = Vector2(-306, 122)
+position = Vector2(1226, 32)
 
 [node name="NextScreenLoadZone" type="Area2D" parent="."]
 position = Vector2(-576, -1)
@@ -217,3 +250,6 @@ next_screen_Scene_Name = "forest_day_scene"
 
 [node name="Collider" type="CollisionShape2D" parent="NextScreenLoadZone"]
 shape = SubResource("RectangleShape2D_u56lp")
+
+[node name="Tilemaps" parent="." instance=ExtResource("21_6xslx")]
+visible = false

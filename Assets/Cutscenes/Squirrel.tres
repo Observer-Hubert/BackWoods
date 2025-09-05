@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ss60pgxo4vwc" path="res://Scripts/Resources/cutscene_keyframe_resource.gd" id="1_6gu85"]
 [ext_resource type="Script" uid="uid://b04o5nhw2f6up" path="res://Scripts/Resources/dialogue_data_resource.gd" id="2_neuvb"]
 [ext_resource type="Texture2D" uid="uid://dgl7jfhk6s85d" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalkHead.tres" id="3_6pm1d"]
-[ext_resource type="Script" uid="uid://rslo8c06sfem" path="res://Scripts/Resources/cutscene.gd" id="4_j571m"]
+[ext_resource type="Script" path="res://Scripts/Resources/cutscene.gd" id="4_j571m"]
 
 [sub_resource type="Resource" id="Resource_neuvb"]
 script = ExtResource("1_6gu85")
