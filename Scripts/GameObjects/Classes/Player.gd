@@ -39,6 +39,7 @@ func change_State(newState: playerStates) -> void:
 		playerStates.FREE_MOVEMENT:
 			currentState = playerStates.FREE_MOVEMENT
 			sprite.play("Calm_Idle")
+			visibility_area.change_Visibility()
 			Bus.request_cam_focus(self)
 		playerStates.AIMING:
 			currentState = playerStates.AIMING
@@ -119,6 +120,8 @@ func _generate_QTE(length: int = 4, time: float = 3.0) -> void:
 	Bus.signal_qte_generated(QTE, time)
 
 func _completed_QTE(success: bool) -> void:
+	if sprite.animation != "Hiding_Cam":
+		sprite.play("Reload")
 	change_State(_get_Previous_State())
 	if not success:
 		loud_sound_area.make_Noise(250.0)
@@ -229,6 +232,7 @@ func _physics_process(delta: float) -> void:
 	if stamina <= 0.0:
 		loud_sound_area.make_Noise(200.0)
 		exhausted = true
+		$BreathSound.play()
 	# We need to update the UI on our stamina status.
 	Bus.stamina_update(stamina, exhausted)
 	#After everything has been calculated, we move the player by their velocity.

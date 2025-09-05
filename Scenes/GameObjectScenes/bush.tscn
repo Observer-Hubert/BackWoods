@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtrdai0y5hrhw"]
+[gd_scene load_steps=14 format=3 uid="uid://dtrdai0y5hrhw"]
 
 [ext_resource type="Script" uid="uid://des8prwtc7j82" path="res://Scripts/GameObjects/Classes/Interactables/Bush.gd" id="1_87ggj"]
 [ext_resource type="Texture2D" uid="uid://quysgfvu8lqy" path="res://Assets/Sprites/NatureSprites/BigBush.png" id="2_hfamv"]
 [ext_resource type="Texture2D" uid="uid://bfuhwou0iktj" path="res://Assets/Sprites/NatureSprites/BushShakeSheet.png" id="2_qbnqu"]
+[ext_resource type="AudioStream" uid="uid://i6tfctcxduel" path="res://Assets/Sounds/bush.wav" id="4_qbnqu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l63sx"]
 atlas = ExtResource("2_qbnqu")
@@ -85,3 +86,8 @@ offset = Vector2(0, -43)
 [node name="BushCollider" type="CollisionShape2D" parent="."]
 position = Vector2(1, -16)
 shape = SubResource("RectangleShape2D_gkyf7")
+
+[node name="ShakeAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qbnqu")
+volume_db = 8.0
+bus = &"SFX"

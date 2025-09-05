@@ -7,3 +7,6 @@ func _ready() -> void:
 
 func _update_Audio(newValue: float)-> void:
 	AudioServer.set_bus_volume_linear(busIndex,newValue)
+
+func _process(_delta: float) -> void:
+	value = AudioServer.get_bus_volume_linear(busIndex)

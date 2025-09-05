@@ -42,6 +42,7 @@ signal cutscene_end
 signal change_scene
 ##Emitted when a fadeout is requested
 signal fade_out
+signal music_change
 
 func stamina_update(newValue: float, exhausted: bool) -> void:
 	stamina_updated.emit(newValue, exhausted)

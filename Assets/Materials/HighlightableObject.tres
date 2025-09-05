@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://dnbhhaa514qwf" path="res://Scripts/Shaders/Highlightable.gdshader" id="1_xahdy"]
 
 [resource]
+resource_local_to_scene = true
 shader = ExtResource("1_xahdy")
 shader_parameter/highlight_color = Color(1, 1, 0, 1)
 shader_parameter/active = false

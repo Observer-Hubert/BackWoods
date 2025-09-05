@@ -10,9 +10,9 @@ class_name Creature extends AnimatableBody2D
 
 @export_group("Movement")
 ##Determines how fast the creature moves.
-@export_range(10.0, 200.0, 5.0) var base_Move_Speed: float = 150.0
+@export_range(10.0, 20000.0, 5.0) var base_Move_Speed: float = 150.0
 ##Determines how quickly the creature accelerates and decelerates per second.
-@export_range(10.0, 2000.0, 10.0) var accel: float = 150.0
+@export_range(1.0, 20000.0, 1.0) var accel: float = 150.0
 
 @export_group("Components")
 ##The Creature's sprite node
@@ -21,6 +21,8 @@ class_name Creature extends AnimatableBody2D
 @export var awareness_display: AnimatedSprite2D
 ##The pathfinder node
 @export var navigation_agent: NavigationAgent2D
+##busy is active when the creature is incapable of witnessing the player.
+@export var busy = false
 
 ##The maximum awareness value. having it just be 100 for now so it works niceley as a percentage.
 const MAXAWARENESS: float = 100.0
@@ -58,12 +60,13 @@ func hear_Noise(noisePos: Vector2) -> void:
 
 #Changes awareness by the passed amount, and emits corresponding signals, then updates the visualizer.
 func change_Awareness(amount: float) -> void:
-	currentAwareness = clamp(currentAwareness + (amount * awareness_Modifier), MINAWARENESS, MAXAWARENESS)
-	awareness_updated.emit(currentAwareness)
-	if currentAwareness == MAXAWARENESS:
-		max_awareness.emit()
-	if awareness_display != null:
-		awareness_display.value = currentAwareness
+	if not busy:
+		currentAwareness = clamp(currentAwareness + (amount * awareness_Modifier), MINAWARENESS, MAXAWARENESS)
+		awareness_updated.emit(currentAwareness)
+		if currentAwareness == MAXAWARENESS:
+			max_awareness.emit()
+		if awareness_display != null:
+			awareness_display.value = currentAwareness
 
 func _check_Flip() -> void:
 	if velocity:
@@ -80,7 +83,7 @@ func _update_Agent() -> void:
 			navigation_agent.velocity = dir * moveSpeed
 
 func _set_Vel(safe_vel: Vector2):
-	velocity = safe_vel
+	velocity = velocity.move_toward(safe_vel, accel)
 
 func _target_Reached() -> void:
 	reachedPos = true
@@ -89,7 +92,6 @@ func _physics_process(delta: float) -> void:
 	_update_Agent()
 	_check_Flip()
 	if reachedPos == false:
-		print(lastNoisePos)
 		move_and_collide(velocity * delta)
 	if not observingPlayer:
 		change_Awareness(-awareness_Decay_Rate * delta)

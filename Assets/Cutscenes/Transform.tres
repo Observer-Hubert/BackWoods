@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=12 format=3 uid="uid://bci38lsrc8miy"]
+
+[ext_resource type="Script" uid="uid://ss60pgxo4vwc" path="res://Scripts/Resources/cutscene_keyframe_resource.gd" id="1_il10k"]
+[ext_resource type="Script" uid="uid://b04o5nhw2f6up" path="res://Scripts/Resources/dialogue_data_resource.gd" id="2_hag13"]
+[ext_resource type="Texture2D" uid="uid://dgl7jfhk6s85d" path="res://Assets/Sprites/PlayerSprites/PlayerTalking/PlayerTalkHead.tres" id="3_hag13"]
+[ext_resource type="Script" uid="uid://rslo8c06sfem" path="res://Scripts/Resources/cutscene.gd" id="3_n4ki3"]
+
+[sub_resource type="Resource" id="Resource_dxt2r"]
+script = ExtResource("1_il10k")
+dialogue_Data = Array[ExtResource("2_hag13")]([])
+subject = NodePath("../Monster")
+subject_Animation = "Transform"
+subject_End_Animation = ""
+subject_FlipH_When_Moving = false
+subject_Movement = Vector2(0, 0)
+movement_Time = 1.0
+movement_Transition_Type = 0
+movement_easing_Mode = 0
+metadata/_custom_type_script = "uid://ss60pgxo4vwc"
+
+[sub_resource type="Resource" id="Resource_n4ki3"]
+script = ExtResource("2_hag13")
+texture = ExtResource("3_hag13")
+speaker = "Finch"
+text = "Oh shit."
+text_Speed = 0.03
+text_End_Time = 0.5
+metadata/_custom_type_script = "uid://b04o5nhw2f6up"
+
+[sub_resource type="Resource" id="Resource_16jsy"]
+script = ExtResource("1_il10k")
+dialogue_Data = Array[ExtResource("2_hag13")]([SubResource("Resource_n4ki3")])
+subject = NodePath("../Player")
+subject_Animation = "Calm_Idle"
+subject_End_Animation = ""
+subject_FlipH_When_Moving = false
+subject_Movement = Vector2(0, 25)
+movement_Time = 1.0
+movement_Transition_Type = 0
+movement_easing_Mode = 0
+metadata/_custom_type_script = "uid://ss60pgxo4vwc"
+
+[sub_resource type="Resource" id="Resource_hag13"]
+script = ExtResource("1_il10k")
+dialogue_Data = Array[ExtResource("2_hag13")]([])
+subject = NodePath("../Monster")
+subject_Animation = "Scream"
+subject_End_Animation = ""
+subject_FlipH_When_Moving = false
+subject_Movement = Vector2(0, 0)
+movement_Time = 5.0
+movement_Transition_Type = 0
+movement_easing_Mode = 0
+metadata/_custom_type_script = "uid://ss60pgxo4vwc"
+
+[sub_resource type="Resource" id="Resource_265ho"]
+script = ExtResource("2_hag13")
+texture = ExtResource("3_hag13")
+speaker = "Finch"
+text = "I need to get out of here"
+text_Speed = 0.1
+text_End_Time = 0.1
+metadata/_custom_type_script = "uid://b04o5nhw2f6up"
+
+[sub_resource type="Resource" id="Resource_xar0l"]
+script = ExtResource("1_il10k")
+dialogue_Data = Array[ExtResource("2_hag13")]([SubResource("Resource_265ho")])
+subject = NodePath("../Player")
+subject_Animation = "Calm_Idle"
+subject_End_Animation = ""
+subject_FlipH_When_Moving = false
+subject_Movement = Vector2(0, 0)
+movement_Time = 1.0
+movement_Transition_Type = 0
+movement_easing_Mode = 0
+metadata/_custom_type_script = "uid://ss60pgxo4vwc"
+
+[sub_resource type="Resource" id="Resource_ec5se"]
+script = ExtResource("1_il10k")
+dialogue_Data = Array[ExtResource("2_hag13")]([])
+subject = NodePath("../Monster")
+subject_Animation = "TransformFinished"
+subject_End_Animation = ""
+subject_FlipH_When_Moving = false
+subject_Movement = Vector2(0, 0)
+movement_Time = 0.1
+movement_Transition_Type = 0
+movement_easing_Mode = 0
+metadata/_custom_type_script = "uid://ss60pgxo4vwc"
+
+[resource]
+script = ExtResource("3_n4ki3")
+cutscene_Data = Array[ExtResource("1_il10k")]([SubResource("Resource_dxt2r"), SubResource("Resource_16jsy"), SubResource("Resource_hag13"), SubResource("Resource_xar0l"), SubResource("Resource_ec5se")])
+metadata/_custom_type_script = "uid://rslo8c06sfem"

@@ -67,7 +67,9 @@ func _end_QTE(success: bool) -> void:
 		input_hbox.remove_child(i)
 	Bus.signal_qte_completed(success)
 	if success == false:
-		$AudioStreamPlayer.play()
+		$FailAudio.play()
+	else:
+		$SuccessAudio.play()
 	visible = false
 
 func _process(delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://b51t1d6nj1g15"]
+[gd_scene load_steps=69 format=3 uid="uid://b51t1d6nj1g15"]
 
 [ext_resource type="Script" uid="uid://dge07r76em3lb" path="res://Scripts/GameObjects/Classes/Player.gd" id="1_k2fbt"]
 [ext_resource type="Script" uid="uid://itqkeio8b3ey" path="res://Scripts/Resources/photo_data_resource.gd" id="2_44jg2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bd0gr30kpsmjd" path="res://Scripts/GameObjects/PlayerComponents/player_sprite.gd" id="7_bnwc5"]
 [ext_resource type="Texture2D" uid="uid://cedmxtj73bnas" path="res://Assets/Sprites/PlayerSprites/PlayerHidingPictureSheet.png" id="7_d1uyj"]
 [ext_resource type="Texture2D" uid="uid://ddhieyimg2vou" path="res://Assets/Sprites/PlayerSprites/StartAim.png" id="7_nrby6"]
+[ext_resource type="Texture2D" uid="uid://bcfhk6x6sxgii" path="res://Assets/Sprites/PlayerSprites/PlayerReloadingSheet.png" id="8_1ofgn"]
 [ext_resource type="Texture2D" uid="uid://djsqt42p4ewkc" path="res://Assets/Sprites/PlayerSprites/PlayerHiding.png" id="8_tqrir"]
 [ext_resource type="Texture2D" uid="uid://dogldv70obnkn" path="res://Assets/Sprites/PlayerSprites/PlayerWalk.png" id="8_wkso4"]
 [ext_resource type="Script" uid="uid://dmv5asg1v2l6q" path="res://Scripts/GameObjects/PlayerComponents/player_visibility_area.gd" id="10_p8q5l"]
@@ -15,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://busnb4cdfrdso" path="res://Assets/Sounds/Grass_Step_Legit_3.wav" id="11_0qel8"]
 [ext_resource type="AudioStream" uid="uid://d22v1l63qvcax" path="res://Assets/Sounds/Shoot.wav" id="13_gef5h"]
 [ext_resource type="AudioStream" uid="uid://c73litgbwqy1y" path="res://Assets/Sounds/click.wav" id="14_d1uyj"]
+[ext_resource type="AudioStream" uid="uid://cri0bpuf0mbbe" path="res://Assets/Sounds/Stamina_Breath.wav" id="17_di4g8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_74bxx"]
 atlas = ExtResource("7_nrby6")
@@ -148,6 +150,54 @@ region = Rect2(32, 0, 32, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ls34v"]
 atlas = ExtResource("7_d1uyj")
 region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urdhq"]
+atlas = ExtResource("8_1ofgn")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p10x6"]
+atlas = ExtResource("8_1ofgn")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kp2lt"]
+atlas = ExtResource("8_1ofgn")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mfcm"]
+atlas = ExtResource("8_1ofgn")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uqk6"]
+atlas = ExtResource("8_1ofgn")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_saq41"]
+atlas = ExtResource("8_1ofgn")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1t18h"]
+atlas = ExtResource("8_1ofgn")
+region = Rect2(192, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5m5p"]
+atlas = ExtResource("8_1ofgn")
+region = Rect2(224, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd8vp"]
+atlas = ExtResource("8_1ofgn")
+region = Rect2(256, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn60n"]
+atlas = ExtResource("8_1ofgn")
+region = Rect2(288, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnlfx"]
+atlas = ExtResource("8_1ofgn")
+region = Rect2(320, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5ocn"]
+atlas = ExtResource("8_1ofgn")
+region = Rect2(352, 0, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_drrt1"]
 animations = [{
@@ -287,6 +337,47 @@ animations = [{
 "loop": false,
 "name": &"Hiding_Raise_Cam",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urdhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p10x6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kp2lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mfcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uqk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_saq41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1t18h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5m5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd8vp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gn60n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnlfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5ocn")
+}],
+"loop": false,
+"name": &"Reload",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jssvv"]
@@ -320,7 +411,7 @@ photo_Data = SubResource("Resource_8id4v")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_drrt1")
-animation = &"Hiding_Raise_Cam"
+animation = &"Hiding_Cam"
 offset = Vector2(0, -31)
 script = ExtResource("7_bnwc5")
 
@@ -373,4 +464,9 @@ bus = &"SFX"
 
 [node name="CameraClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_d1uyj")
+bus = &"SFX"
+
+[node name="BreathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_di4g8")
+volume_db = 4.0
 bus = &"SFX"

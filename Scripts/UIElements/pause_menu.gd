@@ -1,7 +1,7 @@
 extends MarginContainer
 
 @onready var anim_player = $PauseMenuAnimPlayer
-@onready var resume_button = $MenuPanel/MenuPanelMargin/MenuVBox/QuitResumeHbox/ResumeButton
+@onready var resume_button: Button = $MenuPanel/QuitResumeHbox/ResumeButton
 
 var active: bool = false
 

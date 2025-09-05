@@ -9,6 +9,7 @@ const THAT_S_NO_DEER = preload("res://Assets/Sounds/Songs/That's_No_Deer.wav")
 func _ready() -> void:
 	_play_Track(MAIN_MENU_SIMPLE)
 	Bus.change_scene.connect(_scene_Music_Update)
+	Bus.music_change.connect(_play_Track.bind(THAT_S_NO_DEER))
 	Bus.go_home.connect(_play_Track.bind(MAIN_MENU_SIMPLE))
 
 func _play_Track(track: AudioStreamWAV) -> void:

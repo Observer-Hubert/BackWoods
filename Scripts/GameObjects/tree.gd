@@ -20,4 +20,4 @@ func _ready() -> void:
 			sprite.texture = birchSprite
 		treeType.BIRCH2:
 			sprite.texture = birch2Sprite
-	sprite.texture.region.position.x += 64 * tree_Size
+	sprite.texture.region.position.x = 64 * tree_Size

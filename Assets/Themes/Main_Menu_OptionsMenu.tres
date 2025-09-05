@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=40 format=4 uid="uid://j1lapft7rpcs"]
+[gd_resource type="Theme" load_steps=43 format=4 uid="uid://j1lapft7rpcs"]
 
 [ext_resource type="Texture2D" uid="uid://f0ji1yies52c" path="res://Assets/Sprites/UISprites/WoodPanels.png" id="1_t2dfa"]
 
@@ -1850,18 +1850,30 @@ region = Rect2(0, 0, 152, 74)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i5mao"]
 texture = SubResource("AtlasTexture_oknqb")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nnbo"]
+atlas = ExtResource("1_t2dfa")
+region = Rect2(819, 2, 45, 29)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u3ic1"]
-texture = SubResource("AtlasTexture_7gkb1")
+texture = SubResource("AtlasTexture_0nnbo")
 texture_margin_left = 4.0
 texture_margin_right = 5.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_sulpq"]
+atlas = ExtResource("1_t2dfa")
+region = Rect2(1275, 2, 45, 29)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t2dfa"]
-texture = SubResource("AtlasTexture_t2dfa")
+texture = SubResource("AtlasTexture_sulpq")
 texture_margin_left = 3.0
 texture_margin_right = 5.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r772m"]
+atlas = ExtResource("1_t2dfa")
+region = Rect2(363, 2, 45, 29)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7gkb1"]
-texture = SubResource("AtlasTexture_7vlam")
+texture = SubResource("AtlasTexture_r772m")
 texture_margin_left = 3.0
 texture_margin_right = 5.0
 
